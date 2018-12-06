@@ -1,14 +1,11 @@
-﻿import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+﻿import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { routerReducer, routerMiddleware } from 'react-router-redux';
-import * as Counter from './Counter';
-import * as WeatherForecasts from './WeatherForecasts';
+import { routerMiddleware } from 'react-router-redux';
+import rootReducer from '../reducers/index'
 
+
+// pe aici e problema
 export default function configureStore(history, initialState) {
-  const reducers = {
-    counter: Counter.reducer,
-    weatherForecasts: WeatherForecasts.reducer
-  };
 
   const middleware = [
     thunk,
@@ -21,11 +18,6 @@ export default function configureStore(history, initialState) {
   if (isDevelopment && typeof window !== 'undefined' && window.devToolsExtension) {
     enhancers.push(window.devToolsExtension());
   }
-
-  const rootReducer = combineReducers({
-    ...reducers,
-    routing: routerReducer
-  });
 
   return createStore(
     rootReducer,
