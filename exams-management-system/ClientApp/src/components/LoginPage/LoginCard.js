@@ -1,13 +1,13 @@
 ﻿import React from "react";
 import Card from "@material-ui/core/Card";
-// import "../../styles/LoginPage/LoginCardStyle.css";
+import "../../styles/LoginPage/LoginCardStyle.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import { loginUser } from "../../actions/authActions";
+import { loginUser } from "../../actions/authActions";
 import { withRouter } from "react-router-dom";
 
 class LoginCard extends React.Component {
@@ -77,14 +77,14 @@ class LoginCard extends React.Component {
 }
 
 LoginCard.propTypes = {
-    // loginUser: PropTypes.func.isRequired,
-    // auth: PropTypes.object.isRequired,
-    // errors: PropTypes.object.isRequired
+    loginUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    // errors: state.errors
+    errors: state.errors
 });
 
 export default withRouter(

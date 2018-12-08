@@ -4,7 +4,6 @@ import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
 import "../../styles/LoginPage/LoginCardStyle.css";
 import { connect } from "react-redux";
-//import { loginUser } from "../../actions/Auth";
 //import logo from "../../images/dogo.png";
 import background from "../../images/bg.jpg";
 import { Link } from "react-router-dom";
@@ -18,7 +17,8 @@ class Login extends React.Component {
         this.state = {
             email: "",
             password: "",
-            // errors: {}
+            nrmat: "",
+            errors: {}
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -26,7 +26,6 @@ class Login extends React.Component {
     }
 
     handleChange(event) {
-        console.log(event.target.value)
         this.setState({
             [event.target.name]: event.target.value
         });
@@ -37,6 +36,7 @@ class Login extends React.Component {
             grant_type: "password",
             username: this.state.email,
             password: this.state.password,
+            nrmat: this.state.nrmat,
             client_id: "dashboard",
             client_secret:
                 "$2b$10$rfxL7VOyA1bLtLtYr9xLW.RSpj5Sd6LaH5zBT/8YPxbJxGMKvBkcy"
@@ -64,7 +64,7 @@ class Login extends React.Component {
                     classes={{ root: "classes-login" }}
                     className="login-form"
                     style={{
-                        width: "330px",
+                        width: "400px",
                         display: "flex",
                         alignItems: "center",
                         textAlign: "center",
@@ -75,7 +75,7 @@ class Login extends React.Component {
                         {/* dunno why is not rendering => research more maybe
                    <LoginCard /> */}
                         <input
-                            className="inputEmail"
+                            style={{ marginTop: "10px", color: "grey" }}
                             id="emailFields"
                             type="text"
                             name="email"
@@ -144,7 +144,7 @@ class Login extends React.Component {
                             paddingLeft: 20
                         }}
                     >
-                        © 2017 - Nyxgrid is a Sprybase Project. Please{" "}
+                        © 2018 - Exams Management System is a EDGV Project. Please{" "}
                         <span style={{ fontWeight: "bold", color: "blue" }}>
                             contact us
                     </span>{" "}
