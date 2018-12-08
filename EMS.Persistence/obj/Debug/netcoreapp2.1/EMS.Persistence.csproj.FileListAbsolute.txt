@@ -1,0 +1,28 @@
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.csprojAssemblyReference.cache
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.csproj.CoreCompileInputs.cache
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.AssemblyInfoInputs.cache
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.AssemblyInfo.cs
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.deps.json
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.dll
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Domain.dll
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Domain.pdb
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.csproj.CopyComplete
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.runtimeconfig.json
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.runtimeconfig.dev.json
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.pdb
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.dll
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.pdb
+D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.deps.json
+D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.runtimeconfig.json
+D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.runtimeconfig.dev.json
+D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.dll
+D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.pdb
+D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Domain.dll
+D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Domain.pdb
+D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.csprojAssemblyReference.cache
+D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.csproj.CoreCompileInputs.cache
+D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.AssemblyInfoInputs.cache
+D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.AssemblyInfo.cs
+D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.csproj.CopyComplete
+D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.dll
+D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.pdb

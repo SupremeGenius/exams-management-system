@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "exams-management-system", "exams-management-system\exams-management-system.csproj", "{65B64D19-26EB-405F-A82C-9FB5F42D17E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "exams-management-system", "exams-management-system\exams-management-system.csproj", "{65B64D19-26EB-405F-A82C-9FB5F42D17E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Service", "01-Service", "{C8ABDC85-EBC0-447F-B28B-47DB8951B8D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Infrastructure", "02-Infrastructure", "{4001F3AB-5832-4A6D-B229-2B18FE1BB4ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Core", "03-Core", "{6C70CE56-7708-4B24-9ADE-C6D027EAAA89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Domain", "EMS.Domain\EMS.Domain.csproj", "{DB44F7BE-20E4-46CC-A54A-25B3FDF2B3E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Business", "EMS.Business\EMS.Business.csproj", "{B1FF91A5-0A93-47E1-88F4-176CBA6B0B84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Persistence", "EMS.Persistence\EMS.Persistence.csproj", "{FC86BC7E-FE6C-4CC1-B13A-903156BF1191}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +27,27 @@ Global
 		{65B64D19-26EB-405F-A82C-9FB5F42D17E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65B64D19-26EB-405F-A82C-9FB5F42D17E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65B64D19-26EB-405F-A82C-9FB5F42D17E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB44F7BE-20E4-46CC-A54A-25B3FDF2B3E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB44F7BE-20E4-46CC-A54A-25B3FDF2B3E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB44F7BE-20E4-46CC-A54A-25B3FDF2B3E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB44F7BE-20E4-46CC-A54A-25B3FDF2B3E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1FF91A5-0A93-47E1-88F4-176CBA6B0B84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1FF91A5-0A93-47E1-88F4-176CBA6B0B84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1FF91A5-0A93-47E1-88F4-176CBA6B0B84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1FF91A5-0A93-47E1-88F4-176CBA6B0B84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC86BC7E-FE6C-4CC1-B13A-903156BF1191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC86BC7E-FE6C-4CC1-B13A-903156BF1191}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC86BC7E-FE6C-4CC1-B13A-903156BF1191}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC86BC7E-FE6C-4CC1-B13A-903156BF1191}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{65B64D19-26EB-405F-A82C-9FB5F42D17E9} = {C8ABDC85-EBC0-447F-B28B-47DB8951B8D6}
+		{DB44F7BE-20E4-46CC-A54A-25B3FDF2B3E8} = {6C70CE56-7708-4B24-9ADE-C6D027EAAA89}
+		{B1FF91A5-0A93-47E1-88F4-176CBA6B0B84} = {6C70CE56-7708-4B24-9ADE-C6D027EAAA89}
+		{FC86BC7E-FE6C-4CC1-B13A-903156BF1191} = {4001F3AB-5832-4A6D-B229-2B18FE1BB4ED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {63F725D0-BE38-4A81-9E55-32C637AAE5B1}

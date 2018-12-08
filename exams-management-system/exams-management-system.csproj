@@ -50,6 +50,7 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\images\" />
+    <ProjectReference Include="..\EMS.Persistence\EMS.Persistence.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
