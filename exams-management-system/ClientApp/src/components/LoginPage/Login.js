@@ -6,7 +6,7 @@ import "../../styles/LoginPage/LoginCardStyle.css";
 import { connect } from "react-redux";
 //import logo from "../../images/dogo.png";
 import background from "../../images/bg.jpg";
-import { Link } from "react-router-dom";
+import { Link, Redirect  } from "react-router-dom";
 import { loginUser } from "../../actions/Auth";
 
 
@@ -44,7 +44,12 @@ class Login extends React.Component {
 
         this.props.loginUser(userData, this.props.history);
     }
+
     render() {
+        // redirect here
+        if (this.props.auth.isAuthenticated) {
+            return <Redirect to="/home" />;
+        }
         return (
             <div>
                 <img
