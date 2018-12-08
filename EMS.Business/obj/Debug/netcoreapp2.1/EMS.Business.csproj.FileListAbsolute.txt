@@ -1,0 +1,12 @@
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Business\obj\Debug\netcoreapp2.1\EMS.Business.csprojAssemblyReference.cache
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Business\obj\Debug\netcoreapp2.1\EMS.Business.csproj.CoreCompileInputs.cache
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Business\obj\Debug\netcoreapp2.1\EMS.Business.AssemblyInfoInputs.cache
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Business\obj\Debug\netcoreapp2.1\EMS.Business.AssemblyInfo.cs
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Business\bin\Debug\netcoreapp2.1\EMS.Business.deps.json
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Business\bin\Debug\netcoreapp2.1\EMS.Business.dll
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Business\bin\Debug\netcoreapp2.1\EMS.Domain.dll
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Business\bin\Debug\netcoreapp2.1\EMS.Domain.pdb
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Business\obj\Debug\netcoreapp2.1\EMS.Business.csproj.CopyComplete
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Business\bin\Debug\netcoreapp2.1\EMS.Business.pdb
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Business\obj\Debug\netcoreapp2.1\EMS.Business.dll
+C:\Users\Gabi\Documents\GitHub\exams-management-system\EMS.Business\obj\Debug\netcoreapp2.1\EMS.Business.pdb
