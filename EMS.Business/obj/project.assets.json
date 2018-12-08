@@ -1228,10 +1228,11 @@
       ]
     },
     "Microsoft.NETCore.Platforms/2.1.0": {
-      "sha512": "TT+QCi9LcxGTjBssH7S7n5+8DVcwfG4DYgXX7Dk7+BfZ4oVHj8Q0CbYk9glzAlHLsSt3bYzol+fOdra2iu6GOw==",
+      "sha512": "aSTPL94NloSiQVL5Len8wbjFKOnoAX/vOh3s3DF6g3c7GUUMLCDvnBhmA72M2iN2AedyA8hpr7m89kzSAKUnJQ==",
       "type": "package",
       "path": "microsoft.netcore.platforms/2.1.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -1387,10 +1388,12 @@
       ]
     },
     "Remotion.Linq/2.2.0": {
-      "sha512": "fK/76UmpC0FXBlGDFVPLJHQlDLYnGC+XY3eoDgCgbtrhi0vzbXDQ3n/IYHhqSKqXQfGw/u04A1drWs7rFVkRjw==",
+      "sha512": "twDAH8dAXXCAf3sRv1Tf94u66eEHvgU75hfn1nn2v4fSWXD50XoDOAk8WpSrbViNuMkB4kN1ElnOGm1c519IHg==",
       "type": "package",
       "path": "remotion.linq/2.2.0",
       "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
         "lib/net35/Remotion.Linq.XML",
         "lib/net35/Remotion.Linq.dll",
         "lib/net40/Remotion.Linq.XML",
@@ -2616,10 +2619,11 @@
       ]
     },
     "System.Runtime.CompilerServices.Unsafe/4.5.1": {
-      "sha512": "qUJMNWhbm9oZ3XaMFiEMiYmRPszbnXIkRIi7+4b2Md2xZ6JUOepf0/kY3S85qistRohl9OdMe4PsO+RdG2kTIQ==",
+      "sha512": "x/3d5xb+mc9e4I2GOOT+HPRWMZLbYjNN/kYKsb0fyUKcWizn/t1CIrGRLIBhv7H0ptYEt+WTTztdPmwSUMyKig==",
       "type": "package",
       "path": "system.runtime.compilerservices.unsafe/4.5.1",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -2933,23 +2937,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gabi\\.nuget\\packages\\": {},
+    "C:\\Users\\dgorgan\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Business\\EMS.Business.csproj",
+      "projectUniqueName": "D:\\Facultate\\.NET\\Proiect - 2018\\exams-management-system\\EMS.Business\\EMS.Business.csproj",
       "projectName": "EMS.Business",
-      "projectPath": "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Business\\EMS.Business.csproj",
-      "packagesPath": "C:\\Users\\Gabi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Business\\obj\\",
+      "projectPath": "D:\\Facultate\\.NET\\Proiect - 2018\\exams-management-system\\EMS.Business\\EMS.Business.csproj",
+      "packagesPath": "C:\\Users\\dgorgan\\.nuget\\packages\\",
+      "outputPath": "D:\\Facultate\\.NET\\Proiect - 2018\\exams-management-system\\EMS.Business\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Gabi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dgorgan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2962,8 +2966,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Domain\\EMS.Domain.csproj": {
-              "projectPath": "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Domain\\EMS.Domain.csproj"
+            "D:\\Facultate\\.NET\\Proiect - 2018\\exams-management-system\\EMS.Domain\\EMS.Domain.csproj": {
+              "projectPath": "D:\\Facultate\\.NET\\Proiect - 2018\\exams-management-system\\EMS.Domain\\EMS.Domain.csproj"
             }
           }
         }
