@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
-import './index.scss';
+import './styles/css/index.css';
 
 // core
 import React                    from 'react';

@@ -5,7 +5,7 @@ import Card   from "@material-ui/core/Card";
 
 import SignUpForm from './SignUpForm'
 
-import './SignUp.scss'
+import '../../styles/css/SignUp.css'
 
 class SignUpPage extends React.Component {
   constructor(props) {

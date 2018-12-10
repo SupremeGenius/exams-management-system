@@ -1,4 +1,4 @@
-@import "../../styles/scss/colors.scss";
+@import "../../constants/colors.scss";
 
 .sign-up {
   background-color: #F5F7F9;
@@ -13,6 +13,7 @@
   }
   &__title {
     color: $textColor;
+    font-weight: 200;
   }
 }
 .classes-sign-up__card {
