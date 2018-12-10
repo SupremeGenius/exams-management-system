@@ -16,7 +16,7 @@ class SignUpForm extends React.Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne } = this.state;
+    // const { username, email, passwordOne } = this.state;
   }
 
   onChange = event => {
@@ -30,22 +30,31 @@ class SignUpForm extends React.Component {
       passwordOne,
       passwordTwo,
       error,
+      registrationNumber,
     } = this.state;
 
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
+      registrationNumber === '' ||
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form className='sign-up-form' onSubmit={this.onSubmit}>
         <input
           name        = "username"
           value       = {username}
           onChange    = {this.onChange}
           type        = "text"
           placeholder = "Full Name"
+        />
+        <input
+          name        = "registrationNumber"
+          value       = {registrationNumber}
+          onChange    = {this.onChange}
+          type        = "text"
+          placeholder = "Registration Number"
         />
         <input
           name        = "email"

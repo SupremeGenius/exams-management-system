@@ -1,13 +1,15 @@
 ﻿import React, { Component } from 'react';
-import { Route, Switch } from 'react-router';
-import Layout from './components/Layout';
-import Home from './components/Home';
-import Counter from './components/Counter';
-import FetchData from './components/FetchData';
-import Login from './components/LoginPage/Login';
-import SignUp from './components/SignUp';
-import setAuthTokenApp from "./utils/setAuthToken";
-import ROUTES from './constants/routes'
+import { Route, Switch }    from 'react-router';
+
+import Layout               from './components/Layout';
+import Home                 from './components/Home';
+import Counter              from './components/Counter';
+import FetchData            from './components/FetchData';
+import Login                from './components/LoginPage/Login';
+import SignUp               from './components/SignUp';
+
+import setAuthTokenApp      from "./utils/setAuthToken";
+import ROUTES               from './constants/routes'
 
 // Check for auth token
 if (localStorage.jwtToken) {
