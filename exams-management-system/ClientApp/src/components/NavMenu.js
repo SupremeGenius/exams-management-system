@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import './NavMenu.css';
+import ROUTES from '../constants/routes'
 
 export default props => (
   <Navbar inverse fixedTop fluid collapseOnSelect>
@@ -27,6 +28,16 @@ export default props => (
         <LinkContainer to={'/fetchdata'}>
           <NavItem>
             <Glyphicon glyph='th-list' /> Fetch data
+          </NavItem>
+        </LinkContainer>
+        <LinkContainer to={ROUTES.SIGN_IN}>
+          <NavItem>
+            <Glyphicon glyph='th-list' /> Sign In
+          </NavItem>
+        </LinkContainer>
+        <LinkContainer to={ROUTES.SIGN_UP}>
+          <NavItem>
+            <Glyphicon glyph='th-list' /> Sign Up
           </NavItem>
         </LinkContainer>
       </Nav>
