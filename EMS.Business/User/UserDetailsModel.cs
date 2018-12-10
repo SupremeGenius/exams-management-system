@@ -2,7 +2,7 @@
 
 namespace EMS.Business
 {
-    public class StudentDetailsModel
+    public class UserDetailsModel
     {
         public Guid Id { get; set; }
 
@@ -11,6 +11,8 @@ namespace EMS.Business
         public string LastName { get; set; }
 
         public string Email { get; set; }
+
+        public string RegistrationId { get; set; }
 
     }
 }

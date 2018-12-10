@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EMS.Domain
+namespace EMS.Domain.Entities
 {
-    public class Professor : Entity
+    public class Professor : User
     {
+        public string Title { get; set; }
 
+        private List<Course> Courses { get; set; }
+
+        private List<Exam> Exams { get; set; }
     }
 }

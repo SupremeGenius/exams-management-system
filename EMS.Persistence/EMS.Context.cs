@@ -11,7 +11,7 @@ namespace EMS.Persistence
         public EMSContext(DbContextOptions<EMSContext> options)
             : base(options) => Database.Migrate();
 
-        internal DbSet<Student> Students { get; private set; }
+        internal DbSet<User> Users { get; private set; }
 
         public IQueryable<TEntity> GetAll<TEntity>()
             where TEntity : Entity => Set<TEntity>().AsNoTracking();

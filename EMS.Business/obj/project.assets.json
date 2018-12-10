@@ -1244,11 +1244,10 @@
       ]
     },
     "Microsoft.NETCore.Platforms/2.1.0": {
-      "sha512": "aSTPL94NloSiQVL5Len8wbjFKOnoAX/vOh3s3DF6g3c7GUUMLCDvnBhmA72M2iN2AedyA8hpr7m89kzSAKUnJQ==",
+      "sha512": "TT+QCi9LcxGTjBssH7S7n5+8DVcwfG4DYgXX7Dk7+BfZ4oVHj8Q0CbYk9glzAlHLsSt3bYzol+fOdra2iu6GOw==",
       "type": "package",
       "path": "microsoft.netcore.platforms/2.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -1763,12 +1762,10 @@
       ]
     },
     "System.Interactive.Async/3.1.1": {
-      "sha512": "x9y2omkjEudKbIVuhUzeWw7ZlouEzpk4W98woCEq1lq9gJxERBKRKDTHF5JPEws9E0f4/Uei/2vLxEy1IrfmMg==",
+      "sha512": "hZccYiIE5RS1/J9Tb/BNtosAGVggdlsJm4Ojdu+gDV0p4AIi+LUfUogMKkRacljQEJd2AG6vYzvcjhQFkqoZmw==",
       "type": "package",
       "path": "system.interactive.async/3.1.1",
       "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
         "lib/net45/System.Interactive.Async.dll",
         "lib/net45/System.Interactive.Async.xml",
         "lib/net46/System.Interactive.Async.dll",
@@ -2993,23 +2990,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dgorgan\\.nuget\\packages\\": {},
+    "C:\\Users\\Gabi\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Facultate\\.NET\\Proiect - 2018\\exams-management-system\\EMS.Business\\EMS.Business.csproj",
+      "projectUniqueName": "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Business\\EMS.Business.csproj",
       "projectName": "EMS.Business",
-      "projectPath": "D:\\Facultate\\.NET\\Proiect - 2018\\exams-management-system\\EMS.Business\\EMS.Business.csproj",
-      "packagesPath": "C:\\Users\\dgorgan\\.nuget\\packages\\",
-      "outputPath": "D:\\Facultate\\.NET\\Proiect - 2018\\exams-management-system\\EMS.Business\\obj\\",
+      "projectPath": "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Business\\EMS.Business.csproj",
+      "packagesPath": "C:\\Users\\Gabi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Business\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\dgorgan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Gabi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3022,8 +3019,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\Facultate\\.NET\\Proiect - 2018\\exams-management-system\\EMS.Domain\\EMS.Domain.csproj": {
-              "projectPath": "D:\\Facultate\\.NET\\Proiect - 2018\\exams-management-system\\EMS.Domain\\EMS.Domain.csproj"
+            "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Domain\\EMS.Domain.csproj": {
+              "projectPath": "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Domain\\EMS.Domain.csproj"
             }
           }
         }
