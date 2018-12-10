@@ -16,7 +16,7 @@ class SignUpPage extends React.Component {
   render() {
     return (
       <div className='sign-up'>
-        <Card classes={{root:'sing-up__card'}} className='sing-up__card' style={{width: 500}}>
+        <Card classes={{root:'sing-up__card'}} className='sing-up__card' style={{width: 500, margin: 'auto'}}>
           <h1 className='sign-up__title'>Welcome back</h1>
           <SignUpForm />
         </Card>
