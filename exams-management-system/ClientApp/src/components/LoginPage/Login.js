@@ -45,10 +45,12 @@ class Login extends React.Component {
         this.props.loginUser(userData, this.props.history);
     }
 
+ 
+
     render() {
         // redirect here
         if (this.props.auth.isAuthenticated) {
-            return <Redirect to="/home" />;
+            return <Redirect to="/" />;
         }
         return (
             <div>
@@ -149,7 +151,7 @@ class Login extends React.Component {
                             paddingLeft: 20
                         }}
                     >
-                        © 2018 - Exams Management System is a EDGV Project. Please{" "}
+                        © 2018 - Exams Management System is a EDGVV Project. Please{" "}
                         <span style={{ fontWeight: "bold", color: "blue" }}>
                             contact us
                     </span>{" "}
