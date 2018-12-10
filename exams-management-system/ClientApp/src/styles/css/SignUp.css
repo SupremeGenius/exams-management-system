@@ -2,8 +2,9 @@
   background-color: #F5F7F9;
   height: 100%;
   justify-content: center;
-  align-items: center;
-  display: flex; }
+  padding: 100px 0;
+  min-height: 500px;
+  overflow: auto; }
   .sign-up__card {
     width: 200px;
     color: red; }
@@ -11,9 +12,7 @@
     color: #1e3d61;
     font-weight: 200; }
 
-.classes-sign-up__card {
-  width: 500px; }
-
 .sign-up-form {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  align-items: center; }

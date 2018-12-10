@@ -8,16 +8,11 @@ import SignUpForm from './SignUpForm'
 import '../../styles/css/SignUp.css'
 
 class SignUpPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   render() {
     return (
       <div className='sign-up'>
-        <Card classes={{root:'sing-up__card'}} className='sing-up__card' style={{width: 500, margin: 'auto'}}>
-          <h1 className='sign-up__title'>Welcome back</h1>
+        <Card classes={{root:'sing-up__card'}} className='sing-up__card' style={{width: 500, margin: 'auto', padding: '40px 0', textAlign: 'center'}}>
+          <h1 className='sign-up__title'> EMS </h1>
           <SignUpForm />
         </Card>
 

@@ -1,4 +1,7 @@
-import React  from 'react';
+import React    from 'react';
+
+import Input from '../core/input'
+import Button from '../core/button'
 
 const INITIAL_STATE = {
   username:    '',
@@ -7,6 +10,8 @@ const INITIAL_STATE = {
   passwordTwo: '',
   error:       null,
 };
+
+
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -23,6 +28,13 @@ class SignUpForm extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value,
+    });
+  };
+
+
   render() {
     const {
       username,
@@ -33,6 +45,8 @@ class SignUpForm extends React.Component {
       registrationNumber,
     } = this.state;
 
+    const { classes } = this.props;
+
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
@@ -42,44 +56,32 @@ class SignUpForm extends React.Component {
 
     return (
       <form className='sign-up-form' onSubmit={this.onSubmit}>
-        <input
-          name        = "username"
-          value       = {username}
-          onChange    = {this.onChange}
-          type        = "text"
-          placeholder = "Full Name"
+        <Input
+          label    = "Numar Matricol"
+          onChange = {this.handleChange('nrMat')}
+          value    = {registrationNumber}
         />
-        <input
-          name        = "registrationNumber"
-          value       = {registrationNumber}
-          onChange    = {this.onChange}
-          type        = "text"
-          placeholder = "Registration Number"
+        <Input
+          label    = "Email"
+          onChange = {this.handleChange('email')}
+          value    = {email}
         />
-        <input
-          name        = "email"
-          value       = {email}
-          onChange    = {this.onChange}
-          type        = "text"
-          placeholder = "Email Address"
+        <Input
+          label    = "Password"
+          onChange = {this.handleChange('passwordOne')}
+          value    = {passwordOne}
+          type     = "password"
         />
-        <input
-          name        = "passwordOne"
-          value       = {passwordOne}
-          onChange    = {this.onChange}
-          type        = "password"
-          placeholder = "Password"
+        <Input
+          label    = "Confirm Password"
+          onChange = {this.handleChange('passwordTwo')}
+          value    = {passwordTwo}
+          type     = "password"
         />
-        <input
-          name        = "passwordTwo"
-          value       = {passwordTwo}
-          onChange    = {this.onChange}
-          type        = "password"
-          placeholder = "Confirm Password"
-        />
-        <button disabled={isInvalid} type="submit">
+
+        <Button disabled={isInvalid} type='submit'>
           Sign Up
-        </button>
+        </Button>
 
         {error && <p>{error.message}</p>}
       </form>
@@ -87,4 +89,4 @@ class SignUpForm extends React.Component {
   }
 }
 
-export default SignUpForm
+export default SignUpForm;
