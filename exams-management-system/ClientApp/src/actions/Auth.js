@@ -2,7 +2,8 @@
 import setAuthToken from "../utils/setAuthToken";
 
 export const loginUser = (userData, history) => dispatch => {
-
+    // 501 not implemented
+    /*
     axios
         .post("/api/oauth2/token", userData)
         .then(result => {
@@ -21,7 +22,12 @@ export const loginUser = (userData, history) => dispatch => {
                 payload: error.response.data
             })
         );
-
+        */
+    dispatch({
+        type: 'SET_CURRENT_USER',
+        user: {},
+        isAuthenticated: true
+    })
 };
 
 // Log out user

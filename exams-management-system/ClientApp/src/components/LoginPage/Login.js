@@ -6,7 +6,7 @@ import "../../styles/LoginPage/LoginCardStyle.css";
 import { connect } from "react-redux";
 //import logo from "../../images/dogo.png";
 import background from "../../images/bg.jpg";
-import { Link } from "react-router-dom";
+import { Link, Redirect  } from "react-router-dom";
 import { loginUser } from "../../actions/Auth";
 
 
@@ -44,7 +44,14 @@ class Login extends React.Component {
 
         this.props.loginUser(userData, this.props.history);
     }
+
+ 
+
     render() {
+        // redirect here
+        if (this.props.auth.isAuthenticated) {
+            return <Redirect to="/" />;
+        }
         return (
             <div>
                 <img
@@ -144,7 +151,7 @@ class Login extends React.Component {
                             paddingLeft: 20
                         }}
                     >
-                        © 2018 - Exams Management System is a EDGV Project. Please{" "}
+                        © 2018 - Exams Management System is a EDGVV Project. Please{" "}
                         <span style={{ fontWeight: "bold", color: "blue" }}>
                             contact us
                     </span>{" "}
