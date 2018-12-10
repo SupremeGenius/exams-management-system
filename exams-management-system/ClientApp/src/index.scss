@@ -1,3 +1,5 @@
+@import "./styles/scss/colors.scss";
+
 html {
   height:  100%;
 }
@@ -6,6 +8,7 @@ body {
   margin:  0;
   padding: 0;
   height:  100%;
+  background: $textColor;
 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',

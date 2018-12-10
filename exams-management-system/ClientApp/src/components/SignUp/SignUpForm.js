@@ -30,12 +30,14 @@ class SignUpForm extends React.Component {
       passwordOne,
       passwordTwo,
       error,
+      registrationNumber,
     } = this.state;
 
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
+      registrationNumber === '' ||
       username === '';
 
     return (
@@ -46,6 +48,13 @@ class SignUpForm extends React.Component {
           onChange    = {this.onChange}
           type        = "text"
           placeholder = "Full Name"
+        />
+        <input
+          name        = "registrationNumber"
+          value       = {registrationNumber}
+          onChange    = {this.onChange}
+          type        = "text"
+          placeholder = "Registration Number"
         />
         <input
           name        = "email"

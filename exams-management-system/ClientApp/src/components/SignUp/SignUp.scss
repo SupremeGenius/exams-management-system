@@ -1,0 +1,24 @@
+@import "../../styles/scss/colors.scss";
+
+.sign-up {
+  background-color: #F5F7F9;
+  height:           100%;
+  justify-content:  center;
+  align-items:      center;
+  display:          flex;
+
+  &__card {
+    width: 200px;
+    color: red;
+  }
+  &__title {
+    color: $textColor;
+  }
+}
+.classes-sign-up__card {
+  width: 500px;
+}
+.sign-up-form {
+  display:        flex;
+  flex-direction: column;
+}

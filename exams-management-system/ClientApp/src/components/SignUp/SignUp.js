@@ -5,15 +5,7 @@ import Card   from "@material-ui/core/Card";
 
 import SignUpForm from './SignUpForm'
 
-import '../../styles/css/SignUp.css'
-
-const styles = {
-  cardRoot: {
-    with: 500
-  }
-}
-
-console.log(styles);
+import './SignUp.scss'
 
 class SignUpPage extends React.Component {
   constructor(props) {
@@ -24,7 +16,7 @@ class SignUpPage extends React.Component {
   render() {
     return (
       <div className='sign-up'>
-        <Card classes={{root:'sing-up__card'}} style={{width: 500}}>
+        <Card classes={{root:'sing-up__card'}} className='sing-up__card' style={{width: 500}}>
           <h1 className='sign-up__title'>Welcome back</h1>
           <SignUpForm />
         </Card>
