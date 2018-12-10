@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 
-namespace EMS.Domain
+namespace EMS.Domain.Entities
 {
-    public class Student : Entity
+    public class Student : User
     {
-        public string FirstName { get; set; }
+        public string FatherInitial { get; set; }
 
-        public string LastName { get; set; }
+        private List<Course> Courses { get; set; }
 
-        public string Email { get; set; }
-
-        public static Student Create(string firstName, string lastName, string email) => new Student
-        {
-            FirstName = firstName,
-            LastName = lastName,
-            Email = email
-        };
+        private List<Exam> Exams { get; set; }
     }
 }

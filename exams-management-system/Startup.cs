@@ -24,8 +24,7 @@ namespace exams_management_system
         {
             services.AddPersistance(Configuration.GetConnectionString("EMS"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddTransient<IStudentService, StudentService>();
-
+            services.AddTransient<IUserService, UserService>();
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
