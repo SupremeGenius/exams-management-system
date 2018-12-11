@@ -38,9 +38,8 @@ namespace EMS.Business
             .Select(c => new UserDetailsModel
             {
                 Id = c.Id,
-                FirstName = c.FirstName,
-                LastName = c.LastName,
                 Email = c.Email,
+                Password = c.Password
             });
     }
 }
