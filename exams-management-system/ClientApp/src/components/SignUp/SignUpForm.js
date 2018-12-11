@@ -1,7 +1,7 @@
 import React    from 'react';
 
 import Input from '../core/input'
-import Button from '../core/button'
+import Button from '../core/Button'
 
 const INITIAL_STATE = {
   username:    '',
