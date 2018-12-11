@@ -8,7 +8,7 @@ namespace EMS.Business
     {
         Task<List<UserDetailsModel>> GetAll();
 
-        Task<UserDetailsModel> FindByEmail(String email);
+        Task<UserDetailsModel> FindByEmail(String Email);
 
         Task<Guid> CreateNew(CreatingUserModel newUser);
     }
