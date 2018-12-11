@@ -5,12 +5,22 @@
   padding: 100px 0;
   min-height: 500px;
   overflow: auto; }
-  .sign-up__card {
+  .sign-up__paper {
     width: 200px;
-    color: red; }
+    color: red;
+    width: 500px;
+    margin: auto;
+    padding: 40px 60px;
+    text-align: center;
+    display: flex;
+    flex-direction: column; }
   .sign-up__title {
-    color: #1e3d61;
-    font-weight: 200; }
+    color: #1a324e;
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column; }
 
 .sign-up-form {
   display: flex;

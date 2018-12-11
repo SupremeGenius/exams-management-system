@@ -1,4 +1,5 @@
 @import "../../constants/colors.scss";
+@import "../reset.scss";
 
 html {
   height:  100%;
@@ -17,6 +18,49 @@ body {
   height: 100%;
 }
 
+.sonar-form-control {
+  background-color: white;
+  color:            $textLight;
+  border:           solid 2px $inputBorder;
+  resize:           none;
+  border-radius:    3px;
+  font-size:        inherit;
+}
+::placeholder {
+  color: $textLight !important;
+}
+
+.sonar-form-control:focus {
+  border-color: $primaryColor;
+}
+
+.flex { display: flex; }
+
+.space-between {display: flex; justify-content: space-between;}
+.vertical-center {display: flex; align-items: center;}
+.horizontal-center {display: flex; justify-content: center;}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display:        flex;
+  flex-direction: row;
+}
+
+.grow {
+  display:   flex;
+  flex-grow: 1;
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+.disabled {
+  cursor: default !important;
+}
 @media (max-width: 767px) {
     /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
     body {

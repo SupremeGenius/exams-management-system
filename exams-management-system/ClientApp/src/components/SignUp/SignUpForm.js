@@ -1,10 +1,10 @@
 import React    from 'react';
 
-import Input from '../core/input'
+import Input  from '../core/Input'
 import Button from '../core/Button'
 
 const INITIAL_STATE = {
-  username:    '',
+  fullName:    '',
   email:       '',
   passwordOne: '',
   passwordTwo: '',
@@ -21,23 +21,24 @@ class SignUpForm extends React.Component {
   }
 
   onSubmit = event => {
-    // const { username, email, passwordOne } = this.state;
+    // const { fullName, email, passwordOne } = this.state;
   }
 
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+  // onChange = event => {
+  //   console.log(event, event.target);
+  //   this.setState({ [event.target.name]: event.target.value });
+  // };
 
-  handleChange = name => event => {
+  onChange = (value, key) => {
     this.setState({
-      [name]: event.target.value,
+      [key]: value,
     });
   };
 
 
   render() {
     const {
-      username,
+      fullName,
       email,
       passwordOne,
       passwordTwo,
@@ -45,45 +46,24 @@ class SignUpForm extends React.Component {
       registrationNumber,
     } = this.state;
 
-    const { classes } = this.props;
-
-    const isInvalid =
-      passwordOne !== passwordTwo ||
-      passwordOne === '' ||
-      email === '' ||
-      registrationNumber === '' ||
-      username === '';
-
     return (
       <form className='sign-up-form' onSubmit={this.onSubmit}>
         <Input
-          label    = "Numar Matricol"
-          onChange = {this.handleChange('nrMat')}
-          value    = {registrationNumber}
-        />
+          title    = 'Nume Complet'
+          value    = {fullName}
+          name     = 'fullName'
+          onChange = {(v) => this.onChange(v, 'fullName')}
+          />
         <Input
-          label    = "Email"
-          onChange = {this.handleChange('email')}
+          title    = 'Email'
           value    = {email}
-        />
+          onChange = {(v) => this.onChange(v, 'email')}
+          />
         <Input
-          label    = "Password"
-          onChange = {this.handleChange('passwordOne')}
-          value    = {passwordOne}
-          type     = "password"
+          title    = "Numar Matricol"
+          value    = {registrationNumber}
+          onChange = {(v) => this.onChange(v, 'registrationNumber')}
         />
-        <Input
-          label    = "Confirm Password"
-          onChange = {this.handleChange('passwordTwo')}
-          value    = {passwordTwo}
-          type     = "password"
-        />
-
-        <Button disabled={isInvalid} type='submit'>
-          Sign Up
-        </Button>
-
-        {error && <p>{error.message}</p>}
       </form>
     );
   }
