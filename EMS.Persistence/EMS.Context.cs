@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using EMS.Domain;
+using EMS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EMS.Persistence
@@ -12,6 +13,8 @@ namespace EMS.Persistence
             : base(options) => Database.Migrate();
 
         internal DbSet<User> Users { get; private set; }
+        internal DbSet<Student> Students { get; private set; }
+        internal DbSet<Professor> Professors { get; private set; }
 
         public IQueryable<TEntity> GetAll<TEntity>()
             where TEntity : Entity => Set<TEntity>().AsNoTracking();
