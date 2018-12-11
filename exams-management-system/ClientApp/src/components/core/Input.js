@@ -1,7 +1,5 @@
 import React     from 'react';
-import PropTypes from 'prop-types';
 
-import _                    from 'lodash'
 import '../../styles/css/Input.css'
 
 class FormInputText extends React.Component {
@@ -20,6 +18,8 @@ class FormInputText extends React.Component {
     if ((prevProps.value !== this.props.value) || (prevProps.placeholder !== this.props.placeholder)) {
       return this.setState({labelUp: this.labelShouldBeUp()});
     }
+    return this.setLabels();
+
   }
 
   componentDidMount() {
@@ -48,16 +48,10 @@ class FormInputText extends React.Component {
   }
 
   labelShouldBeUp = () => {
-    console.log(this);
     return !!(this.props.value || this.props.placeholder) || (this.state != null ? this.state.isFocused : undefined);
   }
 
-  componentDidUpdate() {
-    return this.setLabels();
-  }
-
   render() {
-    console.log(this.state);
     return <div
       style     = {this.props.style}
       className = {`\
@@ -83,7 +77,7 @@ class FormInputText extends React.Component {
               this.props.onBlur(e);
             } return this.setState({isFocused: false}); } }
             placeholder  = { this.props.placeholder }
-            onChange     = { e => (typeof this.props.onChange === 'function' ? this.props.onChange(e.target.value) : undefined) }
+            onChange     = { e => (typeof this.props.onChange === 'function' ? this.props.onChange(e.target.value, e) : undefined) }
             className    = "common-input sonar-form-control"
             style        = { this.props.inputStyle }
             onKeyDown    = { e => this.onKeyDown(e) }

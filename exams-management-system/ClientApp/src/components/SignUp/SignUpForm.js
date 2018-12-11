@@ -24,13 +24,14 @@ class SignUpForm extends React.Component {
     // const { fullName, email, passwordOne } = this.state;
   }
 
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+  // onChange = event => {
+  //   console.log(event, event.target);
+  //   this.setState({ [event.target.name]: event.target.value });
+  // };
 
-  handleChange = name => event => {
+  onChange = (value, key) => {
     this.setState({
-      [name]: event.target.value,
+      [key]: value,
     });
   };
 
@@ -45,28 +46,23 @@ class SignUpForm extends React.Component {
       registrationNumber,
     } = this.state;
 
-    const { classes } = this.props;
-
-    const isInvalid =
-      passwordOne !== passwordTwo ||
-      passwordOne === '' ||
-      email === '' ||
-      registrationNumber === '' ||
-      fullName === '';
-
     return (
       <form className='sign-up-form' onSubmit={this.onSubmit}>
         <Input
-          title       = 'Nume Complet'
-          value       = {fullName}
+          title    = 'Nume Complet'
+          value    = {fullName}
+          name     = 'fullName'
+          onChange = {(v) => this.onChange(v, 'fullName')}
           />
         <Input
-          title       = 'Email'
-          value       = {email}
+          title    = 'Email'
+          value    = {email}
+          onChange = {(v) => this.onChange(v, 'email')}
           />
         <Input
           title    = "Numar Matricol"
           value    = {registrationNumber}
+          onChange = {(v) => this.onChange(v, 'registrationNumber')}
         />
       </form>
     );
