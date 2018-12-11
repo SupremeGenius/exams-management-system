@@ -1,8 +1,9 @@
 import React      from 'react';
 
-import Card   from "@material-ui/core/Card";
 // import Button from "@material-ui/core/Button";
 
+import Paper      from "../core/Paper";
+import Logo       from "../core/Logo";
 import SignUpForm from './SignUpForm'
 
 import '../../styles/css/SignUp.css'
@@ -11,10 +12,10 @@ class SignUpPage extends React.Component {
   render() {
     return (
       <div className='sign-up'>
-        <Card classes={{root:'sing-up__card'}} className='sing-up__card' style={{width: 500, margin: 'auto', padding: '40px 0', textAlign: 'center'}}>
-          <h1 className='sign-up__title'> EMS </h1>
+        <Paper className='sign-up__paper'>
+          <h1 className='sign-up__title'> Welcome to <Logo /> </h1>
           <SignUpForm />
-        </Card>
+        </Paper>
 
       </div>
     )

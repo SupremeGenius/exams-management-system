@@ -1,10 +1,10 @@
 import React    from 'react';
 
-import Input from '../core/input'
-import Button from '../core/button'
+import Input  from '../core/Input'
+import Button from '../core/Button'
 
 const INITIAL_STATE = {
-  username:    '',
+  fullName:    '',
   email:       '',
   passwordOne: '',
   passwordTwo: '',
@@ -21,7 +21,7 @@ class SignUpForm extends React.Component {
   }
 
   onSubmit = event => {
-    // const { username, email, passwordOne } = this.state;
+    // const { fullName, email, passwordOne } = this.state;
   }
 
   onChange = event => {
@@ -37,7 +37,7 @@ class SignUpForm extends React.Component {
 
   render() {
     const {
-      username,
+      fullName,
       email,
       passwordOne,
       passwordTwo,
@@ -52,38 +52,22 @@ class SignUpForm extends React.Component {
       passwordOne === '' ||
       email === '' ||
       registrationNumber === '' ||
-      username === '';
+      fullName === '';
 
     return (
       <form className='sign-up-form' onSubmit={this.onSubmit}>
         <Input
-          label    = "Numar Matricol"
-          onChange = {this.handleChange('nrMat')}
+          title       = 'Nume Complet'
+          value       = {fullName}
+          />
+        <Input
+          title       = 'Email'
+          value       = {email}
+          />
+        <Input
+          title    = "Numar Matricol"
           value    = {registrationNumber}
         />
-        <Input
-          label    = "Email"
-          onChange = {this.handleChange('email')}
-          value    = {email}
-        />
-        <Input
-          label    = "Password"
-          onChange = {this.handleChange('passwordOne')}
-          value    = {passwordOne}
-          type     = "password"
-        />
-        <Input
-          label    = "Confirm Password"
-          onChange = {this.handleChange('passwordTwo')}
-          value    = {passwordTwo}
-          type     = "password"
-        />
-
-        <Button disabled={isInvalid} type='submit'>
-          Sign Up
-        </Button>
-
-        {error && <p>{error.message}</p>}
       </form>
     );
   }

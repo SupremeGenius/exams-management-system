@@ -1,50 +1,100 @@
 import React     from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import _                    from 'lodash'
+import '../../styles/css/Input.css'
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 300,
-    fontSize: 30,
-  },
-  dense: {
-    marginTop: 19,
-  },
-  menu: {
-    width: 200,
-  },
-  resize:{
-    fontSize:50
-  },
-});
+class FormInputText extends React.Component {
+  constructor() {
+    super()
+    this.state = {}
+    //   labelUp: this.labelShouldBeUp(),
+    //   id: this.props.id || ('_' + Math.random().toString(36).substring(6))
+    // }
 
-class Input extends React.Component {
+    this.labelShouldBeUp = this.labelShouldBeUp.bind(this);
+
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if ((prevProps.value !== this.props.value) || (prevProps.placeholder !== this.props.placeholder)) {
+      return this.setState({labelUp: this.labelShouldBeUp()});
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.autoFocus && !this.props.readOnly) { return this.inputRef.focus(); }
+  }
+
+  setLabels() {
+    const labelUp = this.labelShouldBeUp();
+    if (this.state.labelUp !== labelUp) { return this.setState({labelUp}); }
+  }
+
+  onKeyDown(e) {
+    // handle enter
+    if (e.keyCode === 13) {
+      // act as single input unless multiline specified
+      if (!this.props.multiline && (this.props.maxRows !== 1)) { e.preventDefault(); }
+
+      if (this.props.preventSubmitOnEnter) {
+        e.preventDefault();
+        return false;
+      }
+
+      // allow for enter handling by the parent
+      return (typeof this.props.onEnterPress === 'function' ? this.props.onEnterPress(e) : undefined);
+    }
+  }
+
+  labelShouldBeUp = () => {
+    console.log(this);
+    return !!(this.props.value || this.props.placeholder) || (this.state != null ? this.state.isFocused : undefined);
+  }
+
+  componentDidUpdate() {
+    return this.setLabels();
+  }
 
   render() {
-    const { classes, value, label, type } = this.props;
+    console.log(this.state);
+    return <div
+      style     = {this.props.style}
+      className = {`\
+        form-input-text \
+        flex-column \
+        ${ this.props.className || '' } \
+        ${ (this.state.labelUp   && ' label-up')  || '' } \
+        ${ (this.props.title     && ' has-title') || '' } \
+        ${ ((this.props.hasError || this.props.errors) && ' has-error') || '' } \
+        ${ (this.props.readOnly  && ' read-only') || '' }`}
+        >
+          {
+            this.props.title ?
+              <label htmlFor={`${this.state.id}`}>{(this.state.labelUp && this.props.titleUp) || this.props.title}</label> : undefined
+          }
+          <input
+            id           = { this.state.id }
+            value        = { this.props.value || '' }
+            onFocus      = { e => { if (typeof this.props.onFocus === 'function') {
+              this.props.onFocus(e);
+            } return this.setState({isFocused: true}); } }
+            onBlur       = { e => { if (typeof this.props.onBlur === 'function') {
+              this.props.onBlur(e);
+            } return this.setState({isFocused: false}); } }
+            placeholder  = { this.props.placeholder }
+            onChange     = { e => (typeof this.props.onChange === 'function' ? this.props.onChange(e.target.value) : undefined) }
+            className    = "common-input sonar-form-control"
+            style        = { this.props.inputStyle }
+            onKeyDown    = { e => this.onKeyDown(e) }
+            type         = { this.props.type || "text"}
+            readOnly     = { this.props.readOnly }
+            maxLength    = { (this.props.hardLimit && this.props.maxLength) || null }
+            autoComplete = {this.props.autoComplete}
+          />
+        </div>;
+      }
+    }
 
-    return (
-      <TextField
-        value = {value}
-        label = {label}
-        type = {type}
-        className={classes.textField}
-        margin="normal"
-      />
-    );
-  }
-}
 
-Input.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Input);
+export default FormInputText
