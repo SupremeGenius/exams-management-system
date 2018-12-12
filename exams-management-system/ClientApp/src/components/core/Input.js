@@ -1,6 +1,6 @@
 import React     from 'react';
 
-import '../../styles/css/Input.css'
+import '../../styles/css/core/Input.css'
 
 class FormInputText extends React.Component {
   constructor() {

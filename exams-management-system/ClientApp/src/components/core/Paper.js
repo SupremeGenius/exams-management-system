@@ -1,6 +1,6 @@
 import React     from 'react';
 import classnames from 'classnames'
-import '../../styles/css/Paper.css'
+import '../../styles/css/core/Paper.css'
 
 class Paper extends React.Component {
 
