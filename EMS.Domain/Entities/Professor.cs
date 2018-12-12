@@ -10,8 +10,8 @@ namespace EMS.Domain.Entities
 
         public string Title { get; set; }
 
-        private List<Course> Courses { get; set; }
+        public List<CourseProfessor> CourseProfessors { get; set; }
 
-        private List<Exam> Exams { get; set; }
+        public List<Exam> Exams { get; set; }
     }
 }

@@ -15,6 +15,8 @@ namespace EMS.Persistence
         internal DbSet<User> Users { get; private set; }
         internal DbSet<Student> Students { get; private set; }
         internal DbSet<Professor> Professors { get; private set; }
+        internal DbSet<Exam> Exams { get; private set; }
+        internal DbSet<Course> Courses { get; private set; }
 
         public IQueryable<TEntity> GetAll<TEntity>()
             where TEntity : Entity => Set<TEntity>().AsNoTracking();
@@ -29,5 +31,19 @@ namespace EMS.Persistence
             where TEntity : Entity => await Set<TEntity>().AddAsync(entity);
 
         public async Task SaveAsync() => await SaveChangesAsync();
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CourseProfessor>()
+                .HasKey(cp => new { cp.CourseId, cp.ProfessorId });
+            modelBuilder.Entity<CourseProfessor>()
+                .HasOne(cp => cp.Course)
+                .WithMany(c => c.CourseProfessors)
+                .HasForeignKey(cp => cp.CourseId);
+            modelBuilder.Entity<CourseProfessor>()
+                .HasOne(cp => cp.Professor)
+                .WithMany(p => p.CourseProfessors)
+                .HasForeignKey(cp => cp.ProfessorId);
+        }
     }
 }
