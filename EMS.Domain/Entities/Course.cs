@@ -1,8 +1,21 @@
-﻿using System;
+﻿using EMS.Domain.Entities;
+using System;
+using System.Collections.Generic;
 
 namespace EMS.Domain
 {
-    public class Course
+    public class Course : Entity
     {
+        public string Title { get; set; }
+
+        public List<CourseProfessor> CourseProfessors { get; set; }
+
+        public List<Exam> Exams { get; set; }
+
+        public string UniversityYear { get; set; }
+
+        public int StudentYear { get; set; }
+
+        public int Semester { get; set; }
     }
 }
