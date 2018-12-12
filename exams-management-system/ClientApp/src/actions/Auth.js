@@ -2,14 +2,11 @@
 import setAuthToken from "../utils/setAuthToken";
 
 export const loginUser = (userData, history) => dispatch => {
-    // 501 not implemented
-    /*
+    userData.role = "professor"
+   
     axios
-        .post("/api/oauth2/token", userData)
+        .post("/api/login", userData)
         .then(result => {
-            localStorage.setItem('jwtToken', result.data.token_type + " " + result.data.access_token);
-            setAuthToken(result.data.access_token, result.data.token_type);
-            history.push("/");
             dispatch({
                 type: 'SET_CURRENT_USER',
                 user: {},
@@ -22,12 +19,13 @@ export const loginUser = (userData, history) => dispatch => {
                 payload: error.response.data
             })
         );
-        */
+         /*
     dispatch({
         type: 'SET_CURRENT_USER',
         user: {},
         isAuthenticated: true
     })
+       */
 };
 
 // Log out user
