@@ -33,13 +33,8 @@ class Login extends React.Component {
 
     onClick(event) {
         const userData = {
-            grant_type: "password",
-            username: this.state.email,
+            email: this.state.email,
             password: this.state.password,
-            nrmat: this.state.nrmat,
-            client_id: "dashboard",
-            client_secret:
-                "$2b$10$rfxL7VOyA1bLtLtYr9xLW.RSpj5Sd6LaH5zBT/8YPxbJxGMKvBkcy"
         };
 
         this.props.loginUser(userData, this.props.history);
@@ -92,15 +87,7 @@ class Login extends React.Component {
                         </input>
                         <input
                             style={{ marginTop: "10px", color: "grey" }}
-                            type="text"
-                            name="nrmat"
-                            placeholder="Numar matricol"
-                            value={this.state.nrmat}
-                            onChange={this.handleChange}>
-                        </input>
-                        <input
-                            style={{ marginTop: "10px", color: "grey" }}
-                            type="text"
+                            type="password"
                             name="password"
                             placeholder="password"
                             value={this.state.password}
