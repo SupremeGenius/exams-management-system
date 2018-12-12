@@ -1403,12 +1403,10 @@
       ]
     },
     "Remotion.Linq/2.2.0": {
-      "sha512": "twDAH8dAXXCAf3sRv1Tf94u66eEHvgU75hfn1nn2v4fSWXD50XoDOAk8WpSrbViNuMkB4kN1ElnOGm1c519IHg==",
+      "sha512": "fK/76UmpC0FXBlGDFVPLJHQlDLYnGC+XY3eoDgCgbtrhi0vzbXDQ3n/IYHhqSKqXQfGw/u04A1drWs7rFVkRjw==",
       "type": "package",
       "path": "remotion.linq/2.2.0",
       "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
         "lib/net35/Remotion.Linq.XML",
         "lib/net35/Remotion.Linq.dll",
         "lib/net40/Remotion.Linq.XML",
@@ -2990,23 +2988,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gabi\\.nuget\\packages\\": {},
+    "C:\\Users\\vlady\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Business\\EMS.Business.csproj",
+      "projectUniqueName": "C:\\Users\\vlady\\OneDrive\\Documents\\GitHub\\.net\\exams-management-system\\EMS.Business\\EMS.Business.csproj",
       "projectName": "EMS.Business",
-      "projectPath": "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Business\\EMS.Business.csproj",
-      "packagesPath": "C:\\Users\\Gabi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Business\\obj\\",
+      "projectPath": "C:\\Users\\vlady\\OneDrive\\Documents\\GitHub\\.net\\exams-management-system\\EMS.Business\\EMS.Business.csproj",
+      "packagesPath": "C:\\Users\\vlady\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vlady\\OneDrive\\Documents\\GitHub\\.net\\exams-management-system\\EMS.Business\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Gabi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vlady\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3019,8 +3017,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Domain\\EMS.Domain.csproj": {
-              "projectPath": "C:\\Users\\Gabi\\Documents\\GitHub\\exams-management-system\\EMS.Domain\\EMS.Domain.csproj"
+            "C:\\Users\\vlady\\OneDrive\\Documents\\GitHub\\.net\\exams-management-system\\EMS.Domain\\EMS.Domain.csproj": {
+              "projectPath": "C:\\Users\\vlady\\OneDrive\\Documents\\GitHub\\.net\\exams-management-system\\EMS.Domain\\EMS.Domain.csproj"
             }
           }
         }

@@ -16,3 +16,12 @@ D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Domain\obj\Debug\ne
 D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Domain\obj\Debug\netcoreapp2.1\EMS.Domain.AssemblyInfo.cs
 D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Domain\obj\Debug\netcoreapp2.1\EMS.Domain.dll
 D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Domain\obj\Debug\netcoreapp2.1\EMS.Domain.pdb
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Domain\bin\Debug\netcoreapp2.1\EMS.Domain.deps.json
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Domain\bin\Debug\netcoreapp2.1\EMS.Domain.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Domain\bin\Debug\netcoreapp2.1\EMS.Domain.pdb
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Domain\obj\Debug\netcoreapp2.1\EMS.Domain.csprojAssemblyReference.cache
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Domain\obj\Debug\netcoreapp2.1\EMS.Domain.csproj.CoreCompileInputs.cache
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Domain\obj\Debug\netcoreapp2.1\EMS.Domain.AssemblyInfoInputs.cache
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Domain\obj\Debug\netcoreapp2.1\EMS.Domain.AssemblyInfo.cs
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Domain\obj\Debug\netcoreapp2.1\EMS.Domain.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Domain\obj\Debug\netcoreapp2.1\EMS.Domain.pdb

@@ -13,12 +13,24 @@ namespace exams_management_system.Controllers
 
         public LoginController(IUserService userService) => this.userService = userService;
 
-        [HttpGet]
-        public async Task<IActionResult> GetUsers()
+        [HttpPost]
+        public async Task<IActionResult> FindUser([FromBody] CreatingUserModel model)
         {
-            var user = await this.userService.GetAll();
-            var json = JsonConvert.SerializeObject(user.ToArray());
-            return Ok(json);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = await this.userService.FindByEmail(model.Email);
+            if (user == null)
+            {
+                return StatusCode(404);
+            }
+            if (user.Password == model.Password)
+            {
+                return Ok("User valid");
+            }
+            return StatusCode(422);
         }
     }
 }
