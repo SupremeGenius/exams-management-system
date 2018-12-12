@@ -26,3 +26,17 @@ D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\obj\Deb
 D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.csproj.CopyComplete
 D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.dll
 D:\Facultate\.NET\Proiect - 2018\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.pdb
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.deps.json
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.runtimeconfig.json
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.runtimeconfig.dev.json
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Persistence.pdb
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Domain.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Persistence\bin\Debug\netcoreapp2.1\EMS.Domain.pdb
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.csprojAssemblyReference.cache
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.csproj.CoreCompileInputs.cache
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.AssemblyInfoInputs.cache
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.AssemblyInfo.cs
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.csproj.CopyComplete
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\EMS.Persistence\obj\Debug\netcoreapp2.1\EMS.Persistence.pdb
