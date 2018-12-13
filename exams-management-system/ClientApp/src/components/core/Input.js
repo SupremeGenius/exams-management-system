@@ -9,9 +9,14 @@ class Input extends React.Component {
     //   labelUp: this.labelShouldBeUp(),
     //   id: this.props.id || ('_' + Math.random().toString(36).substring(6))
     // }
-
     this.labelShouldBeUp = this.labelShouldBeUp.bind(this);
 
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return {
+      labelUp: !!(props.value || props.placeholder) || (state != null ? state.isFocused : undefined)
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -19,7 +24,6 @@ class Input extends React.Component {
       return this.setState({labelUp: this.labelShouldBeUp()});
     }
     return this.setLabels();
-
   }
 
   componentDidMount() {
