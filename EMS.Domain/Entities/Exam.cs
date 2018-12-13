@@ -14,5 +14,13 @@ namespace EMS.Domain
         public Course Course { get; set; }
 
         public Professor Professor { get; set; }
+
+        public static Exam Create(string type, DateTime date, Course course, Professor professor) => new Exam
+        {
+            Type      = type,
+            Date      = date,
+            Course    = course,
+            Professor = professor
+        };
     }
 }

@@ -11,8 +11,6 @@ const INITIAL_STATE = {
   error:       null,
 };
 
-
-
 class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
@@ -23,11 +21,6 @@ class SignUpForm extends React.Component {
   onSubmit = event => {
     // const { fullName, email, passwordOne } = this.state;
   }
-
-  // onChange = event => {
-  //   console.log(event, event.target);
-  //   this.setState({ [event.target.name]: event.target.value });
-  // };
 
   onChange = (value, key) => {
     this.setState({
