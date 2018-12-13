@@ -75,7 +75,7 @@ body {
 #root {
   height: 100%; }
 
-.sonar-form-control {
+.form-control {
   background-color: white;
   color: #99A4B0;
   border: solid 2px #e8eef1;
@@ -86,7 +86,7 @@ body {
 ::placeholder {
   color: #99A4B0 !important; }
 
-.sonar-form-control:focus {
+.form-control:focus {
   border-color: #0075ff; }
 
 .flex {

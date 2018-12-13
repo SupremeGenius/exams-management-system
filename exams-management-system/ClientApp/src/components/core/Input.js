@@ -2,7 +2,7 @@ import React     from 'react';
 
 import '../../styles/css/core/Input.css'
 
-class FormInputText extends React.Component {
+class Input extends React.Component {
   constructor() {
     super()
     this.state = {}
@@ -78,7 +78,7 @@ class FormInputText extends React.Component {
             } return this.setState({isFocused: false}); } }
             placeholder  = { this.props.placeholder }
             onChange     = { e => (typeof this.props.onChange === 'function' ? this.props.onChange(e.target.value, e) : undefined) }
-            className    = "common-input sonar-form-control"
+            className    = "common-input form-control"
             style        = { this.props.inputStyle }
             onKeyDown    = { e => this.onKeyDown(e) }
             type         = { this.props.type || "text"}
@@ -91,4 +91,4 @@ class FormInputText extends React.Component {
     }
 
 
-export default FormInputText
+export default Input

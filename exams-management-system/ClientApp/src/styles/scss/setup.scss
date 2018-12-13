@@ -1,6 +1,6 @@
 @import "../../constants/colors.scss";
 @import "../reset.scss";
-
+<link rel='stylesheet' href='/app/css/font-awesome.css'>
 html {
   height:  100%;
 }
@@ -18,7 +18,7 @@ body {
   height: 100%;
 }
 
-.sonar-form-control {
+.form-control {
   background-color: white;
   color:            $textLight;
   border:           solid 2px $inputBorder;
@@ -30,7 +30,7 @@ body {
   color: $textLight !important;
 }
 
-.sonar-form-control:focus {
+.form-control:focus {
   border-color: $primaryColor;
 }
 

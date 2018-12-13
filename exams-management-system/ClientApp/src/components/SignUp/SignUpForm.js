@@ -1,7 +1,8 @@
 import React    from 'react';
 
-import Input  from '../core/Input'
-import Button from '../core/Button'
+import InputDropdown from '../core/InputDropdown'
+import Input         from '../core/Input'
+// import Button        from '../core/Button'
 
 const INITIAL_STATE = {
   fullName:    '',
@@ -9,6 +10,7 @@ const INITIAL_STATE = {
   passwordOne: '',
   passwordTwo: '',
   error:       null,
+  role:        '',
 };
 
 class SignUpForm extends React.Component {
@@ -33,9 +35,7 @@ class SignUpForm extends React.Component {
     const {
       fullName,
       email,
-      passwordOne,
-      passwordTwo,
-      error,
+      role,
       registrationNumber,
     } = this.state;
 
@@ -56,6 +56,13 @@ class SignUpForm extends React.Component {
           title    = "Numar Matricol"
           value    = {registrationNumber}
           onChange = {(v) => this.onChange(v, 'registrationNumber')}
+        />
+        <InputDropdown
+          title       = "Rol"
+          value       = {role}
+          onChange    = {(v) => this.onChange(v, 'role')}
+          options     = {['Student', 'Profesor']}
+          placeholder = 'Alege un rol'
         />
       </form>
     );

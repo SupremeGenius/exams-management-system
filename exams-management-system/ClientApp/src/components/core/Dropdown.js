@@ -6,12 +6,14 @@ import '../../styles/css/core/Dropdown.css'
 class Dropdown extends React.Component {
 
   render() {
-    return
-      <div className='dropdown'>
-        <ReactDropdown {...@props} ref={ (r) => @props.refDropdown?(r) } />
+    return <div className='dropdown'>
+        <ReactDropdown {...this.props} ref={ (r) => this.props.refDropdown(r) } />
       </div>
+  }
 }
-Dropdown.defaultProps =
+
+Dropdown.defaultProps = {
   arrowClassName: 'fa fa-caret-down'
+}
 
 export default Dropdown

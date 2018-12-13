@@ -1,17 +1,22 @@
 @import "../../../constants/colors.scss";
 
-.form-input-text { width: 100%; position: relative; padding-bottom: 17px;}
+.form-input-text {
+  width:          100%;
+  position:       relative;
+  padding-bottom: 17px;
 
-label {
-  color:       $textLight;
-  font-weight: 200;
-  font-size:   16px;
-  margin:      31px 0 0px 24px;
-  z-index:     2;
-  position:    absolute;
-  transition:  all .1s;
-  cursor:      text;
-  white-space: nowrap;
+  label {
+    color:       $textLight;
+    font-weight: 200;
+    font-size:   16px;
+    margin:      31px 0 0px 24px;
+    z-index:     2;
+    position:    absolute;
+    transition:  all .1s;
+    cursor:      text;
+    white-space: nowrap;
+  }
+
 }
 
 
