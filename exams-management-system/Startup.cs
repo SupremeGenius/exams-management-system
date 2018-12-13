@@ -1,3 +1,4 @@
+using Booking.Business;
 using EMS.Business;
 using EMS.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -24,7 +25,7 @@ namespace exams_management_system
         {
             services.AddPersistance(Configuration.GetConnectionString("EMS"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddTransient<IUserService, UserService>();
+            services.AddBusiness();
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
