@@ -1,9 +1,10 @@
 @import "../../../constants/colors.scss";
 
 .form-input-dropdown {
-  position:   relative;
-  width:      100%;
-  text-align: left;
+  position:       relative;
+  width:          100%;
+  padding-bottom: 17px;
+  text-align:     left;
 
   label {
     color:       $textLight;

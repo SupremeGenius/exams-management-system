@@ -5,10 +5,6 @@ import Dropdown from './Dropdown';
 import '../../styles/css/core/InputDropdown.css'
 
 class InputDropdown extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   openDropdown() {
     const state = !this.dropdown.state.isOpen
     // needs a slight delay to prevent the click event from closing it

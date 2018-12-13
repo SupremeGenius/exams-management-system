@@ -11,6 +11,7 @@ const INITIAL_STATE = {
   passwordTwo: '',
   error:       null,
   role:        '',
+  professorTitle: '',
 };
 
 class SignUpForm extends React.Component {
@@ -36,9 +37,11 @@ class SignUpForm extends React.Component {
       fullName,
       email,
       role,
+      passwordOne,
+      passwordTwo,
       registrationNumber,
+      professorTitle,
     } = this.state;
-
     return (
       <form className='sign-up-form' onSubmit={this.onSubmit}>
         <Input
@@ -47,22 +50,53 @@ class SignUpForm extends React.Component {
           name     = 'fullName'
           onChange = {(v) => this.onChange(v, 'fullName')}
           />
+
         <Input
           title    = 'Email'
           value    = {email}
           onChange = {(v) => this.onChange(v, 'email')}
           />
-        <Input
-          title    = "Numar Matricol"
-          value    = {registrationNumber}
-          onChange = {(v) => this.onChange(v, 'registrationNumber')}
-        />
+
         <InputDropdown
           title       = "Rol"
           value       = {role}
           onChange    = {(v) => this.onChange(v, 'role')}
           options     = {['Student', 'Profesor']}
           placeholder = 'Alege un rol'
+        />
+
+        {
+          role.value === 'Student' &&
+            <Input
+              title    = "Numar Matricol"
+              value    = {registrationNumber}
+              onChange = {(v) => this.onChange(v, 'registrationNumber')}
+            />
+        }
+
+        {
+          role.value === 'Profesor' &&
+            <Input
+              title       = "Titlu"
+              value       = {professorTitle}
+              onChange    = {(v) => this.onChange(v, 'professorTitle')}
+              placeholder = 'Conf. Dr.'
+            />
+        }
+
+        <Input
+          title       = 'Parola'
+          value       = {passwordOne}
+          onChange    = {(v) => this.onChange(v, 'passwordOne')}
+          type        = 'password'
+          placeholder = '1 Parola Mai Grea $/#43'
+        />
+
+        <Input
+          title    = 'Confirma Parola'
+          value    = {passwordTwo}
+          onChange = {(v) => this.onChange(v, 'passwordTwo')}
+          type     = 'password'
         />
       </form>
     );
