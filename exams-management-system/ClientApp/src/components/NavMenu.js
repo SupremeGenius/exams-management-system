@@ -6,26 +6,31 @@ import './NavMenu.css';
 import ROUTES from '../constants/routes'
 
 export default props => (
-  <Navbar inverse fixedTop fluid collapseOnSelect>
-    <Navbar.Header>
-      <Navbar.Brand>
-        <Link to={'/'}>exams_management_system</Link>
-      </Navbar.Brand>
-      <Navbar.Toggle />
-    </Navbar.Header>
-    <Navbar.Collapse>
-      <Nav>
-        <LinkContainer to={ROUTES.SIGN_IN}>
-          <NavItem>
-            <Glyphicon glyph='th-list' /> Sign In
+    <Navbar inverse fixedTop fluid collapseOnSelect>
+        <Navbar.Header>
+            <Navbar.Brand>
+                <Link to={'/'}>exams_management_system</Link>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+            <Nav>
+                <LinkContainer to={ROUTES.SIGN_IN}>
+                    <NavItem>
+                        <Glyphicon glyph='th-list' /> Sign In
           </NavItem>
-        </LinkContainer>
-        <LinkContainer to={ROUTES.SIGN_UP}>
-          <NavItem>
-            <Glyphicon glyph='th-list' /> Sign Up
+                </LinkContainer>
+                <LinkContainer to={ROUTES.SIGN_UP}>
+                    <NavItem>
+                        <Glyphicon glyph='th-list' /> Sign Up
           </NavItem>
-        </LinkContainer>
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
+                </LinkContainer>
+                <LinkContainer to={ROUTES.SIGN_OUT}>
+                    <NavItem>
+                        <Glyphicon glyph='th-list' /> Sign Out
+          </NavItem>
+                </LinkContainer>
+            </Nav>
+        </Navbar.Collapse>
+    </Navbar>
 );

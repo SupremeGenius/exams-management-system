@@ -17,6 +17,7 @@ class Login extends React.Component {
         this.state = {
             email: "",
             password: "",
+            role:"",
             nrmat: "",
             errors: {}
         };
@@ -35,6 +36,7 @@ class Login extends React.Component {
         const userData = {
             email: this.state.email,
             password: this.state.password,
+       role: "professor"
         };
 
         this.props.loginUser(userData, this.props.history);
