@@ -11,6 +11,12 @@ export default function (state = initialState, action) {
                 isAuthenticated: action.isAuthenticated,
                 user: action.user
             }
+        case 'GET_ERRORS':
+            return {
+                ...state,
+                isAuthenticated: action.isAuthenticated,
+                errors: action.payload
+            }
         default:
             return state;
     }
