@@ -30,12 +30,15 @@ namespace EMS.Business
 
         public Task<UserDetailsModel> FindByEmail(string email) => GetAllUserDetails().SingleOrDefaultAsync(s => s.Email == email);
 
+        public Task<UserDetailsModel> FindById(Guid id) => GetAllUserDetails().SingleOrDefaultAsync(s => s.Id == id);
+
         private IQueryable<UserDetailsModel> GetAllUserDetails() => this.repository.GetAll<User>()
             .Select(c => new UserDetailsModel
             {
                 Id = c.Id,
                 Email = c.Email,
-                Password = c.Password
+                Password = c.Password,
+                Role = c.Role
             });
     }
 }
