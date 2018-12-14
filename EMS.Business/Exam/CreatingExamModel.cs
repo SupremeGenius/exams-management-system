@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using EMS.Domain;
 using EMS.Domain.Entities;
 
@@ -14,10 +15,8 @@ namespace EMS.Business
         [Required]
         public DateTime Date { get; set; }
 
-        [Required]
-        public Course Course { get; set; }
+        public Guid CourseId { get; set; }
 
-        [Required]
-        public Professor Professor { get; set; }
+        public Guid ProfessorId { get; set; }
     }
 }

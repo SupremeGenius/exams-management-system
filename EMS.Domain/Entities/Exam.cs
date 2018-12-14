@@ -11,16 +11,22 @@ namespace EMS.Domain
 
         public DateTime Date { get; set; }
 
+        public Guid CourseId { get; set; }
+
         public Course Course { get; set; }
+
+        public Guid ProfessorId { get; set; }
 
         public Professor Professor { get; set; }
 
-        public static Exam Create(string type, DateTime date, Course course, Professor professor) => new Exam
-        {
-            Type      = type,
-            Date      = date,
-            Course    = course,
-            Professor = professor
-        };
+        public static Exam Create(string type, DateTime date, Guid courseId, Guid professorId) => new Exam
+         {
+             Type      = type,
+             Date      = date,
+             CourseId    = courseId,
+             ProfessorId = professorId,
+
+         };
+
     }
 }
