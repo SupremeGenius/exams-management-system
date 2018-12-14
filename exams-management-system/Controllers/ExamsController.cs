@@ -21,20 +21,29 @@ namespace exams_management_system.Controllers
         {
             var exams = await this.examService.GetAll();
 
+            if (exams.Count == 0)
+            {
+                return Ok("No exams have been found!");
+            }
+
             return Ok(exams);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CerateExam([FromBody] CreatingExamModel model)
+        public async Task<IActionResult> CreateExam([FromBody] CreatingExamModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var examId = await this.examService.CreateNew(model);
+            //if (exam already exists)
+            //{
+                var examId = await this.examService.CreateNew(model);
+                return Ok(examId);
+            //}
 
-            return Ok(examId);
+            return StatusCode(422);
         }
     }
 }
