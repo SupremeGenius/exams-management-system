@@ -60,7 +60,6 @@ class Input extends React.Component {
       style     = {this.props.style}
       className = {`\
         form-input-text \
-        flex-column \
         ${ this.props.className || '' } \
         ${ (this.state.labelUp   && ' label-up')  || '' } \
         ${ (this.props.title     && ' has-title') || '' } \

@@ -5,12 +5,12 @@ import Input         from '../core/Input'
 // import Button        from '../core/Button'
 
 const INITIAL_STATE = {
-  fullName:    '',
-  email:       '',
-  passwordOne: '',
-  passwordTwo: '',
-  error:       null,
-  role:        '',
+  fullName:       '',
+  email:          '',
+  passwordOne:    '',
+  passwordTwo:    '',
+  error:          null,
+  role:           {value:'Student', label: 'Student'},
   professorTitle: '',
 };
 
@@ -57,32 +57,36 @@ class SignUpForm extends React.Component {
           onChange = {(v) => this.onChange(v, 'email')}
           />
 
-        <InputDropdown
-          title       = "Rol"
-          value       = {role}
-          onChange    = {(v) => this.onChange(v, 'role')}
-          options     = {['Student', 'Profesor']}
-          placeholder = 'Alege un rol'
-        />
+        <div className="sign-up-form__row">
+          <InputDropdown
+            className   = 'sign-up-form__role-dropdown'
+            title       = "Rol"
+            value       = {role}
+            onChange    = {(v) => this.onChange(v, 'role')}
+            options     = {['Student', 'Profesor']}
+            placeholder = 'Alege un rol'
+          />
 
-        {
-          role.value === 'Student' &&
-            <Input
-              title    = "Numar Matricol"
-              value    = {registrationNumber}
-              onChange = {(v) => this.onChange(v, 'registrationNumber')}
-            />
-        }
+          {
+            role.value === 'Student' &&
+              <Input
+                title    = "Numar Matricol"
+                value    = {registrationNumber}
+                onChange = {(v) => this.onChange(v, 'registrationNumber')}
+              />
+          }
 
-        {
-          role.value === 'Profesor' &&
-            <Input
-              title       = "Titlu"
-              value       = {professorTitle}
-              onChange    = {(v) => this.onChange(v, 'professorTitle')}
-              placeholder = 'Conf. Dr.'
-            />
-        }
+          {
+            role.value === 'Profesor' &&
+              <Input
+                title       = "Titlu"
+                value       = {professorTitle}
+                onChange    = {(v) => this.onChange(v, 'professorTitle')}
+                placeholder = 'Conf. Dr.'
+              />
+          }
+        </div>
+
 
         <Input
           title       = 'Parola'
