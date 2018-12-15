@@ -2,6 +2,7 @@ import React    from 'react';
 
 import InputDropdown from '../core/InputDropdown'
 import Input         from '../core/Input'
+import Button        from "@material-ui/core/Button";
 // import Button        from '../core/Button'
 
 const INITIAL_STATE = {
@@ -102,6 +103,15 @@ class SignUpForm extends React.Component {
           onChange = {(v) => this.onChange(v, 'passwordTwo')}
           type     = 'password'
         />
+
+        <Button
+          onClick = {this.onSubmit}
+          className = "sign-up-form__submit"
+          variant = "contained"
+          color   = "primary"
+          size    = "large"
+          style   = {{ marginTop: "30px", backgroundColor: '#0075ff'}}> Creaza Cont
+        </Button>
       </form>
     );
   }
