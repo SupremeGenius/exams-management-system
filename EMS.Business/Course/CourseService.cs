@@ -18,7 +18,6 @@ namespace EMS.Business
         {
             var course = Course.Create(
                 title: newCourse.Title,
-                courseProfessors: newCourse.CourseProfessors,
                 universityYear: newCourse.UniversityYear,
                 studentYear: newCourse.StudentYear,
                 semester: newCourse.Semester);

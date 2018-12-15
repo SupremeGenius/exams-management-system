@@ -12,10 +12,6 @@ namespace EMS.Business
         public string Title { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public List<CourseProfessor> CourseProfessors { get; set; }
-
-        [Required]
         [MaxLength(10)]
         public string UniversityYear { get; set; }
 
