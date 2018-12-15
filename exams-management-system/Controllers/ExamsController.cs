@@ -37,11 +37,12 @@ namespace exams_management_system.Controllers
                 return BadRequest(ModelState);
             }
 
-            //if (exam already exists)
-            //{
+            var exam = this.examService.FindByTime(model.Date);
+            if (exam.Result == null)
+            {
                 var examId = await this.examService.CreateNew(model);
                 return Ok(examId);
-            //}
+            }
 
             return StatusCode(422);
         }
