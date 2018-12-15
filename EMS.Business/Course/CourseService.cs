@@ -41,7 +41,6 @@ namespace EMS.Business
                 Id = c.Id,
                 Title = c.Title,
                 CourseProfessors = c.CourseProfessors,
-                Exams  = c.Exams,
                 UniversityYear = c.UniversityYear,
                 StudentYear = c.StudentYear,
                 Semester = c.Semester
