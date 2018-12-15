@@ -65,7 +65,7 @@ class SignUpForm extends React.Component {
           variant = "contained"
           color   = "primary"
           size    = "medium"
-          style   = {{ marginTop: "30px", width: "30%" }}> Sign In
+          style   = {{ marginTop: "30px", width: "30%", backgroundColor: '#0075ff'}}> Sign In
         </Button>
       </div>
     );
