@@ -1,13 +1,12 @@
-﻿import React from 'react';
-
-import Input from '../core/Input'
-import SignUpLink from './SignInLink'
-import Button from "@material-ui/core/Button";
-
-
-import { loginUser } from "../../actions/Auth";
-import { connect } from "react-redux";
+﻿import React        from 'react';
+import { connect }  from "react-redux";
 import { Redirect } from "react-router-dom";
+
+import Button       from "@material-ui/core/Button";
+
+import Input          from '../core/Input'
+import { SignUpLink } from '../SignUp'
+import { loginUser }  from "../../actions/Auth";
 
 class SignUpForm extends React.Component {
     constructor() {
