@@ -3,7 +3,6 @@ import React    from 'react';
 import InputDropdown from '../core/InputDropdown'
 import Input         from '../core/Input'
 import Button        from "@material-ui/core/Button";
-// import Button        from '../core/Button'
 
 const INITIAL_STATE = {
   fullName:       '',
@@ -43,6 +42,7 @@ class SignUpForm extends React.Component {
       registrationNumber,
       professorTitle,
     } = this.state;
+  
     return (
       <form className='sign-up-form' onSubmit={this.onSubmit}>
         <Input

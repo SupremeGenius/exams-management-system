@@ -13,8 +13,8 @@ class SignInPage extends React.Component {
       <div className='sign-in'>
         <div className="sign-in__container">
           <Paper className='sign-in__paper'>
-              <h1 className='sign-in__title'> Welcome to <Logo /> </h1>
-              <SignInForm />
+            <h1 className='sign-in__title'> Welcome to <Logo /> </h1>
+            <SignInForm />
           </Paper>
 
           <SignUpLink />

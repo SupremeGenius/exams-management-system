@@ -27,10 +27,6 @@
     display:        flex;
     flex-direction: column;
   }
-
-  &__sign-in-link {
-    margin-top: 20px;
-  }
 }
 
 .sign-up-form {
@@ -47,9 +43,5 @@
     width:         auto;
     min-width:     145px;
     padding-right: 20px;
-  }
-
-  &__submit {
-    background-color: $primaryColor;
   }
 }
