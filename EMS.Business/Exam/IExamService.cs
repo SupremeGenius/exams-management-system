@@ -8,7 +8,9 @@ namespace EMS.Business
     {
         Task<List<ExamDetailsModel>> GetAll();
 
-        Task<ExamDetailsModel> FindById(Guid Id);
+        Task<ExamDetailsModel> FindById(Guid id);
+
+        Task<ExamDetailsModel> FindByTime (DateTime date);
 
         Task<Guid> CreateNew(CreatingExamModel newExam);
     }

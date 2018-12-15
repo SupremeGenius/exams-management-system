@@ -4,6 +4,7 @@
   width:          100%;
   position:       relative;
   padding-bottom: 17px;
+  text-align:     left;
 
   label {
     color:       $textLight;
@@ -18,7 +19,6 @@
   }
 
 }
-
 
 .label-up label {
   color:          $primaryColor;
