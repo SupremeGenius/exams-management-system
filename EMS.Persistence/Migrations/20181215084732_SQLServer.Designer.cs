@@ -3,20 +3,23 @@ using System;
 using EMS.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EMS.Persistence.Migrations
 {
     [DbContext(typeof(EMSContext))]
-    [Migration("20181212212326_CourseProfessorExam")]
-    partial class CourseProfessorExam
+    [Migration("20181215084732_SQLServer")]
+    partial class SQLServer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
+                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("EMS.Domain.Course", b =>
                 {
@@ -86,11 +89,11 @@ namespace EMS.Persistence.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("CourseId");
+                    b.Property<Guid>("CourseId");
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<Guid?>("ProfessorId");
+                    b.Property<Guid>("ProfessorId");
 
                     b.Property<string>("Type");
 
@@ -150,11 +153,13 @@ namespace EMS.Persistence.Migrations
                 {
                     b.HasOne("EMS.Domain.Course", "Course")
                         .WithMany("Exams")
-                        .HasForeignKey("CourseId");
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("EMS.Domain.Entities.Professor", "Professor")
                         .WithMany("Exams")
-                        .HasForeignKey("ProfessorId");
+                        .HasForeignKey("ProfessorId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

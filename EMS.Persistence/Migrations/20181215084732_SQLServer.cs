@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EMS.Persistence.Migrations
 {
-    public partial class CourseProfessorExam : Migration
+    public partial class SQLServer : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,6 +20,58 @@ namespace EMS.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Courses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    Role = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Professors",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: true),
+                    Title = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Professors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Professors_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Students",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: true),
+                    FatherInitial = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Students_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -53,8 +105,8 @@ namespace EMS.Persistence.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Type = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
-                    CourseId = table.Column<Guid>(nullable: true),
-                    ProfessorId = table.Column<Guid>(nullable: true)
+                    CourseId = table.Column<Guid>(nullable: false),
+                    ProfessorId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,13 +116,13 @@ namespace EMS.Persistence.Migrations
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Exams_Professors_ProfessorId",
                         column: x => x.ProfessorId,
                         principalTable: "Professors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -87,6 +139,16 @@ namespace EMS.Persistence.Migrations
                 name: "IX_Exams_ProfessorId",
                 table: "Exams",
                 column: "ProfessorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Professors_UserId",
+                table: "Professors",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Students_UserId",
+                table: "Students",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -98,7 +160,16 @@ namespace EMS.Persistence.Migrations
                 name: "Exams");
 
             migrationBuilder.DropTable(
+                name: "Students");
+
+            migrationBuilder.DropTable(
                 name: "Courses");
+
+            migrationBuilder.DropTable(
+                name: "Professors");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }
