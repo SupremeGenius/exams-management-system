@@ -18,7 +18,7 @@ class InputDropdown extends React.Component {
         style     = {this.props.style}
         className = {`\
           form-input-dropdown \
-          ${this.props.className && this.props.className || ''} \
+          ${(this.props.className && this.props.className) || ''} \
           ${((this.props.value || this.props.placeholder) && ' label-up') || ''} \
           ${((this.props.hasError || this.props.errors) && ' has-error') || ''} \
           ${(this.props.title && ' has-title') || ''} \
