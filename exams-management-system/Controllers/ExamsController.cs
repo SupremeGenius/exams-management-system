@@ -46,5 +46,18 @@ namespace exams_management_system.Controllers
 
             return StatusCode(422);
         }
+
+        [HttpGet("{id:guid}", Name = "GetExamById")]
+        public async Task<IActionResult> GetExamById(Guid id)
+        {
+            var exam = await this.examService.FindById(id);
+
+            if (exam == null)
+            {
+                return StatusCode(422);
+            }
+
+            return Ok(exam);
+        }
     }
 }
