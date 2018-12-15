@@ -2,16 +2,21 @@ import React     from 'react';
 
 import '../../styles/css/core/Input.css'
 
-class FormInputText extends React.Component {
+class Input extends React.Component {
   constructor() {
     super()
     this.state = {}
     //   labelUp: this.labelShouldBeUp(),
     //   id: this.props.id || ('_' + Math.random().toString(36).substring(6))
     // }
-
     this.labelShouldBeUp = this.labelShouldBeUp.bind(this);
 
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return {
+      labelUp: !!(props.value || props.placeholder) || (state != null ? state.isFocused : undefined)
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -19,7 +24,6 @@ class FormInputText extends React.Component {
       return this.setState({labelUp: this.labelShouldBeUp()});
     }
     return this.setLabels();
-
   }
 
   componentDidMount() {
@@ -56,7 +60,6 @@ class FormInputText extends React.Component {
       style     = {this.props.style}
       className = {`\
         form-input-text \
-        flex-column \
         ${ this.props.className || '' } \
         ${ (this.state.labelUp   && ' label-up')  || '' } \
         ${ (this.props.title     && ' has-title') || '' } \
@@ -78,7 +81,7 @@ class FormInputText extends React.Component {
             } return this.setState({isFocused: false}); } }
             placeholder  = { this.props.placeholder }
             onChange     = { e => (typeof this.props.onChange === 'function' ? this.props.onChange(e.target.value, e) : undefined) }
-            className    = "common-input sonar-form-control"
+            className    = "common-input form-control"
             style        = { this.props.inputStyle }
             onKeyDown    = { e => this.onKeyDown(e) }
             type         = { this.props.type || "text"}
@@ -91,4 +94,4 @@ class FormInputText extends React.Component {
     }
 
 
-export default FormInputText
+export default Input

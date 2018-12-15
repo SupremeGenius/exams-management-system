@@ -18,7 +18,7 @@ body {
   height: 100%;
 }
 
-.sonar-form-control {
+.form-control {
   background-color: white;
   color:            $textLight;
   border:           solid 2px $inputBorder;
@@ -30,7 +30,7 @@ body {
   color: $textLight !important;
 }
 
-.sonar-form-control:focus {
+.form-control:focus {
   border-color: $primaryColor;
 }
 
@@ -54,7 +54,7 @@ body {
   display:   flex;
   flex-grow: 1;
 }
-
+a {color: $primaryColor;}
 .pointer {
   cursor: pointer !important;
 }

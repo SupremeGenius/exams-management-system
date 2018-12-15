@@ -23,3 +23,28 @@ D:\Facultate\.NET\Proiect - 2018\exams-management-system\XUnitTestProject1\bin\D
 D:\Facultate\.NET\Proiect - 2018\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\EMS.Persistence.pdb
 D:\Facultate\.NET\Proiect - 2018\exams-management-system\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.dll
 D:\Facultate\.NET\Proiect - 2018\exams-management-system\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.pdb
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\exams-management-system.Views.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\exams-management-system.Views.pdb
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\XUnitTestProject1.deps.json
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\XUnitTestProject1.runtimeconfig.json
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\XUnitTestProject1.runtimeconfig.dev.json
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\XUnitTestProject1.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\XUnitTestProject1.pdb
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\EMS.Business.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\EMS.Domain.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\EMS.Persistence.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\exams-management-system.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\EMS.Business.pdb
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\exams-management-system.pdb
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\EMS.Domain.pdb
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\bin\Debug\netcoreapp2.1\EMS.Persistence.pdb
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.csprojAssemblyReference.cache
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.csproj.CoreCompileInputs.cache
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.AssemblyInfoInputs.cache
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.AssemblyInfo.cs
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.csproj.CopyComplete
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.dll
+C:\Users\vlady\OneDrive\Documents\GitHub\.net\exams-management-system\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.pdb

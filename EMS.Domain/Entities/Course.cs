@@ -1,5 +1,4 @@
 ﻿using EMS.Domain.Entities;
-using System;
 using System.Collections.Generic;
 
 namespace EMS.Domain
@@ -17,5 +16,13 @@ namespace EMS.Domain
         public int StudentYear { get; set; }
 
         public int Semester { get; set; }
+
+        public static Course Create(string title, string universityYear, int studentYear, int semester) => new Course
+        {
+            Title = title,
+            UniversityYear = universityYear,
+            StudentYear = studentYear,
+            Semester = semester
+        };
     }
 }

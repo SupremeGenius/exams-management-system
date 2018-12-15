@@ -8,7 +8,7 @@ namespace EMS.Persistence
     {
         public static IServiceCollection AddPersistance(this IServiceCollection services, string connectionString)
         {
-            services.AddDbContext<EMSContext>(opt => opt.UseSqlite(connectionString));
+            services.AddDbContext<EMSContext>(opt => opt.UseSqlServer(connectionString));
             services.AddScoped<IRepository>(provider => provider.GetService<EMSContext>());
 
             return services;
