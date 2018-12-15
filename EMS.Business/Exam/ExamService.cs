@@ -27,9 +27,11 @@ namespace EMS.Business
             return exam.Id;
         }
 
-        public Task<ExamDetailsModel> FindById(Guid Id) => AllExamDetails.SingleOrDefaultAsync(e => e.Id == Id);
+        public Task<ExamDetailsModel> FindById(Guid id) => AllExamDetails.SingleOrDefaultAsync(e => e.Id == id);
 
         public Task<List<ExamDetailsModel>> GetAll() => AllExamDetails.ToListAsync();
+
+        public Task<ExamDetailsModel> FindByTime(DateTime date) => AllExamDetails.SingleOrDefaultAsync(e => e.Date == date);
 
         private IQueryable<ExamDetailsModel> AllExamDetails => this.repository.GetAll<Exam>()
           .Select(e => new ExamDetailsModel
