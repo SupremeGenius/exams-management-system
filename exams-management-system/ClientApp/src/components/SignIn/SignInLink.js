@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
 
 const SignInLink = () => (
-    <p>
+    <p style={{marginTop: 25, textAlign: 'center'}}>
       Already have an account? <Link to={ROUTES.SIGN_IN}>Sign In</Link>
     </p>
 );
