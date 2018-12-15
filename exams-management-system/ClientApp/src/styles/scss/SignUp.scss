@@ -8,9 +8,12 @@
   min-height:       500px;
   overflow:         auto;
 
-  &__paper {
+  &__container {
     width:          500px;
     margin:         auto;
+  }
+
+  &__paper {
     padding:        40px 60px;
     text-align:     center;
     display:        flex;
@@ -23,6 +26,10 @@
     margin-bottom:  30px;
     display:        flex;
     flex-direction: column;
+  }
+
+  &__sign-in-link {
+    margin-top: 20px;
   }
 }
 
