@@ -33,6 +33,16 @@ namespace EMS.Business
 
         public Task<ExamDetailsModel> FindByTime(DateTime date) => AllExamDetails.SingleOrDefaultAsync(e => e.Date == date);
 
+        public void Update(Guid id)
+        {
+            
+        }
+
+        public void Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         private IQueryable<ExamDetailsModel> AllExamDetails => this.repository.GetAll<Exam>()
           .Select(e => new ExamDetailsModel
           {
