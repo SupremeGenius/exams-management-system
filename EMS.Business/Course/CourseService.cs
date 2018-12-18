@@ -35,6 +35,11 @@ namespace EMS.Business
             return GetAllCourseDetails().SingleOrDefaultAsync(s => s.Title == title);
         }
 
+        public Task<CourseDetailsModel> FindById(Guid id)
+        {
+            return GetAllCourseDetails().SingleOrDefaultAsync(s => s.Id == id);
+        }
+
         private IQueryable<CourseDetailsModel> GetAllCourseDetails() => this.repository.GetAll<Course>()
             .Select(c => new CourseDetailsModel
             {
@@ -45,5 +50,15 @@ namespace EMS.Business
                 StudentYear = c.StudentYear,
                 Semester = c.Semester
             });
+
+        public void Update(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

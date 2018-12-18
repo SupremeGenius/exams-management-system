@@ -59,5 +59,21 @@ namespace exams_management_system.Controllers
 
             return Ok(exam);
         }
+
+        [HttpPut("{id:guid}", Name = "UpdateExam")]
+        public async Task<IActionResult> UpdateExam(Guid id)
+        {
+
+            this.examService.Update(id);
+            return Ok();
+        }
+
+        [HttpDelete("{id:guid}", Name = "DeleteExam")]
+        public async Task<IActionResult> DeleteExam(Guid id)
+        {
+
+            this.examService.Delete(id);
+            return Ok();
+        }
     }
 }
