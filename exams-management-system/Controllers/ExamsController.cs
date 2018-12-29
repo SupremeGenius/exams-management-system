@@ -46,5 +46,34 @@ namespace exams_management_system.Controllers
 
             return StatusCode(422);
         }
+
+        [HttpGet("{id:guid}", Name = "GetExamById")]
+        public async Task<IActionResult> GetExamById(Guid id)
+        {
+            var exam = await this.examService.FindById(id);
+
+            if (exam == null)
+            {
+                return StatusCode(422);
+            }
+
+            return Ok(exam);
+        }
+
+        [HttpPut("{id:guid}", Name = "UpdateExam")]
+        public async Task<IActionResult> UpdateExam(Guid id)
+        {
+
+            this.examService.Update(id);
+            return Ok();
+        }
+
+        [HttpDelete("{id:guid}", Name = "DeleteExam")]
+        public async Task<IActionResult> DeleteExam(Guid id)
+        {
+
+            this.examService.Delete(id);
+            return Ok();
+        }
     }
 }

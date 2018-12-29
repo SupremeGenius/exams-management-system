@@ -16,11 +16,9 @@ namespace EMS.Business
         public string UniversityYear { get; set; }
 
         [Required]
-        [MaxLength(10)]
         public int StudentYear { get; set; }
 
         [Required]
-        [MaxLength(10)]
         public int Semester { get; set; }
     }
 }

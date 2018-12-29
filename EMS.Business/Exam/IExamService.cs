@@ -13,5 +13,9 @@ namespace EMS.Business
         Task<ExamDetailsModel> FindByTime (DateTime date);
 
         Task<Guid> CreateNew(CreatingExamModel newExam);
+
+        void Update(Guid id);
+
+        void Delete(Guid id);
     }
 }
