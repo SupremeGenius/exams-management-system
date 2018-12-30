@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace EMS.Domain
@@ -12,9 +13,13 @@ namespace EMS.Domain
         Task<TEntity> FindByIdAsync<TEntity>(Guid id)
             where TEntity : Entity;
 
+        Task<bool> TryUpdateModelAsync<TEntity>(TEntity entityToUpdate, TEntity updatedEntity)
+            where TEntity : IUpdatable<TEntity>;
+
         Task AddNewAsync<TEntity>(TEntity entity)
             where TEntity : Entity;
 
         Task SaveAsync();
+        
     }
 }

@@ -26,13 +26,39 @@ namespace EMS.Business
             return user.Id;
         }
 
-        public Task<List<UserDetailsModel>> GetAll() => GetAllUserDetails().ToListAsync();
+        public async Task<bool> UpdateAsync(Guid id, User userUpdated, string oldPassword)
+        {
+            var userToUpdate = await this.repository.FindByIdAsync<User>(id);
+            
+            if (oldPassword != userToUpdate.Password)
+            {
+                return false;
+            }
 
-        public Task<UserDetailsModel> FindByEmail(string email) => GetAllUserDetails().SingleOrDefaultAsync(s => s.Email == email);
+            if (await repository.TryUpdateModelAsync<User>(
+                    userToUpdate,
+                    userUpdated
+                    ))
+            {
+                await repository.SaveAsync();
+                return true;
+            }
 
-        public Task<UserDetailsModel> FindById(Guid id) => GetAllUserDetails().SingleOrDefaultAsync(s => s.Id == id);
+            return false;
+        }
 
-        private IQueryable<UserDetailsModel> GetAllUserDetails() => this.repository.GetAll<User>()
+        public async Task<string> Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<UserDetailsModel>> GetAll() => AllUserDetails.ToListAsync();
+
+        public Task<UserDetailsModel> FindByEmail(string email) => AllUserDetails.SingleOrDefaultAsync(s => s.Email == email);
+
+        public Task<UserDetailsModel> FindById(Guid id) => AllUserDetails.SingleOrDefaultAsync(s => s.Id == id);
+
+        private IQueryable<UserDetailsModel> AllUserDetails => this.repository.GetAll<User>()
             .Select(c => new UserDetailsModel
             {
                 Id = c.Id,
