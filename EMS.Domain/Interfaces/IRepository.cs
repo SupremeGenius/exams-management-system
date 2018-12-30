@@ -20,6 +20,9 @@ namespace EMS.Domain
             where TEntity : Entity;
 
         Task SaveAsync();
+
+        Task RemoveAsync<TEntity>(TEntity entity)
+            where TEntity : Entity;
         
     }
 }

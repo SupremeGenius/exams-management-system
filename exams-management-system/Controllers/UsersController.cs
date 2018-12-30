@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using EMS.Business;
 using EMS.Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace exams_management_system.Controllers
@@ -39,8 +40,12 @@ namespace exams_management_system.Controllers
         public async Task<IActionResult> DeleteUser(Guid id)
         {
 
-            this.userService.Delete(id);
-            return Ok();
+            var response = await this.userService.Delete(id);
+            if (response)
+            {
+                return Ok("User deleted");
+            }
+            return StatusCode(409, "User could not be deleted");
         }
     }
 }

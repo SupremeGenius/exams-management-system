@@ -17,6 +17,6 @@ namespace EMS.Business
 
         Task<bool> UpdateAsync(Guid id, User userUpdated, string oldPassword);
 
-        Task<string> Delete(Guid id);
+        Task<bool> Delete(Guid id);
     }
 }
