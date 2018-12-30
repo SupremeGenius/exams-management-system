@@ -19,9 +19,11 @@ namespace Booking.Business
         public static IServiceCollection AddMapping(this IServiceCollection services)
         {
             Mapper.Initialize(cfg =>
-            cfg.CreateMap<UpdateUserModel, User>()
-            .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.NewPassword)));
-
+            {
+                cfg.CreateMap<UpdateUserModel, User>()
+                .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.NewPassword));
+                cfg.CreateMap<UpdateCourseModel, Course>();
+            });
             return services;
         }
     }

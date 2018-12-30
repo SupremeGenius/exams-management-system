@@ -60,9 +60,6 @@ namespace exams_management_system.Controllers
         [HttpPut("{id:guid}", Name = "UpdateCourse")]
         public async Task<IActionResult> UpdateCourse([FromBody] UpdateCourseModel updateCourseModel, Guid id)
         {
-            Mapper.Initialize(cfg =>
-              cfg.CreateMap<UpdateCourseModel, Course>());
-
             var courseModel = Mapper.Map<UpdateCourseModel, Course>(updateCourseModel);
 
             var response = await this.courseService.Update(id, courseModel);
