@@ -5,7 +5,7 @@ using System;
 
 namespace exams_management_system.Controllers
 {
-    [Route("api/courses")]
+    [VersionedRoute("api/courses")]
     [ApiController]
     public class CoursesController : Controller
     {
