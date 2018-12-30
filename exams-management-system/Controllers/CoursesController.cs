@@ -61,7 +61,6 @@ namespace exams_management_system.Controllers
         public async Task<IActionResult> UpdateCourse([FromBody] UpdateCourseModel updateCourseModel, Guid id)
         {
             var courseModel = Mapper.Map<UpdateCourseModel, Course>(updateCourseModel);
-
             var response = await this.courseService.Update(id, courseModel);
             if (response)
             {
