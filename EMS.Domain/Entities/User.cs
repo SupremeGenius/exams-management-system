@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace EMS.Domain
 {
-    public class User : Entity
+    public class User : Entity, IUpdatable<User>
     {
         public string Email { get; set; }
 
-        public string Password { get; set; }
+        public string Password { get; private set; }
 
         public string Role { get; set; }
 
@@ -18,5 +18,10 @@ namespace EMS.Domain
             Password = password,
             Role = role
         };
+
+        public void Update(User updatedUser)
+        {
+            this.Password = updatedUser.Password;
+        }
     }
 }

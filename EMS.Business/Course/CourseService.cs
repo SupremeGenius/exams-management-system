@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -30,16 +29,10 @@ namespace EMS.Business
 
         public Task<List<CourseDetailsModel>> GetAll() => GetAllCourseDetails().ToListAsync();
 
-        public Task<CourseDetailsModel> FindByTitle(string title)
-        {
-            return GetAllCourseDetails().SingleOrDefaultAsync(s => s.Title == title);
-        }
+        public Task<CourseDetailsModel> FindByTitle(string title) => GetAllCourseDetails().SingleOrDefaultAsync(s => s.Title == title);
 
-        public Task<CourseDetailsModel> FindById(Guid id)
-        {
-            return GetAllCourseDetails().SingleOrDefaultAsync(s => s.Id == id);
-        }
-
+        public Task<CourseDetailsModel> FindById(Guid id) => GetAllCourseDetails().SingleOrDefaultAsync(s => s.Id == id);
+        
         private IQueryable<CourseDetailsModel> GetAllCourseDetails() => this.repository.GetAll<Course>()
             .Select(c => new CourseDetailsModel
             {
@@ -53,7 +46,7 @@ namespace EMS.Business
 
         public void Update(Guid id)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Delete(Guid id)
