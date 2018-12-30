@@ -1,9 +1,6 @@
 ﻿using System.Threading.Tasks;
 using EMS.Business;
-using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using System;
 
 namespace exams_management_system.Controllers
 {

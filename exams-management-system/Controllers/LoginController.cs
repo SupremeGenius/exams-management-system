@@ -1,12 +1,11 @@
 ﻿using System.Threading.Tasks;
 using EMS.Business;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace exams_management_system.Controllers
 {
-    [Route("api/login")]
     [ApiController]
+    [Route("api/login")]
     public class LoginController : Controller
     {
         private readonly IUserService userService;
