@@ -51,7 +51,7 @@ namespace EMS.Business
         {
             var user = await this.repository.FindByIdAsync<User>(id);
 
-            repository.RemoveAsync<User>(user);
+            await repository.RemoveAsync<User>(user);
             await repository.SaveAsync();
             return true;
         }

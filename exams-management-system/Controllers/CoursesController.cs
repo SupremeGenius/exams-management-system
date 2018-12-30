@@ -2,6 +2,8 @@
 using EMS.Business;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using AutoMapper;
+using EMS.Domain;
 
 namespace exams_management_system.Controllers
 {
@@ -56,19 +58,30 @@ namespace exams_management_system.Controllers
         }
 
         [HttpPut("{id:guid}", Name = "UpdateCourse")]
-        public async Task<IActionResult> UpdateCourse(Guid id)
+        public async Task<IActionResult> UpdateCourse([FromBody] UpdateCourseModel updateCourseModel, Guid id)
         {
+            Mapper.Initialize(cfg =>
+              cfg.CreateMap<UpdateCourseModel, Course>());
 
-            this.courseService.Update(id);
-            return Ok();
+            var courseModel = Mapper.Map<UpdateCourseModel, Course>(updateCourseModel);
+
+            var response = await this.courseService.Update(id, courseModel);
+            if (response)
+            {
+                return Ok("Course updated");
+            }
+            return NoContent();
         }
 
         [HttpDelete("{id:guid}", Name = "DeleteCourse")]
         public async Task<IActionResult> DeleteCourse(Guid id)
         {
-
-            this.courseService.Delete(id);
-            return Ok();
+            var response = await this.courseService.Delete(id);
+            if (response)
+            {
+                return Ok("Course deleted");
+            }
+            return StatusCode(409, "Course could not be deleted");
         }
     }
 }

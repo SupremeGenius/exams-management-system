@@ -44,14 +44,29 @@ namespace EMS.Business
                 Semester = c.Semester
             });
 
-        public void Update(Guid id)
+        public async Task<bool> Update(Guid id, Course updatedCourse)
         {
-            
+            var courseToUpdate = await this.repository.FindByIdAsync<Course>(id);
+
+            if (await repository.TryUpdateModelAsync<Course>(
+                    courseToUpdate,
+                    updatedCourse
+                    ))
+            {
+                await repository.SaveAsync();
+                return true;
+            }
+
+            return false;
         }
 
-        public void Delete(Guid id)
+        public async Task<bool> Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var course = await this.repository.FindByIdAsync<Course>(id);
+
+            await repository.RemoveAsync<Course>(course);
+            await repository.SaveAsync();
+            return true;
         }
     }
 }
