@@ -1,4 +1,6 @@
-﻿using EMS.Business;
+﻿using AutoMapper;
+using EMS.Business;
+using EMS.Domain;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Booking.Business
@@ -10,6 +12,15 @@ namespace Booking.Business
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IExamService, ExamService>();
             services.AddTransient<ICourseService, CourseService>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddMapping(this IServiceCollection services)
+        {
+            Mapper.Initialize(cfg =>
+            cfg.CreateMap<UpdateUserModel, User>()
+            .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.NewPassword)));
 
             return services;
         }

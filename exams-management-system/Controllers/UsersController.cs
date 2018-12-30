@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using EMS.Business;
 using EMS.Domain;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace exams_management_system.Controllers
@@ -22,10 +21,6 @@ namespace exams_management_system.Controllers
         [HttpPut("{id:guid}", Name = "UpdateUser")]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserModel updateUserModel, Guid id)
         {
-            Mapper.Initialize(cfg =>
-              cfg.CreateMap<UpdateUserModel, User>()
-                .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.NewPassword)));
-
             var userModel = Mapper.Map<UpdateUserModel, User>(updateUserModel);
 
             var response = await this.userService.UpdateAsync(id, userModel, updateUserModel.OldPassword);
