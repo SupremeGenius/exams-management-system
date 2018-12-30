@@ -47,9 +47,13 @@ namespace EMS.Business
             return false;
         }
 
-        public async Task<string> Delete(Guid id)
+        public async Task<bool> Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var user = await this.repository.FindByIdAsync<User>(id);
+
+            repository.RemoveAsync<User>(user);
+            await repository.SaveAsync();
+            return true;
         }
 
         public Task<List<UserDetailsModel>> GetAll() => AllUserDetails.ToListAsync();
