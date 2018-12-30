@@ -28,14 +28,18 @@ namespace EMS.Persistence
         public async Task<bool> TryUpdateModelAsync<TEntity>(TEntity entityToUpdate, TEntity updatedEntity)
              where TEntity : IUpdatable<TEntity>
         {
-                    entityToUpdate.Update(updatedEntity);
-                    return true;
+            entityToUpdate.Update(updatedEntity);   
+            return true;
         }
 
         public async Task AddNewAsync<TEntity>(TEntity entity)
             where TEntity : Entity => await Set<TEntity>().AddAsync(entity);
 
         public async Task SaveAsync() => await SaveChangesAsync();
+
+        public async Task RemoveAsync<TEntity>(TEntity entity)
+            where TEntity : Entity => Remove<TEntity>(entity);
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
