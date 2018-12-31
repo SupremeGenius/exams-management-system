@@ -3,7 +3,6 @@ using Xunit;
 using Moq;
 using exams_management_system.Controllers;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

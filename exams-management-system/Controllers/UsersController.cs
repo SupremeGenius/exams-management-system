@@ -21,6 +21,11 @@ namespace exams_management_system.Controllers
         [HttpPut("{id:guid}", Name = "UpdateUser")]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserModel updateUserModel, Guid id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var userModel = Mapper.Map<UpdateUserModel, User>(updateUserModel);
 
             var response = await this.userService.UpdateAsync(id, userModel, updateUserModel.OldPassword);
