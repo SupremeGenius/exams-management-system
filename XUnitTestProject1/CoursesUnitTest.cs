@@ -69,7 +69,7 @@ namespace XUnitTestProject1
         }
 
         [Fact]
-        public async Task Given_GetCourseById_When_IdIsValid_Then_BadStatusCode()
+        public async Task Given_GetCourseById_When_IdIsValidButNoCourseFound_Then_BadStatusCode()
         {
             var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
             var mockRepo = new Mock<ICourseService>();
@@ -80,11 +80,10 @@ namespace XUnitTestProject1
             var controller = new CoursesController(mockRepo.Object);
 
             // Act
-            var result = await controller.GetCourseById(guid);
+            var result = (StatusCodeResult)await controller.GetCourseById(guid);
 
             // Assert
-            var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
-            Assert.IsType<SerializableError>(badRequestResult.Value);
+            Assert.Equal(422, result.StatusCode);
         }
 
     }
