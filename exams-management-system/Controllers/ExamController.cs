@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using EMS.Business;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace exams_management_system.Controllers
 {

@@ -23,11 +23,10 @@ namespace XUnitTestProject1
             var controller = new RegisterController(mockRepo.Object);
 
             // Act
-            var result =(OkObjectResult) await controller.CreateUser(user);
+            var result = await controller.CreateUser(user);
 
             // Assert
             Assert.IsType<OkObjectResult>(result);
-            Assert.Equal(id.Result, result.Value);
         }
         [Fact]
         public async Task Given_CreateUser_When_ModelIsInvalid_Then_BadStatusCode()
@@ -59,6 +58,7 @@ namespace XUnitTestProject1
             mockRepo.Setup(u => u.FindByEmail(user.Email)).Returns(userDetails);
 
             var controller = new RegisterController(mockRepo.Object);
+            
 
             // Act
             var result = (StatusCodeResult) await controller.CreateUser(user);
