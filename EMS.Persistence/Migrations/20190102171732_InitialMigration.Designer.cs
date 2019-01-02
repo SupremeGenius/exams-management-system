@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EMS.Persistence.Migrations
 {
     [DbContext(typeof(EMSContext))]
-    [Migration("20181215084732_SQLServer")]
-    partial class SQLServer
+    [Migration("20190102171732_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -151,12 +151,12 @@ namespace EMS.Persistence.Migrations
 
             modelBuilder.Entity("EMS.Domain.Exam", b =>
                 {
-                    b.HasOne("EMS.Domain.Course", "Course")
+                    b.HasOne("EMS.Domain.Course")
                         .WithMany("Exams")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("EMS.Domain.Entities.Professor", "Professor")
+                    b.HasOne("EMS.Domain.Entities.Professor")
                         .WithMany("Exams")
                         .HasForeignKey("ProfessorId")
                         .OnDelete(DeleteBehavior.Cascade);

@@ -149,12 +149,12 @@ namespace EMS.Persistence.Migrations
 
             modelBuilder.Entity("EMS.Domain.Exam", b =>
                 {
-                    b.HasOne("EMS.Domain.Course", "Course")
+                    b.HasOne("EMS.Domain.Course")
                         .WithMany("Exams")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("EMS.Domain.Entities.Professor", "Professor")
+                    b.HasOne("EMS.Domain.Entities.Professor")
                         .WithMany("Exams")
                         .HasForeignKey("ProfessorId")
                         .OnDelete(DeleteBehavior.Cascade);
