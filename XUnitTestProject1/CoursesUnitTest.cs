@@ -66,7 +66,24 @@ namespace XUnitTestProject1
 
             // Assert
             Assert.IsType<OkObjectResult>(result);
-            // Assert.Equal(Id.Result, Result.Value);
+        }
+
+        [Fact]
+        public async Task Given_GetCourseById_When_IdIsValidButNoCourseFound_Then_BadStatusCode()
+        {
+            var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
+            var mockRepo = new Mock<ICourseService>();
+            var course = new CourseDetailsModel();
+            var nullResponse = Task.FromResult<CourseDetailsModel>(null);
+            mockRepo.Setup(u => u.FindById(guid)).Returns(nullResponse);
+
+            var controller = new CoursesController(mockRepo.Object);
+
+            // Act
+            var result = (StatusCodeResult)await controller.GetCourseById(guid);
+
+            // Assert
+            Assert.Equal(422, result.StatusCode);
         }
 
     }
