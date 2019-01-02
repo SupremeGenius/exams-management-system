@@ -23,6 +23,7 @@ namespace Booking.Business
                 cfg.CreateMap<UpdateUserModel, User>()
                 .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.NewPassword));
                 cfg.CreateMap<UpdateCourseModel, Course>();
+                cfg.CreateMap<UpdateExamModel, Exam>();
             });
             return services;
         }

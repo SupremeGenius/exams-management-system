@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using EMS.Business;
+using EMS.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace exams_management_system.Controllers
@@ -58,11 +60,17 @@ namespace exams_management_system.Controllers
         }
 
         [HttpPut("{id:guid}", Name = "UpdateExam")]
-        public async Task<IActionResult> UpdateExam(Guid id)
-        {
+        public async Task<IActionResult> UpdateExam([FromBody] UpdateExamModel updateExamModel, Guid id)
 
-            this.examService.Update(id);
-            return Ok();
+        {
+            var examModel = Mapper.Map<UpdateExamModel, Exam>(updateExamModel);
+            var response = await this.examService.Update(id, examModel);
+            if (response)
+            {
+                return Ok("Exam updated");
+            }
+
+            return NoContent();
         }
 
         [HttpDelete("{id:guid}", Name = "DeleteExam")]
