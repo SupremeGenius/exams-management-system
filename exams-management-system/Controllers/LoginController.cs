@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
 using EMS.Business;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace exams_management_system.Controllers
 {
-    [Route("api/login")]
     [ApiController]
+    [VersionedRoute("api/login")]
     public class LoginController : Controller
     {
         private readonly IUserService userService;
@@ -23,14 +23,14 @@ namespace exams_management_system.Controllers
 
             var user = await this.userService.FindByEmail(model.Email);
             if (user == null)
-            {
-                return StatusCode(404);
+            { 
+                return StatusCode(StatusCodes.Status404NotFound);
             }
             if (user.Password == model.Password)
             {
                 return Ok("User valid");
-            }
-            return StatusCode(422);
+            } 
+            return StatusCode(StatusCodes.Status422UnprocessableEntity);
         }
     }
 }

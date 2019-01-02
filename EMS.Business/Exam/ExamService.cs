@@ -35,7 +35,7 @@ namespace EMS.Business
 
         public void Update(Guid id)
         {
-            
+            throw new NotImplementedException();
         }
 
         public void Delete(Guid id)

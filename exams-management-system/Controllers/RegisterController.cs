@@ -1,13 +1,11 @@
 ﻿using System.Threading.Tasks;
 using EMS.Business;
-using System.Net;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace exams_management_system.Controllers
 {
-    [Route("api/[controller]")]
+    [VersionedRoute("api/[controller]")]
     [ApiController]
     public class RegisterController : ControllerBase
     {
@@ -33,7 +31,7 @@ namespace exams_management_system.Controllers
                 return Ok(userId);
             }
 
-            return StatusCode(422);
+            return StatusCode(StatusCodes.Status422UnprocessableEntity);
         }
     }
 }

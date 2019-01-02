@@ -1,7 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using EMS.Domain;
-using EMS.Domain.Entities;
 
 namespace EMS.Business
 {

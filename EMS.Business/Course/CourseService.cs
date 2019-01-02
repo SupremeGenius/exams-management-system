@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -30,16 +29,10 @@ namespace EMS.Business
 
         public Task<List<CourseDetailsModel>> GetAll() => GetAllCourseDetails().ToListAsync();
 
-        public Task<CourseDetailsModel> FindByTitle(string title)
-        {
-            return GetAllCourseDetails().SingleOrDefaultAsync(s => s.Title == title);
-        }
+        public Task<CourseDetailsModel> FindByTitle(string title) => GetAllCourseDetails().SingleOrDefaultAsync(s => s.Title == title);
 
-        public Task<CourseDetailsModel> FindById(Guid id)
-        {
-            return GetAllCourseDetails().SingleOrDefaultAsync(s => s.Id == id);
-        }
-
+        public Task<CourseDetailsModel> FindById(Guid id) => GetAllCourseDetails().SingleOrDefaultAsync(s => s.Id == id);
+        
         private IQueryable<CourseDetailsModel> GetAllCourseDetails() => this.repository.GetAll<Course>()
             .Select(c => new CourseDetailsModel
             {
@@ -51,14 +44,29 @@ namespace EMS.Business
                 Semester = c.Semester
             });
 
-        public void Update(Guid id)
+        public async Task<bool> Update(Guid id, Course updatedCourse)
         {
-            throw new NotImplementedException();
+            var courseToUpdate = await this.repository.FindByIdAsync<Course>(id);
+
+            if (await repository.TryUpdateModelAsync<Course>(
+                    courseToUpdate,
+                    updatedCourse
+                    ))
+            {
+                await repository.SaveAsync();
+                return true;
+            }
+
+            return false;
         }
 
-        public void Delete(Guid id)
+        public async Task<bool> Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var course = await this.repository.FindByIdAsync<Course>(id);
+
+            await repository.RemoveAsync<Course>(course);
+            await repository.SaveAsync();
+            return true;
         }
     }
 }

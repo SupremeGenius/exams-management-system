@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EMS.Domain
 {
-    public class Course : Entity
+    public class Course : Entity, IUpdatable<Course>
     {
         public string Title { get; set; }
 
@@ -24,5 +24,13 @@ namespace EMS.Domain
             StudentYear = studentYear,
             Semester = semester
         };
+
+        public void Update(Course updatedEntity)
+        {
+            Title = updatedEntity.Title == null ? Title : updatedEntity.Title;
+            UniversityYear = updatedEntity.UniversityYear == null ? UniversityYear : updatedEntity.UniversityYear;
+            StudentYear = updatedEntity.StudentYear == 0 ? StudentYear : updatedEntity.StudentYear;
+            Semester = updatedEntity.Semester == 0 ? Semester : updatedEntity.Semester;
+        }
     }
 }
