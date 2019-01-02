@@ -18,7 +18,6 @@ namespace EMS.Business
         {
             var professor = Professor.Create(
                 userId: newProfessor.UserId,
-                name: newProfessor.Name,
                 title: newProfessor.Title,
                 courseProfessors: newProfessor.CourseProfessors,
                 exams: newProfessor.Exams
@@ -30,29 +29,46 @@ namespace EMS.Business
             return professor.Id;
         }
 
+        public async Task<bool> UpdateAsync(Guid id, Professor professorUpdated)
+        {
+            var professorToUpdate = await this.repository.FindByIdAsync<Professor>(id);
+
+            if (await repository.TryUpdateModelAsync<Professor>(
+                professorToUpdate,
+                professorUpdated
+            ))
+            {
+                await repository.SaveAsync();
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<bool> Delete(Guid id)
+        {
+            var professor = await this.repository.FindByIdAsync<Professor>(id);
+            var user = await this.repository.FindByIdAsync<User>(professor.UserId);
+
+            await repository.RemoveAsync<Professor>(professor);
+            await repository.RemoveAsync<User>(user);
+            await repository.SaveAsync();
+            return true;
+        }
+
         public Task<List<ProfessorDetailsModel>> GetAll() => GetAllProfessorDetails().ToListAsync();
 
         public Task<ProfessorDetailsModel> FindByTitle(string title) => GetAllProfessorDetails().SingleOrDefaultAsync(p => p.Title == title);
 
         public Task<ProfessorDetailsModel> FindById(Guid id) => GetAllProfessorDetails().SingleOrDefaultAsync(p => p.Id == id);
 
-        public void Update(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Guid id)
-        {
-            throw new NotImplementedException();
-        }
 
         private IQueryable<ProfessorDetailsModel> GetAllProfessorDetails() => this.repository.GetAll<Professor>()
             .Select(p => new ProfessorDetailsModel
             {
                 Id = p.Id,
                 User = p.User,
-                UserId = p.UserId,
-                Name = p.Name,
+                UserId = p.UserId, 
                 Title = p.Title,
                 CourseProfessors = p.CourseProfessors,
                 Exams = p.Exams

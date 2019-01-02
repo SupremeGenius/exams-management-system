@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EMS.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,8 +15,9 @@ namespace EMS.Business
 
         Task<Guid> CreateNew(ProfessorDetailsModel newProfessor);
 
-        void Update(Guid id);
+        Task<bool> UpdateAsync(Guid id, Professor professorUpdated);
 
-        void Delete(Guid id);
+        Task<bool> Delete(Guid id);
+
     }
 }

@@ -4,6 +4,8 @@ using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System;
+using AutoMapper;
+using EMS.Domain.Entities;
 
 namespace exams_management_system.Controllers
 {
@@ -58,19 +60,33 @@ namespace exams_management_system.Controllers
         }
 
         [HttpPut("{id:guid}", Name = "UpdateProfessor")]
-        public async Task<IActionResult> UpdateProfessor(Guid id)
+        public async Task<IActionResult> UpdateProfessor([FromBody] CreatingProfessorModel createProfessorModel, Guid id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            this.professorService.Update(id);
-            return Ok();
+            var professorModel = Mapper.Map<CreatingProfessorModel, Professor>(createProfessorModel);
+
+            var response = await this.professorService.UpdateAsync(id, professorModel);
+            if (response)
+            {
+                return Ok("User updated");
+            }
+            return NoContent();
         }
-
+        
         [HttpDelete("{id:guid}", Name = "DeleteProfessor")]
         public async Task<IActionResult> DeleteProfessor(Guid id)
         {
 
-            this.professorService.Delete(id);
-            return Ok();
+            var response = await this.professorService.Delete(id);
+            if (response)
+            {
+                return Ok("Professor deleted");
+            }
+            return StatusCode(409, "Professor could not be deleted");
         }
     }
 }
