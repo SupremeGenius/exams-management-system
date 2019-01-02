@@ -171,5 +171,6 @@ namespace EMS.Persistence.Migrations
             migrationBuilder.DropTable(
                 name: "Users");
         }
+
     }
 }

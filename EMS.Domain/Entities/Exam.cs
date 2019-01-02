@@ -15,7 +15,6 @@ namespace EMS.Domain
 
         public Guid ProfessorId { get; set; }
 
-
         public static Exam Create(string type, DateTime date, Guid courseId, Guid professorId) => new Exam
          {
              Type      = type,
