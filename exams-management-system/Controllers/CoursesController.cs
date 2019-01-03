@@ -7,7 +7,7 @@ using EMS.Domain;
 
 namespace exams_management_system.Controllers
 {
-    [VersionedRoute("api/courses")]
+    [VersionedRoute("api/courses", 1)]
     [ApiController]
     public class CoursesController : Controller
     {
