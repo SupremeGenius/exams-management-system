@@ -20,11 +20,6 @@ namespace exams_management_system.Controllers
         {
             var exams = await this.examService.GetAll();
 
-            if (exams.Count == 0)
-            {
-                return Ok("No exams have been found!");
-            }
-
             return Ok(exams);
         }
 
