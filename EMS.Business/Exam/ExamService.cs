@@ -19,7 +19,8 @@ namespace EMS.Business
                 type: newExam.Type,
                 date: newExam.Date,
                 courseId: newExam.CourseId,
-                professorId: newExam.ProfessorId);
+                professorId: newExam.ProfessorId,
+                room: newExam.Room);
 
             await this.repository.AddNewAsync(exam);
             await this.repository.SaveAsync();
@@ -69,7 +70,8 @@ namespace EMS.Business
               Type = e.Type,
               Date = e.Date,
               CourseId = e.CourseId,
-              ProfessorId = e.ProfessorId
+              ProfessorId = e.ProfessorId,
+              Room = e.Room
           });
     }
 }

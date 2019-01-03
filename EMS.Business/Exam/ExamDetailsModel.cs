@@ -12,6 +12,8 @@ namespace EMS.Business
 
         public Guid ProfessorId { get; set; }
 
+        public string Room { get; set; }
+
         public Guid Id { get; internal set; }
   }
 }

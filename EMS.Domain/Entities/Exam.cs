@@ -15,12 +15,15 @@ namespace EMS.Domain
 
         public Guid ProfessorId { get; set; }
 
-        public static Exam Create(string type, DateTime date, Guid courseId, Guid professorId) => new Exam
+        public string Room { get; set; }
+
+        public static Exam Create(string type, DateTime date, Guid courseId, Guid professorId, string room) => new Exam
         {
              Type      = type,
              Date      = date,
              CourseId    = courseId,
              ProfessorId = professorId,
+             Room = room,
         };
 
         public void Update(Exam updatedEntity)
@@ -29,6 +32,7 @@ namespace EMS.Domain
             Date = updatedEntity.Date == null ? Date : updatedEntity.Date;
             CourseId = updatedEntity.CourseId == null ? CourseId : updatedEntity.CourseId;
             ProfessorId = updatedEntity.ProfessorId == null ? ProfessorId : updatedEntity.ProfessorId;
+            Room = updatedEntity.Room == null ? Room : updatedEntity.Room;
         }
   }
 }
