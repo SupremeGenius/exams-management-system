@@ -72,8 +72,12 @@ namespace exams_management_system.Controllers
         public async Task<IActionResult> DeleteExam(Guid id)
         {
 
-            this.examService.Delete(id);
-            return Ok();
+            var deleted = await this.examService.Delete(id);
+            if (deleted)
+            {
+                return Ok("Exam deleted");
+            }
+            return StatusCode(409, "Exam could not be deleted");
         }
     }
 }

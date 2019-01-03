@@ -16,6 +16,6 @@ namespace EMS.Business
 
         Task<bool> Update(Guid id, Domain.Exam examModel);
 
-        void Delete(Guid id);
+        Task<bool> Delete(Guid id);
     }
-}
+ }

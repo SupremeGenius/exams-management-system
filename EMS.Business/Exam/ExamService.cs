@@ -50,11 +50,15 @@ namespace EMS.Business
             return false;
         }
 
-        public void Delete(Guid id)
+        public async Task<bool> Delete(Guid id)
         {
-            throw new NotImplementedException();
-        }
+            var exam = await this.repository.FindByIdAsync<Exam>(id);
 
+            await repository.RemoveAsync<Exam>(exam);
+            await repository.SaveAsync();
+            return true;
+        }
+        
         private IQueryable<ExamDetailsModel> AllExamDetails => this.repository.GetAll<Exam>()
           .Select(e => new ExamDetailsModel
           {
