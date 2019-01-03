@@ -39,7 +39,7 @@ namespace exams_management_system.Controllers
                 return Ok(examId);
             }
 
-            return StatusCode(422);
+            return StatusCode(StatusCodes.Status422UnprocessableEntity);
         }
 
         [HttpGet("{id:guid}", Name = "GetExamById")]
@@ -49,7 +49,7 @@ namespace exams_management_system.Controllers
 
             if (exam == null)
             {
-                return StatusCode(422);
+                return StatusCode(StatusCodes.Status404NotFound);
             }
 
             return Ok(exam);
