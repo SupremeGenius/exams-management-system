@@ -53,12 +53,15 @@ namespace EMS.Business
         public async Task<bool> Delete(Guid id)
         {
             var exam = await this.repository.FindByIdAsync<Exam>(id);
-
-            await repository.RemoveAsync<Exam>(exam);
-            await repository.SaveAsync();
-            return true;
+            if (exam != null) {
+                await repository.SaveAsync();
+                await repository.RemoveAsync<Exam>(exam);
+                return true;
+            } else {
+                return false;
+            }
         }
-        
+
         private IQueryable<ExamDetailsModel> AllExamDetails => this.repository.GetAll<Exam>()
           .Select(e => new ExamDetailsModel
           {
