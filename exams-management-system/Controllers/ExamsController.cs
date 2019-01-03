@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using EMS.Business;
 using EMS.Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace exams_management_system.Controllers
@@ -71,13 +72,12 @@ namespace exams_management_system.Controllers
         [HttpDelete("{id:guid}", Name = "DeleteExam")]
         public async Task<IActionResult> DeleteExam(Guid id)
         {
-
-            var deleted = await this.examService.Delete(id);
-            if (deleted)
+            if (await this.examService.Delete(id))
             {
                 return Ok("Exam deleted");
             }
-            return StatusCode(409, "Exam could not be deleted");
+
+            return StatusCode(StatusCodes.Status409Conflict, "Exam could not be deleted");
         }
     }
 }
