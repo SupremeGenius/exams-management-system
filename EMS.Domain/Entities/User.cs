@@ -12,6 +12,8 @@ namespace EMS.Domain
 
         public string Role { get; set; }
 
+        public string Name { get; set; }
+
         public static User Create(string email, string password, string role) => new User
         {
             Email = email,
