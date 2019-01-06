@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using EMS.Domain;
+using Microsoft.AspNetCore.Http;
+using AutoMapper;
 
 namespace XUnitTestProject1
 {
-    public class CoursesUnitTest
+    public class CoursesUnitTest : IDisposable
     {
+        // Flag: Has Dispose already been called?
+        bool disposed = false;
+
         private readonly UpdateCourseModel updateCourseModel;
         private readonly CreatingCourseModel createCourseModel;
         private readonly Mock<ICourseService> mockRepo;
@@ -20,8 +25,15 @@ namespace XUnitTestProject1
         public CoursesUnitTest()
         {
             updateCourseModel = new UpdateCourseModel();
+            createCourseModel = new CreatingCourseModel();
             mockRepo = new Mock<ICourseService>();
             controller = new CoursesController(mockRepo.Object);
+
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<UpdateCourseModel, Course>();
+            });
+            courseModel = Mapper.Map<UpdateCourseModel, Course>(updateCourseModel);
         }
 
         [Fact]
@@ -84,5 +96,83 @@ namespace XUnitTestProject1
             Assert.Equal(422, result.StatusCode);
         }
 
+        [Fact]
+        public async Task Given_UpdateCourse_When_ModelIsValid_Then_OkStatusCode()
+        {
+            // Arrange
+            mockRepo.Setup(u => u.Update(It.IsAny<Guid>(), It.IsAny<Course>())).
+                Returns(Task.FromResult(true));
+
+            //Act
+            var result = await controller.UpdateCourse(updateCourseModel, It.IsAny<Guid>());
+
+            //Arrange
+            Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task Given_UpdateCourse_When_ModelIsInvalid_Then_BadStatusCode()
+        {
+            // Arrange
+            mockRepo.Setup(u => u.Update(It.IsAny<Guid>(), It.IsAny<Course>())).
+                Returns(Task.FromResult(true));
+
+            //Act
+            controller.ModelState.AddModelError("id", "1234");
+            var result = await controller.UpdateCourse(updateCourseModel, It.IsAny<Guid>());
+
+            //Assert
+            var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+            Assert.IsType<SerializableError>(badRequestResult.Value);
+        }
+
+        [Fact]
+        public async Task Given_DeleteCourse_When_IdIsValid_Then_OkStatusCode()
+        {
+            //Arrange
+            mockRepo.Setup(u => u.Delete(It.IsAny<Guid>())).Returns(Task.FromResult(true));
+
+            //Act
+            var result = await controller.DeleteCourse(It.IsAny<Guid>());
+
+            //Assert
+            Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task Given_DeleteCourse_When_IdIsValid_Then_Status409Conflict()
+        {
+            //Arrange
+            mockRepo.Setup(u => u.Delete(It.IsAny<Guid>())).Returns(Task.FromResult(false));
+
+            //Act
+            var result = (StatusCodeResult)await controller.DeleteCourse(It.IsAny<Guid>());
+
+            //Assert
+            Assert.Equal(StatusCodes.Status409Conflict, result.StatusCode);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+
+            // Use SupressFinalize in case a subclass 
+            // of this type implements a finalizer.
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                // Free any other managed objects here.
+                Mapper.Reset();
+                //
+            }
+            disposed = true;
+        }
     }
 }

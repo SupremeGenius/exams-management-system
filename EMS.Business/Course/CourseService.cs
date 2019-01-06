@@ -48,6 +48,8 @@ namespace EMS.Business
         {
             var courseToUpdate = await this.repository.FindByIdAsync<Course>(id);
 
+            if (courseToUpdate == null) return false;
+
             if (await repository.TryUpdateModelAsync<Course>(
                     courseToUpdate,
                     updatedCourse
