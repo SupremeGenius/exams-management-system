@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMS.Business", "EMS.Busines
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMS.Persistence", "EMS.Persistence\EMS.Persistence.csproj", "{FC86BC7E-FE6C-4CC1-B13A-903156BF1191}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMS.Tests", "XUnitTestProject1\EMS.Tests.csproj", "{95F10FEF-1DBC-4DB6-AC9B-D5574FFC3E41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMS.Tests", "EMS.Tests\EMS.Tests.csproj", "{95F10FEF-1DBC-4DB6-AC9B-D5574FFC3E41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
