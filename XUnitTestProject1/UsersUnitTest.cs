@@ -11,8 +11,11 @@ using Xunit;
 
 namespace XUnitTestProject1
 {
-    public class UsersUnitTest
+    public class UsersUnitTest : IDisposable
     {
+        // Flag: Has Dispose already been called?
+        bool disposed = false;
+
         private readonly UpdateUserModel updateUserModel;
         private readonly Mock<IUserService> mockRepo;
         private readonly UsersController controller;
@@ -24,7 +27,6 @@ namespace XUnitTestProject1
             mockRepo = new Mock<IUserService>();
             controller = new UsersController(mockRepo.Object);
 
-            Mapper.Reset();
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<UpdateUserModel, User>()
@@ -101,5 +103,27 @@ namespace XUnitTestProject1
             Assert.Equal(StatusCodes.Status409Conflict, result.StatusCode);
         }
 
+        public void Dispose()
+        {
+            Dispose(true);
+
+            // Use SupressFinalize in case a subclass 
+            // of this type implements a finalizer.
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                // Free any other managed objects here.
+                Mapper.Reset();
+                //
+            }
+            disposed = true;
+        }
     }
 }

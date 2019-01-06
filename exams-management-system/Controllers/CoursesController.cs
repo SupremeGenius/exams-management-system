@@ -62,6 +62,11 @@ namespace exams_management_system.Controllers
         [HttpPut("{id:guid}", Name = "UpdateCourse")]
         public async Task<IActionResult> UpdateCourse([FromBody] UpdateCourseModel updateCourseModel, Guid id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var courseModel = Mapper.Map<UpdateCourseModel, Course>(updateCourseModel);
             var response = await this.courseService.Update(id, courseModel);
             if (response)
@@ -74,12 +79,13 @@ namespace exams_management_system.Controllers
         [HttpDelete("{id:guid}", Name = "DeleteCourse")]
         public async Task<IActionResult> DeleteCourse(Guid id)
         {
+
             var response = await this.courseService.Delete(id);
             if (response)
             {
                 return Ok("Course deleted");
             }
-            return StatusCode(409, "Course could not be deleted");
+            return StatusCode(StatusCodes.Status409Conflict);
         }
     }
 }
