@@ -5,25 +5,35 @@ using exams_management_system.Controllers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using EMS.Domain;
 
 namespace XUnitTestProject1
 {
     public class CoursesUnitTest
     {
+        private readonly UpdateCourseModel updateCourseModel;
+        private readonly CreatingCourseModel createCourseModel;
+        private readonly Mock<ICourseService> mockRepo;
+        private readonly CoursesController controller;
+        private readonly Course courseModel;
+
+        public CoursesUnitTest()
+        {
+            updateCourseModel = new UpdateCourseModel();
+            mockRepo = new Mock<ICourseService>();
+            controller = new CoursesController(mockRepo.Object);
+        }
+
         [Fact]
         public async Task Given_CreateCourse_When_ModelIsValid_Then_OkStatusCode()
         {
             // Arrange
             var Guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
-            var Mock = new Mock<ICourseService>();
-            var Course = new CreatingCourseModel();
             var Id = Task.FromResult(Guid);
-            Mock.Setup(u => u.CreateNew(Course)).Returns(Id);
-
-            var Controller = new CoursesController(Mock.Object);
+            mockRepo.Setup(u => u.CreateNew(createCourseModel)).Returns(Id);
 
             // Act
-            var Result =(OkObjectResult) await Controller.CreateCourse(Course);
+            var Result = (OkObjectResult)await controller.CreateCourse(createCourseModel);
 
             // Assert
             Assert.IsType<OkObjectResult>(Result);
@@ -34,16 +44,13 @@ namespace XUnitTestProject1
         {
             // Arrange
             var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
-            var mockRepo = new Mock<ICourseService>();
-            var course = new CreatingCourseModel();
             var id = Task.FromResult(guid);
-            mockRepo.Setup(u => u.CreateNew(course)).Returns(id);
+            mockRepo.Setup(u => u.CreateNew(createCourseModel)).Returns(id);
 
-            var controller = new CoursesController(mockRepo.Object);
             controller.ModelState.AddModelError("error", "some error");
 
             // Act
-            var result = await controller.CreateCourse(course);
+            var result = await controller.CreateCourse(createCourseModel);
 
             // Assert
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
@@ -54,12 +61,7 @@ namespace XUnitTestProject1
         public async Task Given_GetCourseById_When_IdIsValid_Then_OkStatusCode()
         {
             var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
-            var mockRepo = new Mock<ICourseService>();
-            var course = new CourseDetailsModel();
-            var courseResponse = Task.FromResult(course);
-            mockRepo.Setup(u => u.FindById(guid)).Returns(courseResponse);
-
-            var controller = new CoursesController(mockRepo.Object);
+            mockRepo.Setup(u => u.FindById(guid)).Returns(Task.FromResult(new CourseDetailsModel()));
 
             // Act
             var result = await controller.GetCourseById(guid);
@@ -71,16 +73,12 @@ namespace XUnitTestProject1
         [Fact]
         public async Task Given_GetCourseById_When_IdIsValidButNoCourseFound_Then_BadStatusCode()
         {
-            var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
-            var mockRepo = new Mock<ICourseService>();
-            var course = new CourseDetailsModel();
-            var nullResponse = Task.FromResult<CourseDetailsModel>(null);
-            mockRepo.Setup(u => u.FindById(guid)).Returns(nullResponse);
+            mockRepo.Setup(u => u.FindById(It.IsIn<Guid>())).Returns(Task.FromResult<CourseDetailsModel>(null));
 
             var controller = new CoursesController(mockRepo.Object);
 
             // Act
-            var result = (StatusCodeResult)await controller.GetCourseById(guid);
+            var result = (StatusCodeResult)await controller.GetCourseById(It.IsAny<Guid>());
 
             // Assert
             Assert.Equal(422, result.StatusCode);

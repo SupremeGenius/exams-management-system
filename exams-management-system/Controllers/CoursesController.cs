@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using AutoMapper;
 using EMS.Domain;
+using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace exams_management_system.Controllers
 {
@@ -25,7 +27,7 @@ namespace exams_management_system.Controllers
 
             if (Courses.Count == 0)
             {
-                return Ok("No exams have been found!");
+                return Ok(new List<CourseDetailsModel>());
             }
 
             return Ok(Courses);
@@ -38,7 +40,7 @@ namespace exams_management_system.Controllers
 
             if (course == null)
             {
-                return StatusCode(422);
+                return StatusCode(StatusCodes.Status422UnprocessableEntity);
             }
 
             return Ok(course);
