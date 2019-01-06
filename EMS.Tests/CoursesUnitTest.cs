@@ -9,48 +9,29 @@ using EMS.Domain;
 using Microsoft.AspNetCore.Http;
 using AutoMapper;
 
-namespace XUnitTestProject1
+namespace EMS.Tests
 {
-    public class CoursesFixture : IDisposable
+    [Collection("EMS Collection")]
+    public class CoursesUnitTest
     {
-        public readonly UpdateCourseModel updateCourseModel;
-        public readonly CreatingCourseModel createCourseModel;
-        public readonly Mock<ICourseService> mockRepo;
-        public readonly CoursesController controller;
-        public readonly Course courseModel;
+        private readonly UpdateCourseModel updateCourseModel;
+        private readonly CreatingCourseModel createCourseModel;
+        private readonly Mock<ICourseService> mockRepo;
+        private readonly CoursesController controller;
+        private readonly Course courseModel;
 
-        public CoursesFixture()
+        public CoursesUnitTest()
         {
             updateCourseModel = new UpdateCourseModel();
             createCourseModel = new CreatingCourseModel();
             mockRepo = new Mock<ICourseService>();
             controller = new CoursesController(mockRepo.Object);
 
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<UpdateCourseModel, Course>();
-            });
+            //Mapper.Initialize(cfg =>
+            //{
+            //    cfg.CreateMap<UpdateCourseModel, Course>();
+            //});
             courseModel = Mapper.Map<UpdateCourseModel, Course>(updateCourseModel);
-        }
-
-        public void Dispose()
-        {
-            Mapper.Reset();
-        }
-    }
-
-    public class CoursesUnitTest : IClassFixture<CoursesFixture>
-    {
-        CoursesFixture coursesFixture;
-
-        public CoursesUnitTest(CoursesFixture coursesFixture)
-        {
-            this.coursesFixture = coursesFixture;
-        }
-
-        public void Dispose()
-        {
-            Mapper.Reset();
         }
 
         [Fact]
@@ -59,10 +40,10 @@ namespace XUnitTestProject1
             // Arrange
             var Guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
             var Id = Task.FromResult(Guid);
-            coursesFixture.mockRepo.Setup(u => u.CreateNew(coursesFixture.createCourseModel)).Returns(Id);
+            mockRepo.Setup(u => u.CreateNew(createCourseModel)).Returns(Id);
 
             // Act
-            var Result = (OkObjectResult)await coursesFixture.controller.CreateCourse(coursesFixture.createCourseModel);
+            var Result = (OkObjectResult)await controller.CreateCourse(createCourseModel);
 
             // Assert
             Assert.IsType<OkObjectResult>(Result);
@@ -74,12 +55,12 @@ namespace XUnitTestProject1
             // Arrange
             var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
             var id = Task.FromResult(guid);
-            coursesFixture.mockRepo.Setup(u => u.CreateNew(coursesFixture.createCourseModel)).Returns(id);
+            mockRepo.Setup(u => u.CreateNew(createCourseModel)).Returns(id);
 
-            coursesFixture.controller.ModelState.AddModelError("error", "some error");
+            controller.ModelState.AddModelError("error", "some error");
 
             // Act
-            var result = await coursesFixture.controller.CreateCourse(coursesFixture.createCourseModel);
+            var result = await controller.CreateCourse(createCourseModel);
 
             // Assert
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
@@ -90,10 +71,10 @@ namespace XUnitTestProject1
         public async Task Given_GetCourseById_When_IdIsValid_Then_OkStatusCode()
         {
             var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
-            coursesFixture.mockRepo.Setup(u => u.FindById(guid)).Returns(Task.FromResult(new CourseDetailsModel()));
+            mockRepo.Setup(u => u.FindById(guid)).Returns(Task.FromResult(new CourseDetailsModel()));
 
             // Act
-            var result = await coursesFixture.controller.GetCourseById(guid);
+            var result = await controller.GetCourseById(guid);
 
             // Assert
             Assert.IsType<OkObjectResult>(result);
@@ -102,9 +83,9 @@ namespace XUnitTestProject1
         [Fact]
         public async Task Given_GetCourseById_When_IdIsValidButNoCourseFound_Then_BadStatusCode()
         {
-            coursesFixture.mockRepo.Setup(u => u.FindById(It.IsIn<Guid>())).Returns(Task.FromResult<CourseDetailsModel>(null));
+            mockRepo.Setup(u => u.FindById(It.IsIn<Guid>())).Returns(Task.FromResult<CourseDetailsModel>(null));
 
-            var controller = new CoursesController(coursesFixture.mockRepo.Object);
+            var controller = new CoursesController(mockRepo.Object);
 
             // Act
             var result = (StatusCodeResult)await controller.GetCourseById(It.IsAny<Guid>());
@@ -117,11 +98,11 @@ namespace XUnitTestProject1
         public async Task Given_UpdateCourse_When_ModelIsValid_Then_OkStatusCode()
         {
             // Arrange
-            coursesFixture.mockRepo.Setup(u => u.Update(It.IsAny<Guid>(), It.IsAny<Course>())).
+            mockRepo.Setup(u => u.Update(It.IsAny<Guid>(), It.IsAny<Course>())).
                 Returns(Task.FromResult(true));
 
             //Act
-            var result = await coursesFixture.controller.UpdateCourse(coursesFixture.updateCourseModel, It.IsAny<Guid>());
+            var result = await controller.UpdateCourse(updateCourseModel, It.IsAny<Guid>());
 
             //Arrange
             Assert.IsType<OkObjectResult>(result);
@@ -131,12 +112,12 @@ namespace XUnitTestProject1
         public async Task Given_UpdateCourse_When_ModelIsInvalid_Then_BadStatusCode()
         {
             // Arrange
-            coursesFixture.mockRepo.Setup(u => u.Update(It.IsAny<Guid>(), It.IsAny<Course>())).
+            mockRepo.Setup(u => u.Update(It.IsAny<Guid>(), It.IsAny<Course>())).
                 Returns(Task.FromResult(true));
 
             //Act
-            coursesFixture.controller.ModelState.AddModelError("id", "1234");
-            var result = await coursesFixture.controller.UpdateCourse(coursesFixture.updateCourseModel, It.IsAny<Guid>());
+            controller.ModelState.AddModelError("id", "1234");
+            var result = await controller.UpdateCourse(updateCourseModel, It.IsAny<Guid>());
 
             //Assert
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
@@ -147,10 +128,10 @@ namespace XUnitTestProject1
         public async Task Given_DeleteCourse_When_IdIsValid_Then_OkStatusCode()
         {
             //Arrange
-            coursesFixture.mockRepo.Setup(u => u.Delete(It.IsAny<Guid>())).Returns(Task.FromResult(true));
+            mockRepo.Setup(u => u.Delete(It.IsAny<Guid>())).Returns(Task.FromResult(true));
 
             //Act
-            var result = await coursesFixture.controller.DeleteCourse(It.IsAny<Guid>());
+            var result = await controller.DeleteCourse(It.IsAny<Guid>());
 
             //Assert
             Assert.IsType<OkObjectResult>(result);
@@ -160,10 +141,10 @@ namespace XUnitTestProject1
         public async Task Given_DeleteCourse_When_IdIsValid_Then_Status409Conflict()
         {
             //Arrange
-            coursesFixture.mockRepo.Setup(u => u.Delete(It.IsAny<Guid>())).Returns(Task.FromResult(false));
+            mockRepo.Setup(u => u.Delete(It.IsAny<Guid>())).Returns(Task.FromResult(false));
 
             //Act
-            var result = (StatusCodeResult)await coursesFixture.controller.DeleteCourse(It.IsAny<Guid>());
+            var result = (StatusCodeResult)await controller.DeleteCourse(It.IsAny<Guid>());
 
             //Assert
             Assert.Equal(StatusCodes.Status409Conflict, result.StatusCode);
