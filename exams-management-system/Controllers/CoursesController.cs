@@ -67,6 +67,12 @@ namespace exams_management_system.Controllers
                 return BadRequest(ModelState);
             }
 
+            var course = await this.courseService.FindById(id);
+            if (course == null)
+            {
+                return StatusCode(StatusCodes.Status422UnprocessableEntity);
+            }
+
             var courseModel = Mapper.Map<UpdateCourseModel, Course>(updateCourseModel);
             var response = await this.courseService.Update(id, courseModel);
             if (response)
