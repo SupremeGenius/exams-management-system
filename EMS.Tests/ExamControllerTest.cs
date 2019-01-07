@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace XUnitTestProject1
+namespace EMS.Tests
 {
     public class ExamControllerTest
     {

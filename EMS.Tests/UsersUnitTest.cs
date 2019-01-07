@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EMS.Business;
 using EMS.Domain;
+using EMS.Tests;
 using exams_management_system.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,8 +10,9 @@ using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace XUnitTestProject1
+namespace EMS.Tests
 {
+    [Collection("EMS Collection")]
     public class UsersUnitTest
     {
         private readonly UpdateUserModel updateUserModel;
@@ -24,12 +26,12 @@ namespace XUnitTestProject1
             mockRepo = new Mock<IUserService>();
             controller = new UsersController(mockRepo.Object);
 
-            Mapper.Reset();
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<UpdateUserModel, User>()
-                .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.NewPassword));
-            });
+            //Mapper.Reset();
+            //Mapper.Initialize(cfg =>
+            //{
+            //    cfg.CreateMap<UpdateUserModel, User>()
+            //    .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.NewPassword));
+            //});
             userModel = Mapper.Map<UpdateUserModel, User>(updateUserModel);
         }
 
