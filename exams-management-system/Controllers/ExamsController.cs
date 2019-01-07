@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using EMS.Business;
+using EMS.Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace exams_management_system.Controllers
 {
-    [VersionedRoute("api/exams")]
+    [VersionedRoute("api/exams", 1)]
     [ApiController]
     public class ExamsController : ControllerBase
     {
@@ -17,11 +20,6 @@ namespace exams_management_system.Controllers
         public async Task<IActionResult> GetExams()
         {
             var exams = await this.examService.GetAll();
-
-            if (exams.Count == 0)
-            {
-                return Ok("No exams have been found!");
-            }
 
             return Ok(exams);
         }
@@ -41,7 +39,7 @@ namespace exams_management_system.Controllers
                 return Ok(examId);
             }
 
-            return StatusCode(422);
+            return StatusCode(StatusCodes.Status422UnprocessableEntity);
         }
 
         [HttpGet("{id:guid}", Name = "GetExamById")]
@@ -51,26 +49,35 @@ namespace exams_management_system.Controllers
 
             if (exam == null)
             {
-                return StatusCode(422);
+                return StatusCode(StatusCodes.Status404NotFound);
             }
 
             return Ok(exam);
         }
 
         [HttpPut("{id:guid}", Name = "UpdateExam")]
-        public async Task<IActionResult> UpdateExam(Guid id)
-        {
+        public async Task<IActionResult> UpdateExam([FromBody] UpdateExamModel updateExamModel, Guid id)
 
-            this.examService.Update(id);
-            return Ok();
+        {
+            var examModel = Mapper.Map<UpdateExamModel, Exam>(updateExamModel);
+            var response = await this.examService.Update(id, examModel);
+            if (response)
+            {
+                return Ok("Exam updated");
+            }
+
+            return NoContent();
         }
 
         [HttpDelete("{id:guid}", Name = "DeleteExam")]
         public async Task<IActionResult> DeleteExam(Guid id)
         {
+            if (await this.examService.Delete(id))
+            {
+                return Ok("Exam deleted");
+            }
 
-            this.examService.Delete(id);
-            return Ok();
+            return StatusCode(StatusCodes.Status409Conflict, "Exam could not be deleted");
         }
     }
 }

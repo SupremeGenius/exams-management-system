@@ -4,13 +4,14 @@ namespace exams_management_system
 {
     public class VersionedRouteAttribute : RouteAttribute
     {
-        public VersionedRouteAttribute(string value) : base(ApplyVersioning(value))
+        public VersionedRouteAttribute(string value, int version) : base(ApplyVersioning(value, version))
         {
         }
 
-        public static string ApplyVersioning(string value)
+        public static string ApplyVersioning(string value, int version)
         {
-            return value.Replace("api/", "api/v1/");
+            var apiVersion = "api/v" + version + "/";
+            return value.Replace("api/", apiVersion);
         }
     }
 }

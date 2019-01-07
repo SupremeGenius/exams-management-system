@@ -19,7 +19,8 @@ namespace EMS.Business
                 type: newExam.Type,
                 date: newExam.Date,
                 courseId: newExam.CourseId,
-                professorId: newExam.ProfessorId);
+                professorId: newExam.ProfessorId,
+                room: newExam.Room);
 
             await this.repository.AddNewAsync(exam);
             await this.repository.SaveAsync();
@@ -33,14 +34,33 @@ namespace EMS.Business
 
         public Task<ExamDetailsModel> FindByTime(DateTime date) => AllExamDetails.SingleOrDefaultAsync(e => e.Date == date);
 
-        public void Update(Guid id)
+        public async Task<bool> Update(Guid id, Exam updatedExam)
+
         {
-            throw new NotImplementedException();
+            var examToUpdate = await this.repository.FindByIdAsync<Exam>(id);
+
+            if (await repository.TryUpdateModelAsync<Exam>(
+                    examToUpdate,
+                    updatedExam
+                    ))
+            {
+                await repository.SaveAsync();
+                return true;
+            }
+
+            return false;
         }
 
-        public void Delete(Guid id)
+        public async Task<bool> Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var exam = await this.repository.FindByIdAsync<Exam>(id);
+            if (exam != null) {
+                await repository.SaveAsync();
+                await repository.RemoveAsync<Exam>(exam);
+                return true;
+            } else {
+                return false;
+            }
         }
 
         private IQueryable<ExamDetailsModel> AllExamDetails => this.repository.GetAll<Exam>()
@@ -50,7 +70,8 @@ namespace EMS.Business
               Type = e.Type,
               Date = e.Date,
               CourseId = e.CourseId,
-              ProfessorId = e.ProfessorId
+              ProfessorId = e.ProfessorId,
+              Room = e.Room
           });
     }
 }
