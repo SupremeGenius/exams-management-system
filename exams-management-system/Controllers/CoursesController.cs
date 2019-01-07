@@ -73,7 +73,7 @@ namespace exams_management_system.Controllers
             {
                 return Ok("Course updated");
             }
-            return NoContent();
+            return StatusCode(StatusCodes.Status204NoContent);
         }
 
         [HttpDelete("{id:guid}", Name = "DeleteCourse")]
