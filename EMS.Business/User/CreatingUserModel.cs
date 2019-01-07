@@ -15,5 +15,6 @@ namespace EMS.Business
         [Required]
         [MaxLength(10)]
         public string Role { get; set; }
+
     }
 }

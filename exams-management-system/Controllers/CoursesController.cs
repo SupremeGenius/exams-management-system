@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using AutoMapper;
 using EMS.Domain;
+using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace exams_management_system.Controllers
 {
@@ -25,7 +27,7 @@ namespace exams_management_system.Controllers
 
             if (Courses.Count == 0)
             {
-                return Ok("No exams have been found!");
+                return Ok(new List<CourseDetailsModel>());
             }
 
             return Ok(Courses);
@@ -38,7 +40,7 @@ namespace exams_management_system.Controllers
 
             if (course == null)
             {
-                return StatusCode(422);
+                return StatusCode(StatusCodes.Status422UnprocessableEntity);
             }
 
             return Ok(course);
@@ -60,24 +62,36 @@ namespace exams_management_system.Controllers
         [HttpPut("{id:guid}", Name = "UpdateCourse")]
         public async Task<IActionResult> UpdateCourse([FromBody] UpdateCourseModel updateCourseModel, Guid id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var course = await this.courseService.FindById(id);
+            if (course == null)
+            {
+                return StatusCode(StatusCodes.Status422UnprocessableEntity);
+            }
+
             var courseModel = Mapper.Map<UpdateCourseModel, Course>(updateCourseModel);
             var response = await this.courseService.Update(id, courseModel);
             if (response)
             {
                 return Ok("Course updated");
             }
-            return NoContent();
+            return StatusCode(StatusCodes.Status204NoContent);
         }
 
         [HttpDelete("{id:guid}", Name = "DeleteCourse")]
         public async Task<IActionResult> DeleteCourse(Guid id)
         {
+
             var response = await this.courseService.Delete(id);
             if (response)
             {
                 return Ok("Course deleted");
             }
-            return StatusCode(409, "Course could not be deleted");
+            return StatusCode(StatusCodes.Status409Conflict);
         }
     }
 }
