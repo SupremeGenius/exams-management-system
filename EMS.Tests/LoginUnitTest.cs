@@ -5,7 +5,7 @@ using exams_management_system.Controllers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace XUnitTestProject1
+namespace EMS.Tests
 {
     public class LoginControllerTest
     {

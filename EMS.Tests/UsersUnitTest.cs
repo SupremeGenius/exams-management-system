@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EMS.Business;
 using EMS.Domain;
+using EMS.Tests;
 using exams_management_system.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,13 +10,11 @@ using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace XUnitTestProject1
+namespace EMS.Tests
 {
-    public class UsersUnitTest : IDisposable
+    [Collection("EMS Collection")]
+    public class UsersUnitTest
     {
-        // Flag: Has Dispose already been called?
-        bool disposed = false;
-
         private readonly UpdateUserModel updateUserModel;
         private readonly Mock<IUserService> mockRepo;
         private readonly UsersController controller;
@@ -27,11 +26,12 @@ namespace XUnitTestProject1
             mockRepo = new Mock<IUserService>();
             controller = new UsersController(mockRepo.Object);
 
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<UpdateUserModel, User>()
-                .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.NewPassword));
-            });
+            //Mapper.Reset();
+            //Mapper.Initialize(cfg =>
+            //{
+            //    cfg.CreateMap<UpdateUserModel, User>()
+            //    .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.NewPassword));
+            //});
             userModel = Mapper.Map<UpdateUserModel, User>(updateUserModel);
         }
 
@@ -103,27 +103,5 @@ namespace XUnitTestProject1
             Assert.Equal(StatusCodes.Status409Conflict, result.StatusCode);
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-
-            // Use SupressFinalize in case a subclass 
-            // of this type implements a finalizer.
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
-
-            if (disposing)
-            {
-                // Free any other managed objects here.
-                Mapper.Reset();
-                //
-            }
-            disposed = true;
-        }
     }
 }

@@ -9,13 +9,11 @@ using EMS.Domain;
 using Microsoft.AspNetCore.Http;
 using AutoMapper;
 
-namespace XUnitTestProject1
+namespace EMS.Tests
 {
-    public class CoursesUnitTest : IDisposable
+    [Collection("EMS Collection")]
+    public class CoursesUnitTest
     {
-        // Flag: Has Dispose already been called?
-        bool disposed = false;
-
         private readonly UpdateCourseModel updateCourseModel;
         private readonly CreatingCourseModel createCourseModel;
         private readonly Mock<ICourseService> mockRepo;
@@ -29,10 +27,10 @@ namespace XUnitTestProject1
             mockRepo = new Mock<ICourseService>();
             controller = new CoursesController(mockRepo.Object);
 
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<UpdateCourseModel, Course>();
-            });
+            //Mapper.Initialize(cfg =>
+            //{
+            //    cfg.CreateMap<UpdateCourseModel, Course>();
+            //});
             courseModel = Mapper.Map<UpdateCourseModel, Course>(updateCourseModel);
         }
 
@@ -150,29 +148,6 @@ namespace XUnitTestProject1
 
             //Assert
             Assert.Equal(StatusCodes.Status409Conflict, result.StatusCode);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-
-            // Use SupressFinalize in case a subclass 
-            // of this type implements a finalizer.
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
-
-            if (disposing)
-            {
-                // Free any other managed objects here.
-                Mapper.Reset();
-                //
-            }
-            disposed = true;
         }
     }
 }
