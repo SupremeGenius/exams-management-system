@@ -47,14 +47,15 @@ namespace EMS.Business
         public async Task<bool> Update(Guid id, Course updatedCourse)
         {
             var courseToUpdate = await this.repository.FindByIdAsync<Course>(id);
-
-            if (courseToUpdate == null) return false;
+            var courseCopy = courseToUpdate;
 
             if (await repository.TryUpdateModelAsync<Course>(
                     courseToUpdate,
                     updatedCourse
                     ))
             {
+                if (courseCopy == courseToUpdate)
+                    return false; // noContent changed
                 await repository.SaveAsync();
                 return true;
             }

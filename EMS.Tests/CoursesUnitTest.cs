@@ -100,6 +100,7 @@ namespace EMS.Tests
             // Arrange
             mockRepo.Setup(u => u.Update(It.IsAny<Guid>(), It.IsAny<Course>())).
                 Returns(Task.FromResult(true));
+            mockRepo.Setup(u => u.FindById(It.IsAny<Guid>())).Returns(Task.FromResult(new CourseDetailsModel()));
 
             //Act
             var result = await controller.UpdateCourse(updateCourseModel, It.IsAny<Guid>());
@@ -114,6 +115,8 @@ namespace EMS.Tests
             // Arrange
             mockRepo.Setup(u => u.Update(It.IsAny<Guid>(), It.IsAny<Course>())).
                 Returns(Task.FromResult(true));
+            mockRepo.Setup(u => u.FindById(It.IsIn<Guid>())).Returns(Task.FromResult<CourseDetailsModel>(null));
+
 
             //Act
             controller.ModelState.AddModelError("id", "1234");
@@ -122,6 +125,36 @@ namespace EMS.Tests
             //Assert
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
             Assert.IsType<SerializableError>(badRequestResult.Value);
+        }
+
+
+        [Fact]
+        public async Task Given_UpdateCourse_When_ModelIsEmpty_Then_NoContentCode()
+        {
+            // Arrange
+            mockRepo.Setup(u => u.Update(It.IsAny<Guid>(), It.IsAny<Course>())).
+                Returns(Task.FromResult(false));
+            mockRepo.Setup(u => u.FindById(It.IsAny<Guid>())).Returns(Task.FromResult(new CourseDetailsModel()));
+
+            //Act
+            var result = (StatusCodeResult)await controller.UpdateCourse(updateCourseModel, It.IsAny<Guid>());
+
+            //Arrange
+            Assert.Equal(204, result.StatusCode);
+        }
+
+        [Fact]
+        public async Task Given_UpdateCourse_When_CourseDoesntExist_Then_NoContentCode()
+        {
+            // Arrange
+            mockRepo.Setup(u => u.Update(It.IsAny<Guid>(), It.IsAny<Course>())).
+                Returns(Task.FromResult(It.IsAny<bool>()));
+
+            //Act
+            var result = (StatusCodeResult)await controller.UpdateCourse(updateCourseModel, It.IsAny<Guid>());
+
+            //Arrange
+            Assert.Equal(422, result.StatusCode);
         }
 
         [Fact]
