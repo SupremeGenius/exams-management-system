@@ -25,7 +25,7 @@ namespace exams_management_system.Controllers
 
             if (Courses.Count == 0)
             {
-                return Ok("No exams have been found!");
+                return Ok("No courses have been found!");
             }
 
             return Ok(Courses);
