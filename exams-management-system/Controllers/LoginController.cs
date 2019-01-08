@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace exams_management_system.Controllers
 {
     [ApiController]
-    [VersionedRoute("api/login")]
+    [VersionedRoute("api/login", 1)]
     public class LoginController : Controller
     {
         private readonly IUserService userService;
