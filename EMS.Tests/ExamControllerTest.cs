@@ -62,10 +62,9 @@ namespace EMS.Tests
         {
             // Arrange
             var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
-            var id = Task.FromResult(guid);
             mockRepo
             .Setup(e => e.CreateNew(createExamModel))
-            .Returns(id);
+            .ReturnsAsync(guid);
 
             controller.ModelState.AddModelError("error", "some error");
 
@@ -83,7 +82,7 @@ namespace EMS.Tests
                 var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
                 mockRepo
                 .Setup(e => e.FindById(guid))
-                .Returns(Task.FromResult(new ExamDetailsModel()));
+                .ReturnsAsync(new ExamDetailsModel());
 
                 // Act
                 var result = await controller.GetExamById(guid);
@@ -96,7 +95,7 @@ namespace EMS.Tests
         {
             mockRepo
             .Setup(e => e.FindById(It.IsIn<Guid>()))
-            .Returns(Task.FromResult<ExamDetailsModel>(null));
+            .ReturnsAsync((ExamDetailsModel)null);
 
             // Act
             var result = (StatusCodeResult)await controller.GetExamById(It.IsAny<Guid>());
