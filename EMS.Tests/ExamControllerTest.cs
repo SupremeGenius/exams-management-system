@@ -180,5 +180,23 @@ namespace EMS.Tests
             Assert.Equal(StatusCodes.Status404NotFound, result.StatusCode);
         }
 
+        [Fact]
+        public async Task Given_DeleteExam_When_IdIsValid_Then_Status409Conflict()
+        {
+            //Arrange
+            mockRepo
+            .Setup(u => u.FindById(It.IsAny<Guid>()))
+            .ReturnsAsync(new ExamDetailsModel());
+
+            mockRepo
+            .Setup(e => e.Delete(It.IsAny<Guid>()))
+            .ReturnsAsync(true);
+
+            //Act
+            var result = (StatusCodeResult)await controller.DeleteExam(It.IsAny<Guid>());
+
+            //Assert
+            Assert.Equal(StatusCodes.Status409Conflict, result.StatusCode);
+        }
  }
 }
