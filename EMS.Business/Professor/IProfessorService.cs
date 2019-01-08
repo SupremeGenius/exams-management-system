@@ -13,7 +13,7 @@ namespace EMS.Business
 
         Task<ProfessorDetailsModel> FindById(Guid id);
 
-        Task<Guid> CreateNew(ProfessorDetailsModel newProfessor);
+        Task<Guid> CreateNew(Guid userId);
 
         Task<bool> UpdateAsync(Guid id, Professor professorUpdated);
 

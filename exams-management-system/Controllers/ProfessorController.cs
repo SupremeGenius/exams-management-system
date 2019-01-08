@@ -46,19 +46,6 @@ namespace exams_management_system.Controllers
             return Ok(professor);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateProfessor([FromBody] ProfessorDetailsModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var professorId = await this.professorService.CreateNew(model);
-            return Ok(professorId);
-
-        }
-
         [HttpPut("{id:guid}", Name = "UpdateProfessor")]
         public async Task<IActionResult> UpdateProfessor([FromBody] CreatingProfessorModel createProfessorModel, Guid id)
         {
