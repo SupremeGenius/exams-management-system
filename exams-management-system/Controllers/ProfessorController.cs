@@ -40,7 +40,7 @@ namespace exams_management_system.Controllers
 
             if (professor == null)
             {
-                return StatusCode(422);
+                return StatusCode(StatusCodes.Status422UnprocessableEntity);
             }
 
             return Ok(professor);
@@ -62,18 +62,6 @@ namespace exams_management_system.Controllers
                 return Ok("User updated");
             }
             return NoContent();
-        }
-        
-        [HttpDelete("{id:guid}", Name = "DeleteProfessor")]
-        public async Task<IActionResult> DeleteProfessor(Guid id)
-        {
-
-            var response = await this.professorService.Delete(id);
-            if (response)
-            {
-                return Ok("Professor deleted");
-            }
-            return StatusCode(409, "Professor could not be deleted");
         }
     }
 }

@@ -40,6 +40,7 @@ namespace exams_management_system.Controllers
                 {
                     await this.studentService.CreateNew(userId);
                 }
+
                 return Ok(userId);
             }
 

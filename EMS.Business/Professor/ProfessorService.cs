@@ -42,17 +42,6 @@ namespace EMS.Business
             return false;
         }
 
-        public async Task<bool> Delete(Guid id)
-        {
-            var professor = await this.repository.FindByIdAsync<Professor>(id);
-            var user = await this.repository.FindByIdAsync<User>(professor.UserId);
-
-            await repository.RemoveAsync<Professor>(professor);
-            await repository.RemoveAsync<User>(user);
-            await repository.SaveAsync();
-            return true;
-        }
-
         public Task<List<ProfessorDetailsModel>> GetAll() => GetAllProfessorDetails().ToListAsync();
 
         public Task<ProfessorDetailsModel> FindByTitle(string title) => GetAllProfessorDetails().SingleOrDefaultAsync(p => p.Title == title);
