@@ -14,6 +14,7 @@ namespace Booking.Business
             services.AddTransient<IExamService, ExamService>();
             services.AddTransient<ICourseService, CourseService>();
             services.AddTransient<IProfessorService, ProfessorService>();
+            services.AddTransient<IStudentService, StudentService>();
 
             return services;
         }

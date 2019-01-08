@@ -24,7 +24,7 @@ namespace EMS.Tests
         public async Task Given_FindUser_When_ModelIsValid_Then_OkStatusCode()
         {
             // Arrange
-            mockRepo.Setup(u => u.FindByEmail(newModel.Email)).Returns(Task.FromResult(new UserDetailsModel()));
+            mockRepo.Setup(u => u.FindByEmail(newModel.Email)).ReturnsAsync(new UserDetailsModel());
 
             // Act
             var result = await controller.FindUser(newModel);
@@ -37,7 +37,7 @@ namespace EMS.Tests
         public async Task Given_FindUser_When_ModelIsInvalid_Then_BadStatusCode()
         {
             // Arrange
-            mockRepo.Setup(u => u.FindByEmail(newModel.Email)).Returns(Task.FromResult(new UserDetailsModel()));
+            mockRepo.Setup(u => u.FindByEmail(newModel.Email)).ReturnsAsync(new UserDetailsModel());
             controller.ModelState.AddModelError("Role", "Required");
 
             // Act
@@ -52,7 +52,7 @@ namespace EMS.Tests
         public async Task Given_FindUser_When_ModelIsValid_Then_StatusCode422UnprocessableEntity()
         {
             //Arrange
-            mockRepo.Setup(u => u.FindByEmail(newModel.Email)).Returns(Task.FromResult((UserDetailsModel)null));
+            mockRepo.Setup(u => u.FindByEmail(newModel.Email)).ReturnsAsync((UserDetailsModel)null);
 
             //Act
             var result = (StatusCodeResult)await controller.FindUser(newModel);
@@ -68,7 +68,7 @@ namespace EMS.Tests
             {
                 Password = "alabalaportocala"
             };
-            mockRepo.Setup(u => u.FindByEmail(user.Email)).Returns(Task.FromResult(new UserDetailsModel()));
+            mockRepo.Setup(u => u.FindByEmail(user.Email)).ReturnsAsync(new UserDetailsModel());
 
             // Act
             var result = (StatusCodeResult)await controller.FindUser(user);
