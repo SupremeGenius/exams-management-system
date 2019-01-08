@@ -19,7 +19,7 @@ namespace exams_management_system.Controllers
             this.userService = userService;
         }
 
-        [HttpPut("{id:guid}", Name = "UpdateUser")]
+        [HttpPatch("{id:guid}", Name = "UpdateUser")]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserModel updateUserModel, Guid id)
         {
             if (!ModelState.IsValid)

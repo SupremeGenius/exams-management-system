@@ -23,7 +23,8 @@ namespace EMS.Domain
 
         public void Update(User updatedUser)
         {
-            this.Password = updatedUser.Password;
+            this.Password = updatedUser.Password == null ? this.Password: updatedUser.Password;
+            this.Name = updatedUser.Name == null? this.Name : updatedUser.Name;
         }
     }
 }
