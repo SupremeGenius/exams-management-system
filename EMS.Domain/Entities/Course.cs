@@ -5,17 +5,17 @@ namespace EMS.Domain
 {
     public class Course : Entity, IUpdatable<Course>
     {
-        public string Title { get; set; }
+        public string Title { get; private set; }
 
-        public List<CourseProfessor> CourseProfessors { get; set; }
+        public List<CourseProfessor> CourseProfessors { get; private set; }
 
-        public List<Exam> Exams { get; set; }
+        public List<Exam> Exams { get; private set; }
 
-        public string UniversityYear { get; set; }
+        public string UniversityYear { get; private set; }
 
-        public int StudentYear { get; set; }
+        public int StudentYear { get; private set; }
 
-        public int Semester { get; set; }
+        public int Semester { get; private set; }
 
         public static Course Create(string title, string universityYear, int studentYear, int semester) => new Course
         {
