@@ -29,12 +29,18 @@ namespace exams_management_system.Controllers
 
             var userModel = Mapper.Map<UpdateUserModel, User>(updateUserModel);
 
+            var userId = await this.userService.FindById(id);
+            if (userId == null)
+            {
+                return NotFound();
+            }
+
             var response = await this.userService.UpdateAsync(id, userModel, updateUserModel.OldPassword);
             if (response)
             {
                 return Ok("User updated");
             }
-            return NoContent(); //wrong password
+            return NoContent(); 
         }
 
         [HttpDelete("{id:guid}", Name = "DeleteUser")]

@@ -30,9 +30,14 @@ namespace EMS.Business
         {
             var userToUpdate = await this.repository.FindByIdAsync<User>(id);
             
+            if (userToUpdate == userUpdated)
+            {
+                return false; //no content will be changed
+            }
+
             if (oldPassword != null && oldPassword != userToUpdate.Password)
             {
-                return false;
+                return false; //wrong password
             }
 
             if (await repository.TryUpdateModelAsync<User>(
