@@ -11,11 +11,13 @@ namespace exams_management_system.Controllers
     {
         private readonly IUserService userService;
         private readonly IProfessorService professorService;
+        private readonly IStudentService studentService;
 
-        public RegisterController(IUserService userService, IProfessorService professorService)
+        public RegisterController(IUserService userService, IProfessorService professorService, IStudentService studentService)
         {
             this.userService = userService;
             this.professorService = professorService;
+            this.studentService = studentService;
         }
 
         [HttpPost]
@@ -34,6 +36,11 @@ namespace exams_management_system.Controllers
                 {
                     await this.professorService.CreateNew(userId);
                 }
+                else
+                {
+                    await this.studentService.CreateNew(userId);
+                }
+
                 return Ok(userId);
             }
 

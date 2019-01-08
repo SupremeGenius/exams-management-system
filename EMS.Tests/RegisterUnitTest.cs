@@ -12,6 +12,8 @@ namespace EMS.Tests
     {
         private readonly CreatingUserModel newModel;
         private readonly Mock<IUserService> mockRepo;
+        private readonly Mock<IProfessorService> mockRepoProf;
+        private readonly Mock<IStudentService> mockRepoStud;
         private readonly RegisterController controller;
         private readonly Guid guid;
 
@@ -19,7 +21,9 @@ namespace EMS.Tests
         {
             newModel = new CreatingUserModel();
             mockRepo = new Mock<IUserService>();
-            controller = new RegisterController(mockRepo.Object);
+            mockRepoProf = new Mock<IProfessorService>();
+            mockRepoStud = new Mock<IStudentService>();
+            controller = new RegisterController(mockRepo.Object, mockRepoProf.Object, mockRepoStud.Object);
             guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
         }
         [Fact]
