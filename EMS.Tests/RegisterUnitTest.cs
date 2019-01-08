@@ -26,7 +26,7 @@ namespace EMS.Tests
         public async Task Given_CreateUser_When_ModelIsValid_Then_OkStatusCode()
         {
             // Arrange
-            mockRepo.Setup(u => u.CreateNew(newModel)).Returns(Task.FromResult(guid));
+            mockRepo.Setup(u => u.CreateNew(newModel)).ReturnsAsync(guid);
 
             // Act
             var result = await controller.CreateUser(newModel);
@@ -38,7 +38,7 @@ namespace EMS.Tests
         public async Task Given_CreateUser_When_ModelIsInvalid_Then_BadStatusCode()
         {
             // Arrange
-            mockRepo.Setup(u => u.CreateNew(newModel)).Returns(Task.FromResult(guid));
+            mockRepo.Setup(u => u.CreateNew(newModel)).ReturnsAsync(guid);
             controller.ModelState.AddModelError("email", "Required");
 
             // Act
@@ -52,7 +52,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_CreateUser_When_ModelIsValid_Then_Status422UnprocessableEntity()
         {
-            mockRepo.Setup(u => u.FindByEmail(newModel.Email)).Returns(Task.FromResult(new UserDetailsModel()));
+            mockRepo.Setup(u => u.FindByEmail(newModel.Email)).ReturnsAsync(new UserDetailsModel());
             
             // Act
             var result = (StatusCodeResult) await controller.CreateUser(newModel);
