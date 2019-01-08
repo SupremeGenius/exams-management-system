@@ -14,13 +14,10 @@ namespace EMS.Business
 
         public ProfessorService(IRepository repository) => this.repository = repository;
 
-        public async Task<Guid> CreateNew(ProfessorDetailsModel newProfessor)
+        public async Task<Guid> CreateNew(Guid userId)
         {
             var professor = Professor.Create(
-                userId: newProfessor.UserId//,
-                //title: newProfessor.Title,
-                //courseProfessors: newProfessor.CourseProfessors,
-                //exams: newProfessor.Exams
+                userId: userId
                 );
 
             await this.repository.AddNewAsync(professor);
@@ -45,17 +42,6 @@ namespace EMS.Business
             return false;
         }
 
-        public async Task<bool> Delete(Guid id)
-        {
-            var professor = await this.repository.FindByIdAsync<Professor>(id);
-            var user = await this.repository.FindByIdAsync<User>(professor.UserId);
-
-            await repository.RemoveAsync<Professor>(professor);
-            await repository.RemoveAsync<User>(user);
-            await repository.SaveAsync();
-            return true;
-        }
-
         public Task<List<ProfessorDetailsModel>> GetAll() => GetAllProfessorDetails().ToListAsync();
 
         public Task<ProfessorDetailsModel> FindByTitle(string title) => GetAllProfessorDetails().SingleOrDefaultAsync(p => p.Title == title);
@@ -67,7 +53,6 @@ namespace EMS.Business
             .Select(p => new ProfessorDetailsModel
             {
                 Id = p.Id,
-                //User = p.User,
                 UserId = p.UserId, 
                 Title = p.Title,
                 CourseProfessors = p.CourseProfessors,
