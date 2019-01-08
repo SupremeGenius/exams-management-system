@@ -52,5 +52,24 @@ namespace EMS.Tests
             Assert.IsType<OkObjectResult>(Result);
             Assert.Equal(Id.Result, Result.Value);
         }
-    }
+
+        [Fact]
+        public async Task Given_CreateExam_When_ModelIsInvalid_Then_BadStatusCode()
+        {
+        // Arrange
+        var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
+        var id = Task.FromResult(guid);
+        mockRepo.Setup(u => u.CreateNew(createExamModel)).Returns(id);
+
+        controller.ModelState.AddModelError("error", "some error");
+
+        // Act
+        var result = await controller.CreateExam(createExamModel);
+
+        // Assert
+        var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+        Assert.IsType<SerializableError>(badRequestResult.Value);
+        }
+
+ }
 }

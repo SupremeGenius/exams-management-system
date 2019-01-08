@@ -31,7 +31,9 @@ namespace exams_management_system.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            
+            // need to check all fields before entering a new one. 
+            // Exams with the same date, but with different rooms, are two separate exams
             var exam = this.examService.FindByTime(model.Date);
             if (exam.Result == null)
             {
