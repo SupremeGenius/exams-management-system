@@ -11,7 +11,11 @@ namespace EMS.Domain
 
         public DateTime Date { get; set; }
 
+        public Course Course { get; set; } //this is for code-first approach
+
         public Guid CourseId { get; set; }
+
+        public Professor Professor { get; set; } //this is for code-first approach
 
         public Guid ProfessorId { get; set; }
 
