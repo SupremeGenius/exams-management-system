@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EMS.Business;
 using EMS.Domain;
+using EMS.Domain.Entities;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Booking.Business
@@ -12,6 +13,7 @@ namespace Booking.Business
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IExamService, ExamService>();
             services.AddTransient<ICourseService, CourseService>();
+            services.AddTransient<IProfessorService, ProfessorService>();
 
             return services;
         }
@@ -23,6 +25,8 @@ namespace Booking.Business
                 cfg.CreateMap<UpdateUserModel, User>()
                 .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.NewPassword));
                 cfg.CreateMap<UpdateCourseModel, Course>();
+                cfg.CreateMap<UpdateExamModel, Exam>();
+                cfg.CreateMap<CreatingProfessorModel, Professor>();
             });
             return services;
         }

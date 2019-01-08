@@ -3,11 +3,12 @@ using System.Threading.Tasks;
 using AutoMapper;
 using EMS.Business;
 using EMS.Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace exams_management_system.Controllers
 {
-    [VersionedRoute("api/[controller]")]
+    [VersionedRoute("api/[controller]", 1)]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -39,13 +40,12 @@ namespace exams_management_system.Controllers
         [HttpDelete("{id:guid}", Name = "DeleteUser")]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
-
             var response = await this.userService.Delete(id);
             if (response)
             {
                 return Ok("User deleted");
             }
-            return StatusCode(409, "User could not be deleted");
+            return StatusCode(StatusCodes.Status409Conflict);
         }
     }
 }

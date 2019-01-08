@@ -4,14 +4,26 @@ using System.Text;
 
 namespace EMS.Domain.Entities
 {
-    public class Professor : Entity
+    public class Professor : Entity, IUpdatable<Professor>
     {
-        public User User { get; set; }
+        public User user { get; set; } //this is for code-first approach
+
+        public Guid UserId { get; set; }
 
         public string Title { get; set; }
 
         public List<CourseProfessor> CourseProfessors { get; set; }
 
         public List<Exam> Exams { get; set; }
+
+        public static Professor Create(Guid userId) => new Professor
+        {
+            UserId = userId,
+        };
+
+        public void Update(Professor updatedProfessor)
+        {
+            this.Title = updatedProfessor.Title;
+        }
     }
 }

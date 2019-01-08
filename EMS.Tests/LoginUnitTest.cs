@@ -5,20 +5,26 @@ using exams_management_system.Controllers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace XUnitTestProject1
+namespace EMS.Tests
 {
     public class LoginControllerTest
     {
+        private readonly CreatingUserModel newModel;
+        private readonly Mock<IUserService> mockRepo;
+        private readonly LoginController controller;
+
+        public LoginControllerTest()
+        {
+            newModel = new CreatingUserModel();
+            mockRepo = new Mock<IUserService>();
+            controller = new LoginController(mockRepo.Object);
+        }
    
         [Fact]
         public async Task Given_FindUser_When_ModelIsValid_Then_OkStatusCode()
         {
             // Arrange
-            var newModel = new CreatingUserModel();
-            var mockRepo = new Mock<IUserService>();
-            var expectedModel = Task.FromResult(new UserDetailsModel());
-            mockRepo.Setup(u => u.FindByEmail(newModel.Email)).Returns(expectedModel);
-            var controller = new LoginController(mockRepo.Object);
+            mockRepo.Setup(u => u.FindByEmail(newModel.Email)).Returns(Task.FromResult(new UserDetailsModel()));
 
             // Act
             var result = await controller.FindUser(newModel);
@@ -31,12 +37,7 @@ namespace XUnitTestProject1
         public async Task Given_FindUser_When_ModelIsInvalid_Then_BadStatusCode()
         {
             // Arrange
-            var newModel = new CreatingUserModel();
-            var mockRepo = new Mock<IUserService>();
-            var expectedModel = Task.FromResult(new UserDetailsModel());
-            mockRepo.Setup(u => u.FindByEmail(newModel.Email)).Returns(expectedModel);
-
-            var controller = new LoginController(mockRepo.Object);
+            mockRepo.Setup(u => u.FindByEmail(newModel.Email)).Returns(Task.FromResult(new UserDetailsModel()));
             controller.ModelState.AddModelError("Role", "Required");
 
             // Act
@@ -51,11 +52,7 @@ namespace XUnitTestProject1
         public async Task Given_FindUser_When_ModelIsValid_Then_StatusCode422UnprocessableEntity()
         {
             //Arrange
-            var newModel = new CreatingUserModel();
-            var mockRepo = new Mock<IUserService>();
-            var expectedResult = Task.FromResult((UserDetailsModel)null);
-            mockRepo.Setup(u => u.FindByEmail(newModel.Email)).Returns(expectedResult);
-            var controller = new LoginController(mockRepo.Object);
+            mockRepo.Setup(u => u.FindByEmail(newModel.Email)).Returns(Task.FromResult((UserDetailsModel)null));
 
             //Act
             var result = (StatusCodeResult)await controller.FindUser(newModel);
@@ -67,13 +64,11 @@ namespace XUnitTestProject1
         [Fact]
         public async Task Given_CreateUser_When_ModelIsValid_Then_Status422UnprocessableEntity()
         {
-            var mockRepo = new Mock<IUserService>();
-            var user = new CreatingUserModel();
-            user.Password = "alabalaportocala";
-            var userDetails = Task.FromResult(new UserDetailsModel());
-            mockRepo.Setup(u => u.FindByEmail(user.Email)).Returns(userDetails);
-
-            var controller = new LoginController(mockRepo.Object);
+            var user = new CreatingUserModel
+            {
+                Password = "alabalaportocala"
+            };
+            mockRepo.Setup(u => u.FindByEmail(user.Email)).Returns(Task.FromResult(new UserDetailsModel()));
 
             // Act
             var result = (StatusCodeResult)await controller.FindUser(user);

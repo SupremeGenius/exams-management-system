@@ -4,14 +4,16 @@ using EMS.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EMS.Persistence.Migrations
 {
     [DbContext(typeof(EMSContext))]
-    partial class EMSContextModelSnapshot : ModelSnapshot
+    [Migration("20190107194124_StudProfUserId")]
+    partial class StudProfUserId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,11 +59,9 @@ namespace EMS.Persistence.Migrations
 
                     b.Property<string>("Title");
 
-                    b.Property<Guid?>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Professors");
                 });
@@ -73,11 +73,9 @@ namespace EMS.Persistence.Migrations
 
                     b.Property<string>("FatherInitial");
 
-                    b.Property<Guid?>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Students");
                 });
@@ -92,8 +90,6 @@ namespace EMS.Persistence.Migrations
                     b.Property<DateTime>("Date");
 
                     b.Property<Guid>("ProfessorId");
-
-                    b.Property<string>("Room");
 
                     b.Property<string>("Type");
 
@@ -135,20 +131,6 @@ namespace EMS.Persistence.Migrations
                         .WithMany("CourseProfessors")
                         .HasForeignKey("ProfessorId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.Professor", b =>
-                {
-                    b.HasOne("EMS.Domain.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.Student", b =>
-                {
-                    b.HasOne("EMS.Domain.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("EMS.Domain.Exam", b =>
