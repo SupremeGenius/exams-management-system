@@ -16,6 +16,7 @@ namespace EMS.Tests
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<UpdateCourseModel, Course>();
+                cfg.CreateMap<UpdateExamModel, Exam>();
                 cfg.CreateMap<UpdateUserModel, User>()
                 .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.NewPassword));
             });

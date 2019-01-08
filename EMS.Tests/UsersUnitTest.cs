@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using EMS.Business;
 using EMS.Domain;
-using EMS.Tests;
 using exams_management_system.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +11,7 @@ using Xunit;
 
 namespace EMS.Tests
 {
-    [Collection("EMS Collection")]
+ [Collection("EMS Collection")]
     public class UsersUnitTest
     {
         private readonly UpdateUserModel updateUserModel;

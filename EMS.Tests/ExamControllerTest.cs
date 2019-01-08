@@ -1,4 +1,5 @@
 ﻿using EMS.Business;
+using EMS.Domain;
 using Xunit;
 using Moq;
 using exams_management_system.Controllers;
@@ -104,5 +105,45 @@ namespace EMS.Tests
             Assert.Equal(StatusCodes.Status404NotFound, result.StatusCode);
         }
 
+        [Fact]
+        public async Task Given_UpdateExam_When_ModelIsValid_Then_OkStatusCode()
+        {
+            // Arrange
+            mockRepo
+            .Setup(e => e.Update(It.IsAny<Guid>(), It.IsAny<Exam>()))
+            .Returns(Task.FromResult(true));
+
+            mockRepo
+            .Setup(u => u.FindById(It.IsAny<Guid>()))
+            .Returns(Task.FromResult(new ExamDetailsModel()));
+
+            //Act
+            var result = await controller.UpdateExam(updateExamModel, It.IsAny<Guid>());
+
+            //Arrange
+            Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task Given_UpdateExam_When_ModelIsInvalid_Then_BadStatusCode()
+        {
+            // Arrange
+            mockRepo
+            .Setup(e => e.Update(It.IsAny<Guid>(), It.IsAny<Exam>()))
+            .Returns(Task.FromResult(true));
+
+            mockRepo
+            .Setup(u => u.FindById(It.IsIn<Guid>()))
+            .ReturnsAsync((ExamDetailsModel)null);
+
+            controller.ModelState.AddModelError("id", "1234");
+            
+            //Act
+            var result = await controller.UpdateExam(updateExamModel, It.IsAny<Guid>());
+
+            //Assert
+            var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+            Assert.IsType<SerializableError>(badRequestResult.Value);
+        }
  }
 }
