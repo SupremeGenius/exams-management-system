@@ -111,11 +111,11 @@ namespace EMS.Tests
             // Arrange
             mockRepo
             .Setup(e => e.Update(It.IsAny<Guid>(), It.IsAny<Exam>()))
-            .Returns(Task.FromResult(true));
+            .ReturnsAsync(true);
 
             mockRepo
             .Setup(u => u.FindById(It.IsAny<Guid>()))
-            .Returns(Task.FromResult(new ExamDetailsModel()));
+            .ReturnsAsync(new ExamDetailsModel());
 
             //Act
             var result = await controller.UpdateExam(updateExamModel, It.IsAny<Guid>());
@@ -130,7 +130,7 @@ namespace EMS.Tests
             // Arrange
             mockRepo
             .Setup(e => e.Update(It.IsAny<Guid>(), It.IsAny<Exam>()))
-            .Returns(Task.FromResult(true));
+            .ReturnsAsync(true);
 
             mockRepo
             .Setup(u => u.FindById(It.IsIn<Guid>()))
