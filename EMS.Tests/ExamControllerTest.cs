@@ -8,14 +8,18 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System;
+using AutoMapper;
+
 namespace EMS.Tests
 {
- public class ExamControllerTest
+    [Collection("EMS Collection")]
+    public class ExamControllerTest
     {
         private readonly CreatingExamModel createExamModel;
         private readonly UpdateExamModel updateExamModel;
         private readonly Mock<IExamService> mockRepo;
         private readonly ExamsController controller;
+        private readonly Exam examModel;
 
         public ExamControllerTest()
         {
@@ -77,20 +81,21 @@ namespace EMS.Tests
             Assert.IsType<SerializableError>(badRequestResult.Value);
         }
 
-            [Fact]
-            public async Task Given_GetExamById_When_IdIsValid_Then_OkStatusCode()
-            {
-                var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
-                mockRepo
-                .Setup(e => e.FindById(guid))
-                .ReturnsAsync(new ExamDetailsModel());
+        [Fact]
+        public async Task Given_GetExamById_When_IdIsValid_Then_OkStatusCode()
+        {
+            var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
+            mockRepo
+            .Setup(e => e.FindById(guid))
+            .ReturnsAsync(new ExamDetailsModel());
 
-                // Act
-                var result = await controller.GetExamById(guid);
+            // Act
+            var result = await controller.GetExamById(guid);
 
-                // Assert
-                Assert.IsType<OkObjectResult>(result);
-            }
+            // Assert
+            Assert.IsType<OkObjectResult>(result);
+        }
+
         [Fact]
         public async Task Given_GetExamById_When_IdIsValidButNoExamFound_Then_BadStatusCode()
         {

@@ -31,8 +31,8 @@ namespace EMS.Tests
         public async Task Given_UpdateUser_When_ModelIsValid_Then_OkStatusCode()
         {
             // Arrange
-            mockRepo.Setup(u => u.UpdateAsync(It.IsAny<Guid>(), It.IsAny<User>(),It.IsAny<string>())).
-                ReturnsAsync(true);
+            mockRepo.Setup(u => u.FindById(It.IsAny<Guid>())).ReturnsAsync(new UserDetailsModel());
+            mockRepo.Setup(u => u.UpdateAsync(It.IsAny<Guid>(), It.IsAny<User>(),It.IsAny<string>())).ReturnsAsync(true);
 
             //Act
             var result = await controller.UpdateUser(updateUserModel, It.IsAny<Guid>());
@@ -45,6 +45,7 @@ namespace EMS.Tests
         public async Task Given_UpdateUser_When_ModelIsValid_Then_NoContentStatusCode()
         {
             // Arrange
+            mockRepo.Setup(u => u.FindById(It.IsAny<Guid>())).ReturnsAsync(new UserDetailsModel());
             mockRepo.Setup(u => u.UpdateAsync(It.IsAny<Guid>(), userModel, "")).ReturnsAsync(true);
 
             //Act
@@ -73,6 +74,7 @@ namespace EMS.Tests
         public async Task Given_DeleteUser_When_IdIsValid_Then_OkStatusCode()
         {
             //Arrange
+            mockRepo.Setup(u => u.FindById(It.IsAny<Guid>())).ReturnsAsync(new UserDetailsModel());
             mockRepo.Setup(u => u.Delete(It.IsAny<Guid>())).ReturnsAsync(true);
 
             //Act
@@ -86,6 +88,7 @@ namespace EMS.Tests
         public async Task Given_DeleteUser_When_IdIsValid_Then_Status409Conflict()
         {
             //Arrange
+            mockRepo.Setup(u => u.FindById(It.IsAny<Guid>())).ReturnsAsync(new UserDetailsModel());
             mockRepo.Setup(u => u.Delete(It.IsAny<Guid>())).ReturnsAsync(false);
 
             //Act
