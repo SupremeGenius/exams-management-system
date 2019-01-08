@@ -145,5 +145,40 @@ namespace EMS.Tests
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
             Assert.IsType<SerializableError>(badRequestResult.Value);
         }
+
+        // [Fact]
+        // public async Task Given_DeleteExam_When_IdIsValid_Then_OkStatusCode()
+        // {
+        //     //Arrange
+        //     mockRepo
+        //     .Setup(e => e.Delete(It.IsAny<Guid>()))
+        //     .ReturnsAsync(true);
+
+        //     mockRepo
+        //     .Setup(u => u.FindById(It.IsAny<Guid>()))
+        //     .ReturnsAsync(new ExamDetailsModel());
+
+        //     //Act
+        //     var result = await controller.DeleteExam(It.IsAny<Guid>());
+
+        //     //Assert
+        //     Assert.IsType<OkObjectResult>(result);
+        // }
+
+        [Fact]
+        public async Task Given_DeleteExam_When_IdNotFound_Then_Status404NotFount()
+        {
+            //Arrange
+            mockRepo
+            .Setup(u => u.FindById(It.IsAny<Guid>()))
+            .ReturnsAsync((ExamDetailsModel)null);
+
+            //Act
+            var result = (StatusCodeResult)await controller.DeleteExam(It.IsAny<Guid>());
+
+            //Assert
+            Assert.Equal(StatusCodes.Status404NotFound, result.StatusCode);
+        }
+
  }
 }
