@@ -16,10 +16,9 @@ namespace EMS.Domain.Entities
 
         private List<Exam> Exams { get; set; }
 
-        public static Student Create (User user, string fatherInitial) => new Student
+        public static Student Create (Guid userId) => new Student
         {
-            User = user,
-            FatherInitial = fatherInitial
+            UserId = userId
         };
     }
 }

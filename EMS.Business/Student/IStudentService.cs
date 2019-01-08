@@ -11,6 +11,6 @@ namespace EMS.Business
 
         Task<StudentDetailsModel> FindById(Guid id);
 
-        Task<Guid> CreateNew(CreatingStudentModel newStudent);
+        Task<Guid> CreateNew(Guid userId);
     }
 }

@@ -14,13 +14,12 @@ namespace EMS.Business
 
         public StudentService(IRepository repository) => this.repository = repository;
 
-        public async Task<Guid> CreateNew(CreatingStudentModel newStudent)
+        public async Task<Guid> CreateNew(Guid userId)
         {
-            User studentUser = await repository.FindByIdAsync<User>(newStudent.UserId);
+            User studentUser = await repository.FindByIdAsync<User>(userId);
 
             var student = Student.Create(
-                user: studentUser,
-                fatherInitial: newStudent.FatherInitial
+                userId: userId
                 );
 
             await this.repository.AddNewAsync(student);
