@@ -19,7 +19,7 @@ namespace exams_management_system.Controllers
             this.userService = userService;
         }
 
-        [HttpPut("{id:guid}", Name = "UpdateUser")]
+        [HttpPatch("{id:guid}", Name = "UpdateUser")]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserModel updateUserModel, Guid id)
         {
             if (!ModelState.IsValid)
@@ -29,18 +29,30 @@ namespace exams_management_system.Controllers
 
             var userModel = Mapper.Map<UpdateUserModel, User>(updateUserModel);
 
+            var userId = await this.userService.FindById(id);
+            if (userId == null)
+            {
+                return NotFound();
+            }
+
             var response = await this.userService.UpdateAsync(id, userModel, updateUserModel.OldPassword);
             if (response)
             {
                 return Ok("User updated");
             }
-            return NoContent(); //wrong password
+            return NoContent(); 
         }
 
         [HttpDelete("{id:guid}", Name = "DeleteUser")]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
-            var response = await this.userService.Delete(id);
+            var user = await this.userService.FindById(id);
+            if(user == null)
+            {
+                return NotFound();
+            }
+
+            var response = await this.userService.Delete(user.Id);
             if (response)
             {
                 return Ok("User deleted");

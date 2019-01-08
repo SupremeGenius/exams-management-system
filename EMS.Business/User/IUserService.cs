@@ -15,7 +15,7 @@ namespace EMS.Business
 
         Task<Guid> CreateNew(CreatingUserModel newUser);
 
-        Task<bool> UpdateAsync(Guid id, User userUpdated, string oldPassword);
+        Task<bool> UpdateAsync(Guid id, User userUpdated, string oldPassword = null);
 
         Task<bool> Delete(Guid id);
     }

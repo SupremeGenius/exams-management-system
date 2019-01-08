@@ -26,13 +26,14 @@ namespace EMS.Business
             return user.Id;
         }
 
-        public async Task<bool> UpdateAsync(Guid id, User userUpdated, string oldPassword)
+        public async Task<bool> UpdateAsync(Guid id, User userUpdated, string oldPassword = null)
         {
             var userToUpdate = await this.repository.FindByIdAsync<User>(id);
-            
-            if (oldPassword != userToUpdate.Password)
+            var userCopy = userToUpdate;
+
+            if (oldPassword != null && oldPassword != userToUpdate.Password)
             {
-                return false;
+                return false; //wrong password
             }
 
             if (await repository.TryUpdateModelAsync<User>(
@@ -40,6 +41,8 @@ namespace EMS.Business
                     userUpdated
                     ))
             {
+                if (userToUpdate == userCopy)
+                    return false; //nothing has changed
                 await repository.SaveAsync();
                 return true;
             }
