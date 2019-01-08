@@ -31,7 +31,9 @@ namespace exams_management_system.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            
+            // need to check all fields before entering a new one. 
+            // Exams with the same date, but with different rooms, are two separate exams
             var exam = this.examService.FindByTime(model.Date);
             if (exam.Result == null)
             {
@@ -57,8 +59,18 @@ namespace exams_management_system.Controllers
 
         [HttpPut("{id:guid}", Name = "UpdateExam")]
         public async Task<IActionResult> UpdateExam([FromBody] UpdateExamModel updateExamModel, Guid id)
-
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var exam = await this.examService.FindById(id);
+            if (exam == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+            }
+
             var examModel = Mapper.Map<UpdateExamModel, Exam>(updateExamModel);
             var response = await this.examService.Update(id, examModel);
             if (response)
@@ -72,6 +84,12 @@ namespace exams_management_system.Controllers
         [HttpDelete("{id:guid}", Name = "DeleteExam")]
         public async Task<IActionResult> DeleteExam(Guid id)
         {
+            var exam = await this.examService.FindById(id);
+            if (exam == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+            }
+            
             if (await this.examService.Delete(id))
             {
                 return Ok("Exam deleted");
