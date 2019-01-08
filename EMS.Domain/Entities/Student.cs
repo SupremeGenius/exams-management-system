@@ -6,7 +6,7 @@ namespace EMS.Domain.Entities
 {
     public class Student : Entity
     {
-        public User user { get; set; } //this is for code-first approach
+        public User User { get; set; } //this is for code-first approach
 
         public Guid UserId { get; set; }
             

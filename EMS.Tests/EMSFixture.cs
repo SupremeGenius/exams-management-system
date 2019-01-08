@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EMS.Business;
 using EMS.Domain;
+using EMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +17,7 @@ namespace EMS.Tests
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<UpdateCourseModel, Course>();
+                cfg.CreateMap<CreatingProfessorModel, Professor>();
                 cfg.CreateMap<UpdateUserModel, User>()
                 .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.NewPassword));
             });
