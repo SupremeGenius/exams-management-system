@@ -86,7 +86,7 @@ namespace exams_management_system.Controllers
             {
                 return Ok("Professor deleted");
             }
-            return StatusCode(409, "Professor could not be deleted");
+            return StatusCode(StatusCodes.Status409Conflict);
         }
     }
 }
