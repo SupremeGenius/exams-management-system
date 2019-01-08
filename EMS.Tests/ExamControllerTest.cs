@@ -77,6 +77,20 @@ namespace EMS.Tests
             Assert.IsType<SerializableError>(badRequestResult.Value);
         }
 
+            [Fact]
+            public async Task Given_GetExamById_When_IdIsValid_Then_OkStatusCode()
+            {
+                var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
+                mockRepo
+                .Setup(e => e.FindById(guid))
+                .Returns(Task.FromResult(new ExamDetailsModel()));
+
+                // Act
+                var result = await controller.GetExamById(guid);
+
+                // Assert
+                Assert.IsType<OkObjectResult>(result);
+            }
         [Fact]
         public async Task Given_GetExamById_When_IdIsValidButNoExamFound_Then_BadStatusCode()
         {
