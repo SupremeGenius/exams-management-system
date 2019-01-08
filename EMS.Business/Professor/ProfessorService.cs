@@ -17,10 +17,10 @@ namespace EMS.Business
         public async Task<Guid> CreateNew(ProfessorDetailsModel newProfessor)
         {
             var professor = Professor.Create(
-                userId: newProfessor.UserId,
-                title: newProfessor.Title,
-                courseProfessors: newProfessor.CourseProfessors,
-                exams: newProfessor.Exams
+                userId: newProfessor.UserId//,
+                //title: newProfessor.Title,
+                //courseProfessors: newProfessor.CourseProfessors,
+                //exams: newProfessor.Exams
                 );
 
             await this.repository.AddNewAsync(professor);
@@ -67,7 +67,7 @@ namespace EMS.Business
             .Select(p => new ProfessorDetailsModel
             {
                 Id = p.Id,
-                User = p.User,
+                //User = p.User,
                 UserId = p.UserId, 
                 Title = p.Title,
                 CourseProfessors = p.CourseProfessors,

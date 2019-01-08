@@ -40,7 +40,13 @@ namespace exams_management_system.Controllers
         [HttpDelete("{id:guid}", Name = "DeleteUser")]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
-            var response = await this.userService.Delete(id);
+            var user = await this.userService.FindById(id);
+            if(user == null)
+            {
+                return NotFound();
+            }
+
+            var response = await this.userService.Delete(user.Id);
             if (response)
             {
                 return Ok("User deleted");
