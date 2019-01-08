@@ -146,24 +146,24 @@ namespace EMS.Tests
             Assert.IsType<SerializableError>(badRequestResult.Value);
         }
 
-        // [Fact]
-        // public async Task Given_DeleteExam_When_IdIsValid_Then_OkStatusCode()
-        // {
-        //     //Arrange
-        //     mockRepo
-        //     .Setup(e => e.Delete(It.IsAny<Guid>()))
-        //     .ReturnsAsync(true);
+        [Fact]
+        public async Task Given_DeleteExam_When_IdIsValid_Then_OkStatusCode()
+        {
+            //Arrange
+            mockRepo
+            .Setup(e => e.Delete(It.IsAny<Guid>()))
+            .ReturnsAsync(true);
 
-        //     mockRepo
-        //     .Setup(u => u.FindById(It.IsAny<Guid>()))
-        //     .ReturnsAsync(new ExamDetailsModel());
+            mockRepo
+            .Setup(u => u.FindById(It.IsAny<Guid>()))
+            .ReturnsAsync(new ExamDetailsModel());
 
-        //     //Act
-        //     var result = await controller.DeleteExam(It.IsAny<Guid>());
+            //Act
+            var result = await controller.DeleteExam(It.IsAny<Guid>());
 
-        //     //Assert
-        //     Assert.IsType<OkObjectResult>(result);
-        // }
+            //Assert
+            Assert.IsType<OkObjectResult>(result);
+        }
 
         [Fact]
         public async Task Given_DeleteExam_When_IdNotFound_Then_Status404NotFount()
@@ -190,10 +190,10 @@ namespace EMS.Tests
 
             mockRepo
             .Setup(e => e.Delete(It.IsAny<Guid>()))
-            .ReturnsAsync(true);
+            .ReturnsAsync(false);
 
             //Act
-            var result = (StatusCodeResult)await controller.DeleteExam(It.IsAny<Guid>());
+            var result = (ObjectResult)await controller.DeleteExam(It.IsAny<Guid>());
 
             //Assert
             Assert.Equal(StatusCodes.Status409Conflict, result.StatusCode);
