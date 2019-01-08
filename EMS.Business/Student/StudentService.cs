@@ -8,35 +8,35 @@ using EMS.Domain;
 
 namespace EMS.Business
 {
-  public sealed class StudentService : IStudentService
-    {
-        private readonly IRepository repository;
-
-        public StudentService(IRepository repository) => this.repository = repository;
-
-        public async Task<Guid> CreateNew(Guid userId)
+        public sealed class StudentService : IStudentService
         {
-            User studentUser = await repository.FindByIdAsync<User>(userId);
+            private readonly IRepository repository;
 
-            var student = Student.Create(
-                userId: userId
-                );
+            public StudentService(IRepository repository) => this.repository = repository;
 
-            await this.repository.AddNewAsync(student);
-            await this.repository.SaveAsync();
-
-            return student.Id;
-        }
-
-        public Task<List<StudentDetailsModel>> GetAll() => AllStudentDetails.ToListAsync();
-
-        public Task<StudentDetailsModel> FindById(Guid id) => AllStudentDetails.SingleOrDefaultAsync(s => s.User.Id == id);
-
-        private IQueryable<StudentDetailsModel> AllStudentDetails => this.repository.GetAll<Student>()
-            .Select(c => new StudentDetailsModel
+            public async Task<Guid> CreateNew(Guid userId)
             {
-                User = c.User,
-                FatherInitial = c.FatherInitial
-            });
-    }
+                var student = Student.Create(
+                    userId: userId
+                    );
+
+                await this.repository.AddNewAsync(student);
+                await this.repository.SaveAsync();
+
+                return student.Id;
+            }
+
+            public Task<List<StudentDetailsModel>> GetAll() => GetAllStudentDetails().ToListAsync();
+
+            public Task<StudentDetailsModel> FindById(Guid id) => GetAllStudentDetails().SingleOrDefaultAsync(p => p.Id == id);
+
+
+            private IQueryable<StudentDetailsModel> GetAllStudentDetails() => this.repository.GetAll<Student>()
+                    .Select(c => new StudentDetailsModel
+                    {
+                        Id = c.Id,
+                        UserId = c.UserId,
+                        FatherInitial = c.FatherInitial
+                    });
+        }
 }
