@@ -2,7 +2,7 @@
 
 namespace EMS.Business
 {
-    public class CreatingProfessorModel
+    public class UpdateProfessorModel
     {
         [Required]
         [MaxLength(50)]

@@ -17,14 +17,14 @@ namespace EMS.Tests
     [Collection("EMS Collection")]
     public class ProfessorsUnitTest
     {
-        private readonly CreatingProfessorModel creatingProfessorModel;
+        private readonly UpdateProfessorModel updateProfessorModel;
         private readonly Mock<IProfessorService> mockRepo;
         private readonly ProfessorController controller;
         private readonly Professor professorModel;
 
         public ProfessorsUnitTest()
         {
-            creatingProfessorModel = new CreatingProfessorModel();
+            updateProfessorModel = new UpdateProfessorModel();
             mockRepo = new Mock<IProfessorService>();
             controller = new ProfessorController(mockRepo.Object);
 
@@ -34,7 +34,7 @@ namespace EMS.Tests
                 cfg.CreateMap<CreatingProfessorModel, Professor>();
 
             });*/
-            professorModel = Mapper.Map<CreatingProfessorModel, Professor>(creatingProfessorModel);
+            professorModel = Mapper.Map<UpdateProfessorModel, Professor>(updateProfessorModel);
         }
 
         [Fact]
@@ -99,7 +99,7 @@ namespace EMS.Tests
                 Returns(Task.FromResult(true));
 
             //Act
-            var result = await controller.UpdateProfessor(creatingProfessorModel, It.IsAny<Guid>());
+            var result = await controller.UpdateProfessor(updateProfessorModel, It.IsAny<Guid>());
 
             //Arrange
             Assert.IsType<OkObjectResult>(result);
@@ -112,7 +112,7 @@ namespace EMS.Tests
             mockRepo.Setup(u => u.UpdateAsync(It.IsAny<Guid>(), professorModel)).Returns(Task.FromResult(true));
 
             //Act
-            var result = await controller.UpdateProfessor(creatingProfessorModel, It.IsAny<Guid>());
+            var result = await controller.UpdateProfessor(updateProfessorModel, It.IsAny<Guid>());
 
             //Arrange
             Assert.IsType<NoContentResult>(result);
@@ -126,7 +126,7 @@ namespace EMS.Tests
             controller.ModelState.AddModelError("password", "Required");
 
             //Act
-            var result = await controller.UpdateProfessor(creatingProfessorModel, It.IsAny<Guid>());
+            var result = await controller.UpdateProfessor(updateProfessorModel, It.IsAny<Guid>());
 
             //Assert
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);

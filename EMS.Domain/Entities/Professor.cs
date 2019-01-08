@@ -6,15 +6,15 @@ namespace EMS.Domain.Entities
 {
     public class Professor : Entity, IUpdatable<Professor>
     {
-        public User User { get; set; } //this is for code-first approach
+        public User User { get; private set; } //this is for code-first approach
 
-        public Guid UserId { get; set; }
+        public Guid UserId { get; private set; }
 
-        public string Title { get; set; }
+        public string Title { get; private set; }
 
-        public List<CourseProfessor> CourseProfessors { get; set; }
+        public List<CourseProfessor> CourseProfessors { get; private set; }
 
-        public List<Exam> Exams { get; set; }
+        public List<Exam> Exams { get; private set; }
 
         public static Professor Create(Guid userId) => new Professor
         {
