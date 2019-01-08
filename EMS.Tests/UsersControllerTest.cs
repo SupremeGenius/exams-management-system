@@ -12,14 +12,14 @@ using Xunit;
 namespace EMS.Tests
 {
  [Collection("EMS Collection")]
-    public class UsersUnitTest
+    public class UsersControllerTest
     {
         private readonly UpdateUserModel updateUserModel;
         private readonly Mock<IUserService> mockRepo;
         private readonly UsersController controller;
         private readonly User userModel;
 
-        public UsersUnitTest()
+        public UsersControllerTest()
         {
             updateUserModel = new UpdateUserModel();
             mockRepo = new Mock<IUserService>();
