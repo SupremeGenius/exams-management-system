@@ -15,5 +15,11 @@ namespace EMS.Domain.Entities
         private List<Course> Courses { get; set; }
 
         private List<Exam> Exams { get; set; }
+
+        public static Student Create (User user, string fatherInitial) => new Student
+        {
+            User = user,
+            FatherInitial = fatherInitial
+        };
     }
 }
