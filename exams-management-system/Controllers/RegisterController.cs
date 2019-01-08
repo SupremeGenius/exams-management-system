@@ -10,10 +10,12 @@ namespace exams_management_system.Controllers
     public class RegisterController : ControllerBase
     {
         private readonly IUserService userService;
+        private readonly IProfessorService professorService;
 
-        public RegisterController(IUserService userService)
+        public RegisterController(IUserService userService, IProfessorService professorService)
         {
             this.userService = userService;
+            this.professorService = professorService;
         }
 
         [HttpPost]
@@ -23,11 +25,15 @@ namespace exams_management_system.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            // add checking of the role (only stud or prof is allowed)
             var user = this.userService.FindByEmail(model.Email);
             if (user.Result == null)
             {
                 var userId = await this.userService.CreateNew(model);
+                if (model.Role == "Professor")
+                {
+                    await this.professorService.CreateNew(userId);
+                }
                 return Ok(userId);
             }
 

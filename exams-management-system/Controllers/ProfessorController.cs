@@ -40,23 +40,10 @@ namespace exams_management_system.Controllers
 
             if (professor == null)
             {
-                return StatusCode(422);
+                return StatusCode(StatusCodes.Status422UnprocessableEntity);
             }
 
             return Ok(professor);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateProfessor([FromBody] ProfessorDetailsModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var professorId = await this.professorService.CreateNew(model);
-            return Ok(professorId);
-
         }
 
         [HttpPut("{id:guid}", Name = "UpdateProfessor")]
@@ -75,18 +62,6 @@ namespace exams_management_system.Controllers
                 return Ok("User updated");
             }
             return NoContent();
-        }
-        
-        [HttpDelete("{id:guid}", Name = "DeleteProfessor")]
-        public async Task<IActionResult> DeleteProfessor(Guid id)
-        {
-
-            var response = await this.professorService.Delete(id);
-            if (response)
-            {
-                return Ok("Professor deleted");
-            }
-            return StatusCode(StatusCodes.Status409Conflict);
         }
     }
 }
