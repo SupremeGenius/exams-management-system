@@ -10,22 +10,28 @@ namespace EMS.Tests
 {
     public class ExamControllerTest
     {
+        private readonly UpdateExamModel updateExamModel;
+        private readonly Mock<IExamService> mockRepo;
+        private readonly ExamsController controller;
+
+        public ExamControllerTest()
+        {
+            updateExamModel = new UpdateExamModel();
+            mockRepo = new Mock<IExamService>();
+            controller = new ExamsController(mockRepo.Object);
+        }
 
         [Fact]
         public async Task Given_GetExams_When_ModelIsValid_Then_OkStatusCode()
         {
             // Arrange
-            var NewModel = new CreatingExamModel();
-            var ExpectedModel = new List<ExamDetailsModel>();
-            var MockRepo = new Mock<IExamService>();
-            var Exams = Task.FromResult(ExpectedModel);
-            MockRepo.Setup(u => u.GetAll()).Returns(Exams);
-            var Controller = new ExamsController(MockRepo.Object);
+            mockRepo.Setup(e => e.GetAll())
+            .ReturnsAsync(new List<ExamDetailsModel>());
 
-            // Act
-            var result = await Controller.GetExams();
+            //Act
+            var result = await controller.GetExams();
 
-            // Assert
+            //Arrange
             Assert.IsType<OkObjectResult>(result);
         }
     }
