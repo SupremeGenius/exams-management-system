@@ -27,7 +27,7 @@ namespace exams_management_system.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            // add checking of the role (only stud or prof is allowed)
             var user = this.userService.FindByEmail(model.Email);
             if (user.Result == null)
             {
