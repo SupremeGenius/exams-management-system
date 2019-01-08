@@ -59,8 +59,18 @@ namespace exams_management_system.Controllers
 
         [HttpPut("{id:guid}", Name = "UpdateExam")]
         public async Task<IActionResult> UpdateExam([FromBody] UpdateExamModel updateExamModel, Guid id)
-
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var exam = await this.examService.FindById(id);
+            if (exam == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+            }
+
             var examModel = Mapper.Map<UpdateExamModel, Exam>(updateExamModel);
             var response = await this.examService.Update(id, examModel);
             if (response)
