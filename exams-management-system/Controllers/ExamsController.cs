@@ -84,6 +84,12 @@ namespace exams_management_system.Controllers
         [HttpDelete("{id:guid}", Name = "DeleteExam")]
         public async Task<IActionResult> DeleteExam(Guid id)
         {
+            var exam = await this.examService.FindById(id);
+            if (exam == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+            }
+            
             if (await this.examService.Delete(id))
             {
                 return Ok("Exam deleted");
