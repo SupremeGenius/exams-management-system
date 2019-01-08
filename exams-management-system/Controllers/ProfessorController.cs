@@ -47,14 +47,14 @@ namespace exams_management_system.Controllers
         }
 
         [HttpPut("{id:guid}", Name = "UpdateProfessor")]
-        public async Task<IActionResult> UpdateProfessor([FromBody] CreatingProfessorModel createProfessorModel, Guid id)
+        public async Task<IActionResult> UpdateProfessor([FromBody] UpdateProfessorModel createProfessorModel, Guid id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var professorModel = Mapper.Map<CreatingProfessorModel, Professor>(createProfessorModel);
+            var professorModel = Mapper.Map<UpdateProfessorModel, Professor>(createProfessorModel);
 
             var response = await this.professorService.UpdateAsync(id, professorModel);
             if (response)
