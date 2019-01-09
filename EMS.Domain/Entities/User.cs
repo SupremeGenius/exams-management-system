@@ -6,13 +6,13 @@ namespace EMS.Domain
 {
     public class User : Entity, IUpdatable<User>
     {
-        public string Email { get; set; }
+        public string Email { get; private set; }
 
         public string Password { get; private set; }
 
-        public string Role { get; set; }
+        public string Role { get; private set; }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         public static User Create(string email, string password, string role) => new User
         {
