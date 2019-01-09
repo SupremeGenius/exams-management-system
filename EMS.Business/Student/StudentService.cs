@@ -8,35 +8,49 @@ using EMS.Domain;
 
 namespace EMS.Business
 {
-  public sealed class StudentService : IStudentService
-    {
-        private readonly IRepository repository;
-
-        public StudentService(IRepository repository) => this.repository = repository;
-
-        public async Task<Guid> CreateNew(Guid userId)
+        public sealed class StudentService : IStudentService
         {
-            User studentUser = await repository.FindByIdAsync<User>(userId);
+            private readonly IRepository repository;
 
-            var student = Student.Create(
-                userId: userId
-                );
+            public StudentService(IRepository repository) => this.repository = repository;
 
-            await this.repository.AddNewAsync(student);
-            await this.repository.SaveAsync();
+            public async Task<Guid> CreateNew(Guid userId)
+            {
+                var student = Student.Create(
+                    userId: userId
+                    );
 
-            return student.Id;
+                await this.repository.AddNewAsync(student);
+                await this.repository.SaveAsync();
+
+                return student.Id;
+            }
+
+        public async Task<bool> UpdateAsync(Guid id, Student studentUpdated)
+        {
+            var studentToUpdate = await this.repository.FindByIdAsync<Student>(id);
+
+            if (await repository.TryUpdateModelAsync<Student>(
+                    studentToUpdate, studentUpdated))
+            {
+                await repository.SaveAsync();
+                return true;
+            }
+
+            return false;
         }
 
-        public Task<List<StudentDetailsModel>> GetAll() => AllStudentDetails.ToListAsync();
+        public Task<List<StudentDetailsModel>> GetAll() => GetAllStudentDetails().ToListAsync();
 
-        public Task<StudentDetailsModel> FindById(Guid id) => AllStudentDetails.SingleOrDefaultAsync(s => s.User.Id == id);
+            public Task<StudentDetailsModel> FindById(Guid id) => GetAllStudentDetails().SingleOrDefaultAsync(p => p.Id == id);
 
-        private IQueryable<StudentDetailsModel> AllStudentDetails => this.repository.GetAll<Student>()
-            .Select(c => new StudentDetailsModel
-            {
-                User = c.User,
-                FatherInitial = c.FatherInitial
-            });
-    }
+
+            private IQueryable<StudentDetailsModel> GetAllStudentDetails() => this.repository.GetAll<Student>()
+                    .Select(c => new StudentDetailsModel
+                    {
+                        Id = c.Id,
+                        UserId = c.UserId,
+                        FatherInitial = c.FatherInitial
+                    });
+        }
 }

@@ -1,15 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System;
 
 namespace EMS.Business
 {
-    public class CreatingStudentModel
+    public class UpdateStudentModel
     {
         [Required]
-        public Guid UserId { get; set; }
-
-        [Required]
-        [MaxLength(1)]
+        [MaxLength(2)]
         public string FatherInitial { get; set; }
     }
 }

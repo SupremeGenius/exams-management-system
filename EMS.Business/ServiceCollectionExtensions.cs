@@ -28,6 +28,7 @@ namespace Booking.Business
                 cfg.CreateMap<UpdateCourseModel, Course>();
                 cfg.CreateMap<UpdateExamModel, Exam>();
                 cfg.CreateMap<UpdateProfessorModel, Professor>();
+                cfg.CreateMap<UpdateStudentModel, Student>();
             });
             return services;
         }
