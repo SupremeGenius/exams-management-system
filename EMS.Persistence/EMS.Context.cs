@@ -15,6 +15,8 @@ namespace EMS.Persistence
         internal DbSet<User> Users { get; private set; }
         internal DbSet<Student> Students { get; private set; }
         internal DbSet<Professor> Professors { get; private set; }
+        internal DbSet<StudentCourse> StudentCourse { get; private set; }
+        internal DbSet<StudentExam> StudentExam { get; private set; }
         internal DbSet<Exam> Exams { get; private set; }
         internal DbSet<Course> Courses { get; private set; }
         internal DbSet<Grade> Grades { get; private set; }
@@ -54,6 +56,29 @@ namespace EMS.Persistence
                 .HasOne(cp => cp.Professor)
                 .WithMany(p => p.CourseProfessors)
                 .HasForeignKey(cp => cp.ProfessorId);
+
+            modelBuilder.Entity<StudentCourse>()
+                .HasKey(sc => new { sc.StudentId, sc.CourseId });
+            modelBuilder.Entity<StudentCourse>()
+                .HasOne(sc => sc.Student)
+                .WithMany(s => s.StudentCourses)
+                .HasForeignKey(sc => sc.StudentId);
+            modelBuilder.Entity<StudentCourse>()
+                .HasOne(sc => sc.Course)
+                .WithMany(c => c.StudentCourses)
+                .HasForeignKey(sc => sc.CourseId);
+
+            modelBuilder.Entity<StudentExam>()
+                .HasKey(sc => new { sc.StudentId, sc.ExamId });
+            modelBuilder.Entity<StudentExam>()
+                .HasOne(sc => sc.Student)
+                .WithMany(s => s.StudentExams)
+                .HasForeignKey(sc => sc.StudentId);
+            modelBuilder.Entity<StudentExam>()
+                .HasOne(sc => sc.Exam)
+                .WithMany(c => c.StudentExams)
+                .HasForeignKey(sc => sc.ExamId);
+
         }
     }
 }

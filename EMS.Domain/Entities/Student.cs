@@ -12,9 +12,9 @@ namespace EMS.Domain.Entities
             
         public string FatherInitial { get; private set; }
 
-        public List<Course> Courses { get; private set; }
+        public List<StudentCourse> StudentCourses { get; private set; }
 
-        public List<Exam> Exams { get; private set; }
+        public List<StudentExam> StudentExams { get; private set; }
 
         public static Student Create (Guid userId) => new Student
         {

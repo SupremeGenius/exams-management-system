@@ -9,6 +9,8 @@ namespace EMS.Domain
 
         public List<CourseProfessor> CourseProfessors { get; private set; }
 
+        public List<StudentCourse> StudentCourses { get; private set; }
+
         public List<Exam> Exams { get; private set; }
 
         public string UniversityYear { get; private set; }
