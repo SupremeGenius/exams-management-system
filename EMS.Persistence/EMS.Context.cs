@@ -17,6 +17,7 @@ namespace EMS.Persistence
         internal DbSet<Professor> Professors { get; private set; }
         internal DbSet<Exam> Exams { get; private set; }
         internal DbSet<Course> Courses { get; private set; }
+        internal DbSet<Grade> Grades { get; private set; }
 
         public IQueryable<TEntity> GetAll<TEntity>()
             where TEntity : Entity => Set<TEntity>().AsNoTracking();
