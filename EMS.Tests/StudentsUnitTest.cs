@@ -28,14 +28,6 @@ namespace EMS.Tests
             mockRepo = new Mock<IStudentService>();
             controller = new StudentsController(mockRepo.Object);
 
-
-            Mapper.Reset();
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<UpdateStudentModel, Student>();
-            });
-
-
             studentModel = Mapper.Map<UpdateStudentModel, Student>(updateStudentModel);
         }
 

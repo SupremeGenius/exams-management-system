@@ -13,12 +13,13 @@ namespace EMS.Tests
     {
         public EMSFixture()
         {
-            Mapper.Reset();
+            //Mapper.Reset();
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<UpdateCourseModel, Course>();
                 cfg.CreateMap<UpdateExamModel, Exam>();
                 cfg.CreateMap<UpdateProfessorModel, Professor>();
+                cfg.CreateMap<UpdateStudentModel, Student>(); 
                 cfg.CreateMap<UpdateUserModel, User>()
                 .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.NewPassword));
             });
