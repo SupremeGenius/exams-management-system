@@ -1,15 +1,20 @@
 ﻿using EMS.Domain;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EMS.Business
 {
     public class StudentDetailsModel
     {
-        [Required]
-        public User User { get; set; }
+        public Guid Id { get; set; } //this is for code-first approach
 
-        [Required]
-        [MaxLength(1)]
+        public Guid UserId { get; set; }
+
         public string FatherInitial { get; set; }
+
+        public List<Course> Courses { get; set; }
+
+        public List<Exam> Exams { get; set; }
     }
 }

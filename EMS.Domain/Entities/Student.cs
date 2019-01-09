@@ -4,21 +4,26 @@ using System.Text;
 
 namespace EMS.Domain.Entities
 {
-    public class Student : Entity
+    public class Student : Entity, IUpdatable<Student>
     {
-        public User User { get; set; } //this is for code-first approach
+        public User User { get; private set; } //this is for code-first approach
 
-        public Guid UserId { get; set; }
+        public Guid UserId { get; private set; }
             
-        public string FatherInitial { get; set; }
+        public string FatherInitial { get; private set; }
 
-        private List<Course> Courses { get; set; }
+        public List<Course> Courses { get; private set; }
 
-        private List<Exam> Exams { get; set; }
+        public List<Exam> Exams { get; private set; }
 
         public static Student Create (Guid userId) => new Student
         {
             UserId = userId
         };
+
+        public void Update(Student updatedEntity)
+        {
+            this.FatherInitial = String.Copy(updatedEntity.FatherInitial);
+        }
     }
 }
