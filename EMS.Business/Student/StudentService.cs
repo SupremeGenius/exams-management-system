@@ -26,7 +26,21 @@ namespace EMS.Business
                 return student.Id;
             }
 
-            public Task<List<StudentDetailsModel>> GetAll() => GetAllStudentDetails().ToListAsync();
+        public async Task<bool> UpdateAsync(Guid id, Student studentUpdated)
+        {
+            var studentToUpdate = await this.repository.FindByIdAsync<Student>(id);
+
+            if (await repository.TryUpdateModelAsync<Student>(
+                    studentToUpdate, studentUpdated))
+            {
+                await repository.SaveAsync();
+                return true;
+            }
+
+            return false;
+        }
+
+        public Task<List<StudentDetailsModel>> GetAll() => GetAllStudentDetails().ToListAsync();
 
             public Task<StudentDetailsModel> FindById(Guid id) => GetAllStudentDetails().SingleOrDefaultAsync(p => p.Id == id);
 

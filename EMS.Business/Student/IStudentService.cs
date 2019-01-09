@@ -12,5 +12,7 @@ namespace EMS.Business
         Task<StudentDetailsModel> FindById(Guid id);
 
         Task<Guid> CreateNew(Guid userId);
+
+        Task<bool> UpdateAsync(Guid id, Student studentUpdated);
     }
 }
