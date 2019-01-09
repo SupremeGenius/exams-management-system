@@ -52,8 +52,10 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_GetProfessors_When_ThereAreProfessors_Then_OkStatusCode()
         {
-            var professors = new List<ProfessorDetailsModel>();
-            professors.Add(new ProfessorDetailsModel());
+            var professors = new List<ProfessorDetailsModel>
+            {
+                new ProfessorDetailsModel()
+            };
             mockRepo.Setup(p => p.GetAll()).ReturnsAsync(professors);
 
             // Act
