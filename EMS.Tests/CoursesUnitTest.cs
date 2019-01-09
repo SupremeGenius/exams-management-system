@@ -8,6 +8,7 @@ using System;
 using EMS.Domain;
 using Microsoft.AspNetCore.Http;
 using AutoMapper;
+using System.Collections.Generic;
 
 namespace EMS.Tests
 {
@@ -32,6 +33,32 @@ namespace EMS.Tests
             //    cfg.CreateMap<UpdateCourseModel, Course>();
             //});
             courseModel = Mapper.Map<UpdateCourseModel, Course>(updateCourseModel);
+        }
+
+        [Fact]
+        public async Task Given_GetCourses_When_ThereAreNoCourses_Then_OkStatusCode()
+        {
+            mockRepo.Setup(c => c.GetAll()).ReturnsAsync(new List<CourseDetailsModel>());
+
+            // Act
+            var result = await controller.GetCourses();
+
+            // Assert
+            Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task Given_GetCourses_When_ThereAreCourses_Then_OkStatusCode()
+        {
+            var courses = new List<CourseDetailsModel>();
+            courses.Add(new CourseDetailsModel());
+            mockRepo.Setup(c => c.GetAll()).ReturnsAsync(courses);
+
+            // Act
+            var result = await controller.GetCourses();
+
+            // Assert
+            Assert.IsType<OkObjectResult>(result);
         }
 
         [Fact]
