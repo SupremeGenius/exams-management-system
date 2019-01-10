@@ -7,19 +7,19 @@ namespace EMS.Domain
 {
     public class Exam : Entity, IUpdatable<Exam>
     {
-        public string Type { get; set; }
+        public string Type { get; private set; }
 
-        public DateTime Date { get; set; }
+        public DateTime Date { get; private set; }
 
-        public Course Course { get; set; } //this is for code-first approach
+        public Course Course { get; private set; } //this is for code-first approach
 
-        public Guid CourseId { get; set; }
+        public Guid CourseId { get; private set; }
 
-        public Professor Professor { get; set; } //this is for code-first approach
+        public Professor Professor { get; private set; } //this is for code-first approach
 
-        public Guid ProfessorId { get; set; }
+        public Guid ProfessorId { get; private set; }
 
-        public string Room { get; set; }
+        public string Room { get; private set; }
 
         public List<StudentExam> StudentExams { get; private set; }
 
