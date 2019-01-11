@@ -15,6 +15,7 @@ namespace Booking.Business
             services.AddTransient<ICourseService, CourseService>();
             services.AddTransient<IProfessorService, ProfessorService>();
             services.AddTransient<IStudentService, StudentService>();
+            services.AddTransient<IGradeService, GradeService>();
 
             return services;
         }
@@ -29,6 +30,7 @@ namespace Booking.Business
                 cfg.CreateMap<UpdateExamModel, Exam>();
                 cfg.CreateMap<UpdateProfessorModel, Professor>();
                 cfg.CreateMap<UpdateStudentModel, Student>();
+                cfg.CreateMap<UpdateGradeModel, Grade>();
             });
             return services;
         }
