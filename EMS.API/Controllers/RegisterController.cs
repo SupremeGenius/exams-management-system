@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace exams_management_system.Controllers
 {
-    [VersionedRoute("api/[controller]", 1)]
+    [VersionedRoute("api/register", 1)]
     [ApiController]
     public class RegisterController : ControllerBase
     {
