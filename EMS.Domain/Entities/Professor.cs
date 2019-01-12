@@ -10,6 +10,8 @@ namespace EMS.Domain.Entities
 
         public Guid UserId { get; private set; }
 
+        public string Name { get; private set; }
+
         public string Title { get; private set; }
 
         public List<CourseProfessor> CourseProfessors { get; private set; }
@@ -24,6 +26,7 @@ namespace EMS.Domain.Entities
         public void Update(Professor updatedProfessor)
         {
             this.Title = updatedProfessor.Title;
+            this.Name = updatedProfessor.Name;
         }
     }
 }

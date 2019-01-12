@@ -44,6 +44,21 @@ namespace exams_management_system.Controllers
             return Ok(student);
         }
 
+        [HttpGet("{id:guid}/sendmail", Name = "SendMail")]
+        public async Task<IActionResult> SendMail(Guid id)
+        {
+            var studentModelDetails = await this.StudentService.FindById(id);
+
+            if (studentModelDetails == null)
+            {
+                return StatusCode(422);
+            }
+
+            SMTPClient.SendMail(studentModelDetails);
+            return Ok();
+        }
+        
+
         [HttpPut("{id:guid}", Name = "UpdateStudent")]
         public async Task<IActionResult> UpdateStudent([FromBody] UpdateStudentModel createStudentModel, Guid id)
         {
