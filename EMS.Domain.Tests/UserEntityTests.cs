@@ -31,7 +31,7 @@ namespace EMS.Domain.Tests
             userToUpdate.Update(expectedUser);
 
             //Assert
-            Assert.Equal(userToUpdate.Name, expectedUser.Name);
+            Assert.Equal(userToUpdate.Password, expectedUser.Password);
         }
     }
 }

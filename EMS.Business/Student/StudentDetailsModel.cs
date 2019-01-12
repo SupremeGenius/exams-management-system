@@ -10,6 +10,12 @@ namespace EMS.Business
 
         public Guid UserId { get; set; }
 
+        public string Name { get; set; }
+
+        public string Group { get; set; }
+
+        public string RegistrationNumber { get; set; }
+
         public string FatherInitial { get; set; }
 
         public List<Course> Courses { get; set; }

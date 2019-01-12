@@ -12,8 +12,6 @@ namespace EMS.Domain
 
         public string Role { get; private set; }
 
-        public string Name { get; private set; }
-
         public static User Create(string email, string password, string role) => new User
         {
             Email = email,
@@ -24,7 +22,6 @@ namespace EMS.Domain
         public void Update(User updatedUser)
         {
             this.Password = updatedUser.Password == null ? this.Password: updatedUser.Password;
-            this.Name = updatedUser.Name == null? this.Name : updatedUser.Name;
         }
     }
 }

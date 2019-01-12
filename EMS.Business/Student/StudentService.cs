@@ -50,7 +50,10 @@ namespace EMS.Business
                     {
                         Id = c.Id,
                         UserId = c.UserId,
-                        FatherInitial = c.FatherInitial
+                        FatherInitial = c.FatherInitial,
+                        Name = c.Name,
+                        Group = c.Group,
+                        RegistrationNumber = c.RegistrationNumber,
                     });
         }
 }
