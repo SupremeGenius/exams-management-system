@@ -1,12 +1,10 @@
-﻿using EMS.Business;
-using EMS.Domain.Entities;
+﻿using EMS.Domain.Entities;
 using System;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace EMS.Tests
+namespace EMS.Domain.Tests
 {
-    public class StudentEntityUnitTest
+    public class StudentEntityTests
     {
         // TODO: mock StudentService
 
@@ -22,18 +20,16 @@ namespace EMS.Tests
         //[Fact]
         public void Given_Update_WhenArgumentIsValid_ThenUpdateProfessor_Positive()
         {
+            //Arrange
             var guid = new Guid("5e10b03b-f239-44ed-ba22-d2149a1e105e");
             var expectedGuid = new Guid("ef4ce858-23f8-4807-9d76-db3823207f86");
-
             var student = Student.Create(guid);
-
-            // TODO: somehow mock expectedStudent (or a StudentService)
             var expectedStudent = Student.Create(expectedGuid);
 
-
+            //Arrange
             student.Update(expectedStudent);
-
-           
+    
+            //Assert
             Assert.Equal(student.FatherInitial, expectedStudent.FatherInitial);
         }
     }

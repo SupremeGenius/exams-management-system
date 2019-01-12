@@ -3,7 +3,6 @@ using EMS.Business;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using AutoMapper;
-using EMS.Domain;
 using EMS.Domain.Entities;
 
 namespace exams_management_system.Controllers

@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EMS.API\EMS.API.csproj" />
     <ProjectReference Include="..\EMS.Business\EMS.Business.csproj" />
-    <ProjectReference Include="..\exams-management-system\exams-management-system.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace EMS.Tests
+namespace EMS.API.Tests
 {
-    public class RegisterControllerTest
+    public class RegisterControllerTests
     {
         private readonly CreatingUserModel newModel;
         private readonly Mock<IUserService> mockRepo;
@@ -17,7 +17,7 @@ namespace EMS.Tests
         private readonly RegisterController controller;
         private readonly Guid guid;
 
-        public RegisterControllerTest()
+        public RegisterControllerTests()
         {
             newModel = new CreatingUserModel();
             mockRepo = new Mock<IUserService>();
@@ -56,6 +56,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_CreateUser_When_ModelIsValid_Then_Status422UnprocessableEntity()
         {
+            //Arrange
             mockRepo.Setup(u => u.FindByEmail(newModel.Email)).ReturnsAsync(new UserDetailsModel());
             
             // Act

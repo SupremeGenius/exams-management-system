@@ -1,12 +1,8 @@
-﻿using EMS.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
+﻿using Xunit;
 
-namespace EMS.Tests.Users
+namespace EMS.Domain.Tests
 {
-    public class UserEntityTest
+    public class UserEntityTests
     {
         [Fact]
         public void Given_Create_When_ArgumentIsValid_ThenCreateUser()
@@ -24,14 +20,17 @@ namespace EMS.Tests.Users
         [Fact]
         public void Given_Update_When_ArgumentIsValid_ThenUpdateUser()
         {
+            //Arrange
             var email = "gabigorgan@gmail.com";
             var password = "12345";
             var role = "Student";
 
+            //Act
             var expectedUser = User.Create(email, password, role);
             var userToUpdate = new User();
             userToUpdate.Update(expectedUser);
 
+            //Assert
             Assert.Equal(userToUpdate.Name, expectedUser.Name);
         }
     }

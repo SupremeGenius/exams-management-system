@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using EMS.Business;
-using EMS.Domain;
 using EMS.Domain.Entities;
-using EMS.Tests;
 using exams_management_system.Controllers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
@@ -12,17 +9,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace EMS.Tests
+namespace EMS.API.Tests
 {
     [Collection("EMS Collection")]
-    public class StudentsUnitTest
+    public class StudentsControllerTests
     {
         private readonly UpdateStudentModel updateStudentModel;
         private readonly Mock<IStudentService> mockRepo;
         private readonly StudentsController controller;
         private readonly Student studentModel;
 
-        public StudentsUnitTest()
+        public StudentsControllerTests()
         {
             updateStudentModel = new UpdateStudentModel();
             mockRepo = new Mock<IStudentService>();
@@ -34,6 +31,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_GetStudents_When_ThereAreNoStudents_Then_OkStatusCode()
         {
+            //Arrange
             mockRepo.Setup(p => p.GetAll()).ReturnsAsync(new List<StudentDetailsModel>());
 
             // Act
@@ -47,6 +45,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_GetStudents_When_ThereAreStudents_Then_OkStatusCode()
         {
+            //Arrange
             var students = new List<StudentDetailsModel>();
             students.Add(new StudentDetailsModel());
             mockRepo.Setup(p => p.GetAll()).ReturnsAsync(students);
@@ -61,6 +60,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_GetStudentById_When_IdIsValid_Then_OkStatusCode()
         {
+            //Arrange
             var guid = new Guid("0f959f87-14f4-42d2-bf70-ba84af24ab51");
             mockRepo.Setup(p => p.FindById(guid)).Returns(Task.FromResult(new StudentDetailsModel()));
 
@@ -75,6 +75,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_GetStudentById_When_IdIsValidButNoCourseFound_Then_BadStatusCode()
         {
+            //Arrange
             mockRepo.Setup(p => p.FindById(It.IsIn<Guid>())).Returns(Task.FromResult<StudentDetailsModel>(null));
 
             var controller = new StudentsController(mockRepo.Object);

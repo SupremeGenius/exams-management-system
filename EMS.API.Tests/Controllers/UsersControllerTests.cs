@@ -9,17 +9,17 @@ using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace EMS.Tests
+namespace EMS.API.Tests
 {
  [Collection("EMS Collection")]
-    public class UsersControllerTest
+    public class UsersControllerTests
     {
         private readonly UpdateUserModel updateUserModel;
         private readonly Mock<IUserService> mockRepo;
         private readonly UsersController controller;
         private readonly User userModel;
 
-        public UsersControllerTest()
+        public UsersControllerTests()
         {
             updateUserModel = new UpdateUserModel();
             mockRepo = new Mock<IUserService>();

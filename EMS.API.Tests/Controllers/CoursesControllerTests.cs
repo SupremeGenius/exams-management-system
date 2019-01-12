@@ -9,35 +9,34 @@ using EMS.Domain;
 using Microsoft.AspNetCore.Http;
 using AutoMapper;
 using System.Collections.Generic;
+using EMS.Tests;
 
-namespace EMS.Tests
+namespace EMS.API.Tests
 {
     [Collection("EMS Collection")]
-    public class CoursesUnitTest
+    public class CoursesControllerTests
     {
         private readonly UpdateCourseModel updateCourseModel;
         private readonly CreatingCourseModel createCourseModel;
         private readonly Mock<ICourseService> mockRepo;
         private readonly CoursesController controller;
         private readonly Course courseModel;
+        private readonly EMSFixture fixture;
 
-        public CoursesUnitTest()
+        public CoursesControllerTests(EMSFixture _fixture)
         {
+            fixture = _fixture;
             updateCourseModel = new UpdateCourseModel();
             createCourseModel = new CreatingCourseModel();
             mockRepo = new Mock<ICourseService>();
             controller = new CoursesController(mockRepo.Object);
-
-            //Mapper.Initialize(cfg =>
-            //{
-            //    cfg.CreateMap<UpdateCourseModel, Course>();
-            //});
             courseModel = Mapper.Map<UpdateCourseModel, Course>(updateCourseModel);
         }
 
         [Fact]
         public async Task Given_GetCourses_When_ThereAreNoCourses_Then_OkStatusCode()
         {
+            //Arrange
             mockRepo.Setup(c => c.GetAll()).ReturnsAsync(new List<CourseDetailsModel>());
 
             // Act
@@ -50,6 +49,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_GetCourses_When_ThereAreCourses_Then_OkStatusCode()
         {
+            //Arrange
             var courses = new List<CourseDetailsModel>();
             courses.Add(new CourseDetailsModel());
             mockRepo.Setup(c => c.GetAll()).ReturnsAsync(courses);
@@ -97,6 +97,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_GetCourseById_When_IdIsValid_Then_OkStatusCode()
         {
+            //Arrange
             var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
             mockRepo.Setup(u => u.FindById(guid)).Returns(Task.FromResult(new CourseDetailsModel()));
 
@@ -110,8 +111,8 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_GetCourseById_When_IdIsValidButNoCourseFound_Then_BadStatusCode()
         {
+            //Arrange
             mockRepo.Setup(u => u.FindById(It.IsIn<Guid>())).Returns(Task.FromResult<CourseDetailsModel>(null));
-
             var controller = new CoursesController(mockRepo.Object);
 
             // Act
@@ -143,7 +144,6 @@ namespace EMS.Tests
             mockRepo.Setup(u => u.Update(It.IsAny<Guid>(), It.IsAny<Course>())).
                 Returns(Task.FromResult(true));
             mockRepo.Setup(u => u.FindById(It.IsIn<Guid>())).Returns(Task.FromResult<CourseDetailsModel>(null));
-
 
             //Act
             controller.ModelState.AddModelError("id", "1234");
