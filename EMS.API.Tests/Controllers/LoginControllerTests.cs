@@ -5,15 +5,15 @@ using exams_management_system.Controllers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EMS.Tests
+namespace EMS.API.Tests
 {
-    public class LoginControllerTest
+    public class LoginControllerTests
     {
         private readonly CreatingUserModel newModel;
         private readonly Mock<IUserService> mockRepo;
         private readonly LoginController controller;
 
-        public LoginControllerTest()
+        public LoginControllerTests()
         {
             newModel = new CreatingUserModel();
             mockRepo = new Mock<IUserService>();
@@ -64,6 +64,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_CreateUser_When_ModelIsValid_Then_Status422UnprocessableEntity()
         {
+            //Arrange
             var user = new CreatingUserModel
             {
                 Password = "alabalaportocala"

@@ -2,14 +2,10 @@
 using EMS.Domain;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
 
-namespace EMS.Tests.Users
+namespace EMS.API.Tests
 {
-    public class UserServiceTest
+    public class UserServiceTests
     {
         private readonly User user;
         private readonly CreatingUserModel creatingUserModel;
@@ -17,7 +13,7 @@ namespace EMS.Tests.Users
         private readonly UserService userService;
         private readonly Guid guid;
 
-        public UserServiceTest()
+        public UserServiceTests()
         {
             user = new User();
             creatingUserModel = new CreatingUserModel();

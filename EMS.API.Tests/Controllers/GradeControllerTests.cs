@@ -8,12 +8,11 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System;
-using AutoMapper;
 
-namespace EMS.Tests
+namespace EMS.API.Tests
 {
     [Collection("EMS Collection")]
-    public class GradeControllerTest
+    public class GradeControllerTests
     {
         private readonly CreatingGradeModel createGradeModel;
         private readonly UpdateGradeModel updateGradeModel;
@@ -21,7 +20,7 @@ namespace EMS.Tests
         private readonly GradesController controller;
         private readonly Grade gradeModel;
 
-        public GradeControllerTest()
+        public GradeControllerTests()
         {
             createGradeModel = new CreatingGradeModel();
             updateGradeModel = new UpdateGradeModel();
@@ -47,6 +46,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_GetGradeById_When_IdIsValid_Then_OkStatusCode()
         {
+            //Arrange
             var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
             mockRepo
             .Setup(g => g.FindById(guid))
@@ -62,6 +62,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_GetGradeById_When_IdIsValidButNoExamFound_Then_BadStatusCode()
         {
+            //Arrange
             mockRepo
             .Setup(g => g.FindById(It.IsIn<Guid>()))
             .ReturnsAsync((GradeDetailsModel)null);

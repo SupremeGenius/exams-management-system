@@ -1,9 +1,8 @@
-﻿using EMS.Domain;
-using Xunit;
+﻿using Xunit;
 
-namespace EMS.Tests
+namespace EMS.Domain.Tests
 {
-    public class CoursesDomainUnitTest
+    public class CoursesDomainTests
     {
         [Fact]
         public void Given_Create_When_ModelIsValid_Then_Create()

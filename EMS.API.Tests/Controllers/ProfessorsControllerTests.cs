@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using EMS.Business;
-using EMS.Domain;
 using EMS.Domain.Entities;
-using EMS.Tests;
 using exams_management_system.Controllers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
@@ -12,34 +9,28 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace EMS.Tests
+namespace EMS.API.Tests
 {
     [Collection("EMS Collection")]
-    public class ProfessorsUnitTest
+    public class ProfessorsControllerTests
     {
         private readonly UpdateProfessorModel updateProfessorModel;
         private readonly Mock<IProfessorService> mockRepo;
         private readonly ProfessorController controller;
         private readonly Professor professorModel;
 
-        public ProfessorsUnitTest()
+        public ProfessorsControllerTests()
         {
             updateProfessorModel = new UpdateProfessorModel();
             mockRepo = new Mock<IProfessorService>();
             controller = new ProfessorController(mockRepo.Object);
-
-            /*Mapper.Reset();
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<CreatingProfessorModel, Professor>();
-
-            });*/
             professorModel = Mapper.Map<UpdateProfessorModel, Professor>(updateProfessorModel);
         }
 
         [Fact]
         public async Task Given_GetProfessors_When_ThereAreNoProfessors_Then_OkStatusCode()
         {
+            //Arrange
             mockRepo.Setup(p => p.GetAll()).ReturnsAsync(new List<ProfessorDetailsModel>());
 
             // Act
@@ -52,6 +43,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_GetProfessors_When_ThereAreProfessors_Then_OkStatusCode()
         {
+            //Arrange
             var professors = new List<ProfessorDetailsModel>
             {
                 new ProfessorDetailsModel()
@@ -68,6 +60,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_GetProfessorById_When_IdIsValid_Then_OkStatusCode()
         {
+            //Arrange
             var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
             mockRepo.Setup(p => p.FindById(guid)).Returns(Task.FromResult(new ProfessorDetailsModel()));
 
@@ -82,6 +75,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_GetProfessorById_When_IdIsValidButNoCourseFound_Then_BadStatusCode()
         {
+            //Arrange
             mockRepo.Setup(p => p.FindById(It.IsIn<Guid>())).Returns(Task.FromResult<ProfessorDetailsModel>(null));
 
             var controller = new ProfessorController(mockRepo.Object);

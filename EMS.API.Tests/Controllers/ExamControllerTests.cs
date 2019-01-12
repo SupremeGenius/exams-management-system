@@ -8,12 +8,11 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System;
-using AutoMapper;
 
-namespace EMS.Tests
+namespace EMS.API.Tests
 {
     [Collection("EMS Collection")]
-    public class ExamControllerTest
+    public class ExamControllerTests
     {
         private readonly CreatingExamModel createExamModel;
         private readonly UpdateExamModel updateExamModel;
@@ -21,7 +20,7 @@ namespace EMS.Tests
         private readonly ExamsController controller;
         private readonly Exam examModel;
 
-        public ExamControllerTest()
+        public ExamControllerTests()
         {
             createExamModel = new CreatingExamModel();
             updateExamModel = new UpdateExamModel();
@@ -84,6 +83,7 @@ namespace EMS.Tests
         [Fact]
         public async Task Given_GetExamById_When_IdIsValid_Then_OkStatusCode()
         {
+            //Arrange
             var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
             mockRepo
             .Setup(e => e.FindById(guid))

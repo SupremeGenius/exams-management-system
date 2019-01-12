@@ -1,11 +1,10 @@
 ﻿using EMS.Domain.Entities;
 using System;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace EMS.Tests
+namespace EMS.Domain.Tests
 {
-    public class ProfessorEntityUnitTest
+    public class ProfessorEntityTests
     {
 
         [Fact]
