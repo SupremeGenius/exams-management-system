@@ -2,7 +2,7 @@
 
 export const loginUser = (userData, history) => dispatch => {
     axios
-        .post("/api/login", userData)
+        .post("/api/v1/login", userData)
         .then(result => {
             dispatch({
                 type: 'SET_CURRENT_USER',

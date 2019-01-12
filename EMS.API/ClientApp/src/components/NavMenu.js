@@ -15,17 +15,12 @@ export default props => (
         </Navbar.Header>
         <Navbar.Collapse>
             <Nav>
-                <LinkContainer to={ROUTES.SIGN_IN}>
+                <LinkContainer to={ROUTES.EXAMS}>
                     <NavItem>
-                        <Glyphicon glyph='th-list' /> Sign In
+                        <Glyphicon glyph='th-list' /> Exams
           </NavItem>
-                </LinkContainer>
-                <LinkContainer to={ROUTES.SIGN_UP}>
-                    <NavItem>
-                        <Glyphicon glyph='th-list' /> Sign Up
-          </NavItem>
-                </LinkContainer>
-                <LinkContainer to={ROUTES.SIGN_OUT}>
+        </LinkContainer>
+        <LinkContainer to={ROUTES.SIGN_OUT}>
                     <NavItem>
                         <Glyphicon glyph='th-list' /> Sign Out
           </NavItem>

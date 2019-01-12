@@ -1,6 +1,6 @@
 ﻿import { combineReducers } from 'redux'
 import * as CounterReducer from './CounterReducer';
-import * as WeatherReducer from './WeatherForecastsReducer';
+import * as ExamReducer from './ExamReducer';
 import { routerReducer } from 'react-router-redux';
 import authReducer from './authReducer';
 import errorReducer from "./errorReducer";
@@ -13,7 +13,7 @@ import errorReducer from "./errorReducer";
 
 const reducers = combineReducers({
     counter: CounterReducer.reducer,
-    weather: WeatherReducer.reducer,
+    weather: ExamReducer.reducer,
     routing: routerReducer,
     auth: authReducer,
     errors: errorReducer

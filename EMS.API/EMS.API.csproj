@@ -29,7 +29,6 @@
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Compile Remove="ClientApp\src\components\SignIn - Copy\**" />
     <Compile Remove="ClientApp\src\components\NewFolder1\**" />
-    <Compile Remove="ClientApp\src\components\NewFolder\**" />
     <Compile Remove="ClientApp\src\NewFolder1\**" />
     <Compile Remove="ClientApp\src\NewFolder2\**" />
     <Compile Remove="ClientApp\src\NewFolder3\**" />
@@ -37,7 +36,6 @@
     <Content Remove="$(SpaRoot)**" />
     <Content Remove="ClientApp\src\components\SignIn - Copy\**" />
     <Content Remove="ClientApp\src\components\NewFolder1\**" />
-    <Content Remove="ClientApp\src\components\NewFolder\**" />
     <Content Remove="ClientApp\src\NewFolder1\**" />
     <Content Remove="ClientApp\src\NewFolder2\**" />
     <Content Remove="ClientApp\src\NewFolder3\**" />
@@ -48,14 +46,12 @@
   <ItemGroup>
     <EmbeddedResource Remove="ClientApp\src\components\SignIn - Copy\**" />
     <EmbeddedResource Remove="ClientApp\src\components\NewFolder1\**" />
-    <EmbeddedResource Remove="ClientApp\src\components\NewFolder\**" />
     <EmbeddedResource Remove="ClientApp\src\NewFolder1\**" />
     <EmbeddedResource Remove="ClientApp\src\NewFolder2\**" />
     <EmbeddedResource Remove="ClientApp\src\NewFolder3\**" />
     <EmbeddedResource Remove="ClientApp\src\NewFolder\**" />
     <None Remove="ClientApp\src\components\SignIn - Copy\**" />
     <None Remove="ClientApp\src\components\NewFolder1\**" />
-    <None Remove="ClientApp\src\components\NewFolder\**" />
     <None Remove="ClientApp\src\NewFolder1\**" />
     <None Remove="ClientApp\src\NewFolder2\**" />
     <None Remove="ClientApp\src\NewFolder3\**" />
