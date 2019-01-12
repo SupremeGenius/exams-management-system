@@ -10,6 +10,10 @@ namespace EMS.Business
 
         Task<GradeDetailsModel> FindById(Guid id);
 
+        Task<GradeDetailsModel> FindByExamId(Guid id);
+
+        Task<GradeDetailsModel> FindByStudentId(Guid id);
+
         Task<Guid> CreateNew(CreatingGradeModel newGrade);
 
         Task<bool> Update(Guid id, Domain.Grade examModel);

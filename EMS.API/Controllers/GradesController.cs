@@ -23,7 +23,7 @@ namespace exams_management_system.Controllers
 
             return Ok(exams);
         }
-
+       
         [HttpGet("{id:guid}", Name = "GetGradeById")]
         public async Task<IActionResult> GetGradeById(Guid id)
         {

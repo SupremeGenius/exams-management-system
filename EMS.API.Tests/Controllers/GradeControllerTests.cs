@@ -116,6 +116,39 @@ namespace EMS.API.Tests
         }
 
         [Fact]
+        public async Task Given_UpdateGrade_When_ModelIsValid_Then_NoContentStatusCode()
+        {
+            // Arrange
+            mockRepo.Setup(g => g.FindById(It.IsAny<Guid>())).ReturnsAsync(new GradeDetailsModel());
+            mockRepo.Setup(g => g.Update(It.IsAny<Guid>(), gradeModel)).ReturnsAsync(true);
+
+            //Act
+            var result = await controller.UpdateGrade(updateGradeModel, It.IsAny<Guid>());
+
+            //Arrange
+            Assert.IsType<NoContentResult>(result);
+        }
+
+        /*[Fact]
+        public async Task Given_UpdateGrade_When_IdIsValid_Then_Status409Conflict()
+        {
+            //Arrange
+            mockRepo
+                .Setup(g => g.FindById(It.IsAny<Guid>()))
+                .ReturnsAsync(new GradeDetailsModel());
+
+            mockRepo
+                .Setup(g => g.Update(It.IsAny<Guid>(), gradeModel))
+                .ReturnsAsync(false);
+
+            //Act
+            var result = (ObjectResult)await controller.Update(It.IsAny<Guid>(), gradeModel);
+
+            //Assert
+            Assert.Equal(StatusCodes.Status409Conflict, result.StatusCode);
+        }*/
+
+        [Fact]
         public async Task Given_DeleteGrade_When_IdIsValid_Then_OkStatusCode()
         {
             //Arrange
