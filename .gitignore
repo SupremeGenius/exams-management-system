@@ -13,3 +13,6 @@ EMS.Tests/obj
 EMS.Tests/bin
 EMS.Tests/obj/Debug/netcoreapp2.1/EMS.Tests.AssemblyInfo.cs
 EMS.Tests/obj/Debug/netcoreapp2.1/EMS.Tests.Program.cs
+EMS.API.Tests/obj/Debug/netcoreapp2.1/EMS.API.Tests.AssemblyInfo.cs
+EMS.Domain.Tests/obj/Debug/netcoreapp2.1/EMS.Domain.Tests.AssemblyInfo.cs
+EMS.Service.Tests/obj/Debug/netcoreapp2.1/EMS.Service.Tests.AssemblyInfo.cs
