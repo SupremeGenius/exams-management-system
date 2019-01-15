@@ -31,8 +31,7 @@ namespace EMS.Business
         public Task<GradeDetailsModel> FindById(Guid id) => AllGradeDetails.SingleOrDefaultAsync(g => g.Id == id);
 
         public Task<List<GradeDetailsModel>> FindByExamId(Guid examId)
-        {
-            var examGrades = this.repository.GetAll<Grade>()
+        => this.repository.GetAll<Grade>()
                 .Where(g => g.ExamId == examId)
                 .Include(g => g.Exam)
                 .Include(g => g.Student)
@@ -43,8 +42,7 @@ namespace EMS.Business
                 ExamName = eg.Exam.Course.Title,
                 StudentName = eg.Student.Name,
                 Grade = eg.Value
-            }).ToListAsync();
-        }
+            }).ToListAsync();       
 
         public Task<List<GradeDetailsModel>> FindByStudentId(Guid studentId)
         => this.repository.GetAll<Grade>()
