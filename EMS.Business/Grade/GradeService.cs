@@ -16,7 +16,7 @@ namespace EMS.Business
         public async Task<Guid> CreateNew(CreatingGradeModel newGrade)
         {
             var grade = Grade.Create(
-                nota: newGrade.Nota,
+                value: newGrade.Nota,
                 examId: newGrade.ExamId,
                 studentId: newGrade.StudentId);
 
@@ -30,10 +30,37 @@ namespace EMS.Business
 
         public Task<GradeDetailsModel> FindById(Guid id) => AllGradeDetails.SingleOrDefaultAsync(g => g.Id == id);
 
-        public Task<GradeDetailsModel> FindByExamId(Guid id) => AllGradeDetails.SingleOrDefaultAsync(g => g.ExamId == id);
+        public Task<List<GradeDetailsModel>> FindByExamId(Guid examId)
+        {
+            var examGrades = this.repository.GetAll<Grade>()
+                .Where(g => g.ExamId == examId)
+                .Include(g => g.Exam)
+                .Include(g => g.Student)
+                    .ThenInclude(s => s.StudentCourses)
+                .Select(eg => new GradeDetailsModel
+            {
+                Id = eg.Id,
+                ExamName = eg.Exam.Course.Title,
+                StudentName = eg.Student.Name,
+                Grade = eg.Value
+            }).ToListAsync();
+        }
 
-        public Task<GradeDetailsModel> FindByStudentId(Guid id) => AllGradeDetails.SingleOrDefaultAsync(g => g.StudentId == id);
-        
+        public Task<List<GradeDetailsModel>> FindByStudentId(Guid studentId)
+        => this.repository.GetAll<Grade>()
+                .Where(g => g.StudentId == studentId)
+                .Include(g => g.Exam)
+                .Include(g => g.Student)
+                    .ThenInclude(s => s.StudentCourses)
+                .Select(eg => new GradeDetailsModel
+                {
+                    Id = eg.Id,
+                    ExamName = eg.Exam.Course.Title,
+                    StudentName = eg.Student.Name,
+                    Grade = eg.Value
+                }).ToListAsync();
+
+
         public async Task<bool> Update(Guid id, Grade updatedGrade)
         {
             var gradeToUpdate = await this.repository.FindByIdAsync<Grade>(id);
@@ -69,10 +96,11 @@ namespace EMS.Business
           .Select(g => new GradeDetailsModel
           {
               Id = g.Id,
-              Nota = g.Nota,
-              ExamId = g.ExamId,
-              StudentId = g.StudentId
+              Grade = g.Value,
+              ExamName = g.Exam.Course.Title,
+              StudentName = g.Student.Name
           });
-        
+
+
     }
 }

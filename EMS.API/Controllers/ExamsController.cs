@@ -34,7 +34,7 @@ namespace exams_management_system.Controllers
         {
             var grade = await this.gradeService.FindByExamId(id);
 
-            if (grade == null)
+            if (grade.Count == 0)
             {
                 return StatusCode(StatusCodes.Status404NotFound);
             }
