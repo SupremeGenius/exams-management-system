@@ -1,13 +1,13 @@
 ﻿import React, { Component } from 'react';
 import { Route, Switch }    from 'react-router';
 
-import Layout               from './components/Layout';
-import Home                 from './components/Home';
-import SignUp               from './components/SignUp';
-import SignIn               from './components/SignIn';
-//import SignOut               from './components/SignOut';
+import Layout  from './components/Layout';
+import Home    from './components/Home';
+import SignUp  from './components/SignUp';
+import SignIn  from './components/SignIn';
+import Courses from './components/Courses';
 
-import ROUTES               from './constants/routes'
+import ROUTES  from './constants/routes'
 
 class App extends Component {
     render() {
@@ -18,6 +18,7 @@ class App extends Component {
                 <Route exact path={ROUTES.SIGN_OUT} component={SignIn} />
                 <Layout>
                     <Route exact path='/' component={Home} />
+                    <Route exact path={ROUTES.COURSES} component={Courses} />
                 </Layout>
             </Switch>
         )

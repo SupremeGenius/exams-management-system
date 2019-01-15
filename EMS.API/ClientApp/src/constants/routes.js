@@ -1,7 +1,7 @@
 const ROUTES = {
-  // LANDING: '/',
+  COURSES: '/courses',
   SIGN_UP: '/signup',
-    SIGN_IN: '/signin',
+  SIGN_IN: '/signin',
   SIGN_OUT: '/signout',
   // SIGN_IN: '/signin',
   // HOME: '/home',
