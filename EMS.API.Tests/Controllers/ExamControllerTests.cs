@@ -17,6 +17,7 @@ namespace EMS.API.Tests
         private readonly CreatingExamModel createExamModel;
         private readonly UpdateExamModel updateExamModel;
         private readonly Mock<IExamService> mockRepo;
+        private readonly Mock<IGradeService> mockRepoGrade;
         private readonly ExamsController controller;
         private readonly Exam examModel;
 
@@ -25,7 +26,8 @@ namespace EMS.API.Tests
             createExamModel = new CreatingExamModel();
             updateExamModel = new UpdateExamModel();
             mockRepo = new Mock<IExamService>();
-            controller = new ExamsController(mockRepo.Object);
+            mockRepoGrade = new Mock<IGradeService>();
+            controller = new ExamsController(mockRepo.Object,mockRepoGrade.Object);
         }
 
         [Fact]
@@ -94,6 +96,36 @@ namespace EMS.API.Tests
 
             // Assert
             Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task Given_GetGradeByExamId_When_IdIsValid_Then_OkStatusCode()
+        {
+            //Arrange
+            var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
+            mockRepoGrade
+                .Setup(e => e.FindByExamId(guid))
+                .ReturnsAsync(new GradeDetailsModel());
+
+            // Act
+            var result = await controller.GetGradeByExamId(guid);
+
+            // Assert
+            Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task Given_GetGradeByExamId_When_IdIsValidButNoGradeFound_Then_BadStatusCode()
+        {
+            mockRepoGrade
+                .Setup(e => e.FindByExamId(It.IsIn<Guid>()))
+                .ReturnsAsync((GradeDetailsModel)null);
+
+            // Act
+            var result = (StatusCodeResult)await controller.GetGradeByExamId(It.IsAny<Guid>());
+
+            // Assert
+            Assert.Equal(StatusCodes.Status404NotFound, result.StatusCode);
         }
 
         [Fact]
