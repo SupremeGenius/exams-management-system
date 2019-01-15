@@ -46,6 +46,11 @@ namespace EMS.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Exam>()
+               .HasMany(g => g.Grades)
+               .WithOne(e => e.Exam)
+               .IsRequired();
+
             modelBuilder.Entity<CourseProfessor>()
                 .HasKey(cp => new { cp.CourseId, cp.ProfessorId });
             modelBuilder.Entity<CourseProfessor>()

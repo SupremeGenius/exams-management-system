@@ -49,9 +49,9 @@ namespace EMS.API.Tests
         {
             //Arrange
             var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
-            mockRepoGrade
-                .Setup(e => e.FindByStudentId(guid))
-                .ReturnsAsync(new GradeDetailsModel());
+            //mockRepoGrade
+            //    .Setup(e => e.FindByStudentId(guid))
+            //    .ReturnsAsync(new GradeDetailsModel());
 
             // Act
             var result = await controller.GetGradeByStudentId(guid);
@@ -63,9 +63,9 @@ namespace EMS.API.Tests
         [Fact]
         public async Task Given_GetGradeByStudentId_When_IdIsValidButNoGradeFound_Then_BadStatusCode()
         {
-            mockRepoGrade
-                .Setup(e => e.FindByStudentId(It.IsIn<Guid>()))
-                .ReturnsAsync((GradeDetailsModel)null);
+            //mockRepoGrade
+            //    .Setup(e => e.FindByStudentId(It.IsIn<Guid>()))
+            //    .ReturnsAsync((GradeDetailsModel)null);
 
             // Act
             var result = (StatusCodeResult)await controller.GetGradeByStudentId(It.IsAny<Guid>());

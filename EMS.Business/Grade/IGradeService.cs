@@ -10,9 +10,9 @@ namespace EMS.Business
 
         Task<GradeDetailsModel> FindById(Guid id);
 
-        Task<GradeDetailsModel> FindByExamId(Guid id);
+        Task<List<GradeDetailsModel>> FindByExamId(Guid id);
 
-        Task<GradeDetailsModel> FindByStudentId(Guid id);
+        Task<List<GradeDetailsModel>> FindByStudentId(Guid id);
 
         Task<Guid> CreateNew(CreatingGradeModel newGrade);
 

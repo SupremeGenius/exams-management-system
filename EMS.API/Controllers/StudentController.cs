@@ -50,11 +50,11 @@ namespace exams_management_system.Controllers
         [HttpGet("{id:guid}", Name = "GetStudentById")]
         public async Task<IActionResult> GetStudentById(Guid id)
         {
-            var student = await this.StudentService.FindById(id);
+            var student = await this.gradeService.FindByStudentId(id);
 
-            if (student == null)
+            if (student.Count == 0)
             {
-                return StatusCode(422);
+                return NotFound();
             }
 
             return Ok(student);
@@ -73,7 +73,6 @@ namespace exams_management_system.Controllers
             SMTPClient.SendMail(studentModelDetails);
             return Ok();
         }
-        
 
         [HttpPut("{id:guid}", Name = "UpdateStudent")]
         public async Task<IActionResult> UpdateStudent([FromBody] UpdateStudentModel createStudentModel, Guid id)

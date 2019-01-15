@@ -147,9 +147,9 @@ namespace EMS.Persistence.Migrations
 
                     b.Property<Guid>("ExamId");
 
-                    b.Property<float>("Nota");
-
                     b.Property<Guid>("StudentId");
+
+                    b.Property<float>("Value");
 
                     b.HasKey("Id");
 
@@ -247,7 +247,7 @@ namespace EMS.Persistence.Migrations
             modelBuilder.Entity("EMS.Domain.Grade", b =>
                 {
                     b.HasOne("EMS.Domain.Exam", "Exam")
-                        .WithMany()
+                        .WithMany("Grades")
                         .HasForeignKey("ExamId")
                         .OnDelete(DeleteBehavior.Cascade);
 
