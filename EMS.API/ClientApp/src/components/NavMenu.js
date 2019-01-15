@@ -21,9 +21,13 @@ export default props => (
                 <Glyphicon glyph='book' /> Courses
               </NavItem>
             </LinkContainer>
+            <LinkContainer to={ROUTES.EXAMS}>
+              <NavItem>
+                <Glyphicon glyph='book' /> Exams
+              </NavItem>
+            </LinkContainer>
           </Nav>
           <Nav className='pull-right'>
-
             <LinkContainer to={ROUTES.SIGN_IN}>
               <NavItem>
                 <Glyphicon glyph='log-in' /> Sign In

@@ -1,5 +1,6 @@
 const ROUTES = {
   COURSES: '/courses',
+  EXAMS: '/exams',
   SIGN_UP: '/signup',
   SIGN_IN: '/signin',
   SIGN_OUT: '/signout',

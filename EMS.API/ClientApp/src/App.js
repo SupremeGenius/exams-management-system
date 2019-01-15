@@ -6,6 +6,7 @@ import Home    from './components/Home';
 import SignUp  from './components/SignUp';
 import SignIn  from './components/SignIn';
 import Courses from './components/Courses';
+import Exams   from './components/Exams';
 
 import ROUTES  from './constants/routes'
 
@@ -19,6 +20,7 @@ class App extends Component {
                 <Layout>
                     <Route exact path='/' component={Home} />
                     <Route exact path={ROUTES.COURSES} component={Courses} />
+                    <Route exact path={ROUTES.EXAMS} component={Exams} />
                 </Layout>
             </Switch>
         )
