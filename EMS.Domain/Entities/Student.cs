@@ -29,10 +29,10 @@ namespace EMS.Domain.Entities
 
         public void Update(Student updatedEntity)
         {
-            this.FatherInitial = String.Copy(updatedEntity.FatherInitial);
-            this.Name = String.Copy(updatedEntity.Name);
-            this.Group = String.Copy(updatedEntity.Group);
-            this.RegistrationNumber = String.Copy(updatedEntity.RegistrationNumber);
+            FatherInitial = updatedEntity.FatherInitial == null ? FatherInitial : updatedEntity.FatherInitial;
+            Name = updatedEntity.Name == null ? Name : updatedEntity.Name;
+            Group = updatedEntity.Group == null ? Group : updatedEntity.Group;
+            RegistrationNumber = updatedEntity.RegistrationNumber == null ? RegistrationNumber : updatedEntity.RegistrationNumber;
         }
     }
 }
