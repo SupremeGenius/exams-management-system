@@ -30,9 +30,9 @@ namespace EMS.Business
 
         public Task<GradeDetailsModel> FindById(Guid id) => AllGradeDetails.SingleOrDefaultAsync(g => g.Id == id);
 
-        public Task<GradeDetailsModel> FindByStudentId(Guid id) => AllGradeDetails.SingleOrDefaultAsync(g => g.ExamId == id);
+        public Task<GradeDetailsModel> FindByExamId(Guid id) => AllGradeDetails.SingleOrDefaultAsync(g => g.ExamId == id);
 
-        public Task<GradeDetailsModel> FindByExamId(Guid id) => AllGradeDetails.SingleOrDefaultAsync(g => g.StudentId == id);
+        public Task<GradeDetailsModel> FindByStudentId(Guid id) => AllGradeDetails.SingleOrDefaultAsync(g => g.StudentId == id);
         
         public async Task<bool> Update(Guid id, Grade updatedGrade)
         {
