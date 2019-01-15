@@ -14,13 +14,16 @@ export default props => (
             </Navbar.Brand>
             <Navbar.Toggle />
         </Navbar.Header>
-        <Nav>
-          <Nav>
+        <Nav className='nav-menu'>
+          <Nav className='pull-left'>
             <LinkContainer to={ROUTES.COURSES}>
               <NavItem>
                 <Glyphicon glyph='book' /> Courses
               </NavItem>
             </LinkContainer>
+          </Nav>
+          <Nav className='pull-right'>
+
             <LinkContainer to={ROUTES.SIGN_IN}>
               <NavItem>
                 <Glyphicon glyph='log-in' /> Sign In
