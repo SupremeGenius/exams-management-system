@@ -33,6 +33,8 @@ namespace exams_management_system.Controllers
             }
 
             var gradeId = await this.gradeService.CreateNew(model);
+            var gradeModel = await this.gradeService.FindById(gradeId);
+            SMTPClient.ProfessorSendMail(gradeModel);
             return Ok(gradeId);
 
         }
@@ -67,7 +69,7 @@ namespace exams_management_system.Controllers
             var gradeModel = Mapper.Map<UpdateGradeModel, Grade>(updateGradeModel);
             var response = await this.gradeService.Update(id, gradeModel);
             if (response)
-            {
+            {               
                 return Ok("Grade updated");
             }
 

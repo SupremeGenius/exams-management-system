@@ -70,7 +70,7 @@ namespace exams_management_system.Controllers
                 return StatusCode(422);
             }
 
-            SMTPClient.SendMail(studentModelDetails);
+            SMTPClient.StudentSendMail(studentModelDetails);
             return Ok();
         }
 
