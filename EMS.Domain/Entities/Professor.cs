@@ -25,8 +25,8 @@ namespace EMS.Domain.Entities
 
         public void Update(Professor updatedProfessor)
         {
-            this.Title = updatedProfessor.Title;
-            this.Name = updatedProfessor.Name;
+            Title = updatedProfessor.Title == null  ? Title : updatedProfessor.Title;
+            Name = updatedProfessor.Name == null  ? Name : updatedProfessor.Name;
         }
     }
 }
