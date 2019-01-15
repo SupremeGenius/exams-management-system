@@ -23,7 +23,20 @@ namespace exams_management_system.Controllers
 
             return Ok(exams);
         }
-       
+
+        [HttpPost]
+        public async Task<IActionResult> CreateGrade([FromBody] CreatingGradeModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var gradeId = await this.gradeService.CreateNew(model);
+            return Ok(gradeId);
+
+        }
+
         [HttpGet("{id:guid}", Name = "GetGradeById")]
         public async Task<IActionResult> GetGradeById(Guid id)
         {
