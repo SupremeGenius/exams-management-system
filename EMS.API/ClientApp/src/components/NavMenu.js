@@ -7,7 +7,7 @@ import '../styles/css/NavMenu.css'
 import ROUTES from '../constants/routes'
 
 export default props => (
-    <Navbar fixedTop collapseOnSelect>
+    <Navbar staticTop collapseOnSelect>
         <Navbar.Header>
             <Navbar.Brand>
                 <Link to={'/'}>StudNet</Link>
