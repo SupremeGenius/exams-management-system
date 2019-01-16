@@ -22,9 +22,12 @@ namespace EMS.Domain.Entities
 
         public List<StudentExam> StudentExams { get; private set; }
 
-        public static Student Create (Guid userId) => new Student
+        public static Student Create (Guid userId, string fInitial, string group, string rnumber) => new Student
         {
-            UserId = userId
+            UserId = userId,
+            RegistrationNumber = rnumber,
+            FatherInitial = fInitial,
+            Group = group
         };
 
         public void Update(Student updatedEntity)
