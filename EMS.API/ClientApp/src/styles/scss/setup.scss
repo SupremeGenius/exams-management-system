@@ -20,6 +20,9 @@ body {
   height: 100%;
 }
 
+a {
+  color: $textColor;
+}
 .form-control {
   background-color: white;
   color:            $textLight;
