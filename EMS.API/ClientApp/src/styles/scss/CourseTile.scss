@@ -1,18 +1,6 @@
 @import "../../constants/colors.scss";
 
 .course-tile {
-  background-color: #ffffff;
-  box-shadow:       0 3px 10px 0 rgba(0,0,0,0.03);
-  max-width:        360px;
-  width:            100%;
-  min-height:       201px;
-  border-radius:    4px;
-  margin:           15px;
-  float:            left;
-  padding:          15px;
-  display:          flex;
-  flex-direction:   column;
-  justify-content:  space-around;
 
   &:hover {
     box-shadow: 0 3px 7px 4px rgba(0, 0, 0, 0.12);

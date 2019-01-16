@@ -6,7 +6,7 @@ import '../../styles/css/ExamPanel.css'
 class ExamPanel extends React.Component {
   render() {
     return (
-      <div className='exam-panel'>
+      <a className='exam-panel panel panel-sm'>
         <div>
           <div className="exam-panel__type">{this.props.exam.type}</div>
           <div className="exam-panel__course-title">{this.props.course.title}</div>
@@ -23,7 +23,7 @@ class ExamPanel extends React.Component {
             <span className="exam-panel__meta--mute">Data</span>&nbsp;
             {moment(this.props.exam.date).format("DD.MM.YYYY")}</div>
         </div>
-      </div>
+      </a>
     )
   }
 }
