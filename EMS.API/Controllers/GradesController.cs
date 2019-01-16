@@ -24,6 +24,21 @@ namespace exams_management_system.Controllers
             return Ok(exams);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CreateGrade([FromBody] CreatingGradeModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var gradeId = await this.gradeService.CreateNew(model);
+            var gradeModel = await this.gradeService.FindById(gradeId);
+            SMTPClient.ProfessorSendMail(gradeModel);
+            return Ok(gradeId);
+
+        }
+
         [HttpGet("{id:guid}", Name = "GetGradeById")]
         public async Task<IActionResult> GetGradeById(Guid id)
         {
@@ -54,7 +69,7 @@ namespace exams_management_system.Controllers
             var gradeModel = Mapper.Map<UpdateGradeModel, Grade>(updateGradeModel);
             var response = await this.gradeService.Update(id, gradeModel);
             if (response)
-            {
+            {               
                 return Ok("Grade updated");
             }
 

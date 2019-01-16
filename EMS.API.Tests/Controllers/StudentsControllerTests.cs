@@ -2,6 +2,7 @@
 using EMS.Business;
 using EMS.Domain.Entities;
 using exams_management_system.Controllers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
@@ -16,6 +17,7 @@ namespace EMS.API.Tests
     {
         private readonly UpdateStudentModel updateStudentModel;
         private readonly Mock<IStudentService> mockRepo;
+        private readonly Mock<IGradeService> mockRepoGrade;
         private readonly StudentsController controller;
         private readonly Student studentModel;
 
@@ -23,7 +25,8 @@ namespace EMS.API.Tests
         {
             updateStudentModel = new UpdateStudentModel();
             mockRepo = new Mock<IStudentService>();
-            controller = new StudentsController(mockRepo.Object);
+            mockRepoGrade = new Mock<IGradeService>();
+            controller = new StudentsController(mockRepo.Object,mockRepoGrade.Object);
 
             studentModel = Mapper.Map<UpdateStudentModel, Student>(updateStudentModel);
         }
@@ -39,6 +42,36 @@ namespace EMS.API.Tests
 
             // Assert
             Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task Given_GetGradeByStudentId_When_IdIsValid_Then_OkStatusCode()
+        {
+            //Arrange
+            var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
+            //mockRepoGrade
+            //    .Setup(e => e.FindByStudentId(guid))
+            //    .ReturnsAsync(new GradeDetailsModel());
+
+            // Act
+            var result = await controller.GetGradeByStudentId(guid);
+
+            // Assert
+            Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task Given_GetGradeByStudentId_When_IdIsValidButNoGradeFound_Then_BadStatusCode()
+        {
+            //mockRepoGrade
+            //    .Setup(e => e.FindByStudentId(It.IsIn<Guid>()))
+            //    .ReturnsAsync((GradeDetailsModel)null);
+
+            // Act
+            var result = (StatusCodeResult)await controller.GetGradeByStudentId(It.IsAny<Guid>());
+
+            // Assert
+            Assert.Equal(StatusCodes.Status404NotFound, result.StatusCode);
         }
 
 
@@ -78,7 +111,7 @@ namespace EMS.API.Tests
             //Arrange
             mockRepo.Setup(p => p.FindById(It.IsIn<Guid>())).Returns(Task.FromResult<StudentDetailsModel>(null));
 
-            var controller = new StudentsController(mockRepo.Object);
+            var controller = new StudentsController(mockRepo.Object, mockRepoGrade.Object);
 
             // Act
             var result = (StatusCodeResult)await controller.GetStudentById(It.IsAny<Guid>());

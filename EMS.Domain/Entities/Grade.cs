@@ -7,28 +7,32 @@ namespace EMS.Domain
 {
     public class Grade : Entity, IUpdatable<Grade>
     {
-        public float Nota { get; private set; }
+        public float Value { get; private set; }
 
-        public Exam Exam { get; private set; } // this is for code-first approach
+        public Exam Exam { get; private set; } 
 
         public Guid ExamId { get; private set; }
 
-        public Student Student { get; private set; } // this is for code-first approach
+        public Student Student { get; private set; } 
 
         public Guid StudentId { get; private set; }
 
-        public static Grade Create(float nota, Guid examId, Guid studentId) => new Grade
+        public Boolean IsConfirmed { get; private set; }
+
+        public static Grade Create(float value, Guid examId, Guid studentId) => new Grade
         {
-            Nota = nota,
+            Value = value,
             ExamId = examId,
             StudentId = studentId,
+            IsConfirmed = true
         };
 
         public void Update(Grade updatedEntity)
         {
-            Nota = updatedEntity.Nota == null ? Nota : updatedEntity.Nota;
-            ExamId = updatedEntity.ExamId == null ? ExamId : updatedEntity.ExamId;
-            StudentId = updatedEntity.StudentId == null ? StudentId : updatedEntity.StudentId;
+            Value = updatedEntity.Value == null ? Value : updatedEntity.Value;
+            ExamId = updatedEntity.ExamId == Guid.Empty ? ExamId : updatedEntity.ExamId;
+            StudentId = updatedEntity.StudentId == Guid.Empty ? StudentId : updatedEntity.StudentId;
+            IsConfirmed = updatedEntity.IsConfirmed == null ? IsConfirmed : updatedEntity.IsConfirmed;
         }
     }
 }

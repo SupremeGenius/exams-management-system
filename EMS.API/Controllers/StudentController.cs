@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using AutoMapper;
 using EMS.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 
 namespace exams_management_system.Controllers
 {
@@ -12,10 +13,12 @@ namespace exams_management_system.Controllers
     public class StudentsController : Controller
     {
         private readonly IStudentService StudentService;
+        private readonly IGradeService gradeService;
 
-        public StudentsController(IStudentService studentService)
+        public StudentsController(IStudentService studentService, IGradeService gradeService)
         {
             this.StudentService = studentService;
+            this.gradeService = gradeService;
         }
 
         [HttpGet]
@@ -31,14 +34,27 @@ namespace exams_management_system.Controllers
             return Ok(students);
         }
 
+        [HttpGet("{id:guid}/grades", Name = "GetGradeByStudentId")]
+        public async Task<IActionResult> GetGradeByStudentId(Guid id)
+        {
+            var grade = await this.gradeService.FindByStudentId(id);
+
+            if (grade == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+            }
+
+            return Ok(grade);
+        }
+
         [HttpGet("{id:guid}", Name = "GetStudentById")]
         public async Task<IActionResult> GetStudentById(Guid id)
         {
-            var student = await this.StudentService.FindById(id);
+            var student = await this.gradeService.FindByStudentId(id);
 
-            if (student == null)
+            if (student.Count == 0)
             {
-                return StatusCode(422);
+                return NotFound();
             }
 
             return Ok(student);
@@ -54,10 +70,9 @@ namespace exams_management_system.Controllers
                 return StatusCode(422);
             }
 
-            SMTPClient.SendMail(studentModelDetails);
+            SMTPClient.StudentSendMail(studentModelDetails);
             return Ok();
         }
-        
 
         [HttpPut("{id:guid}", Name = "UpdateStudent")]
         public async Task<IActionResult> UpdateStudent([FromBody] UpdateStudentModel createStudentModel, Guid id)

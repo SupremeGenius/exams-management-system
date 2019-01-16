@@ -13,8 +13,13 @@ namespace exams_management_system.Controllers
     public class ExamsController : ControllerBase
     {
         private readonly IExamService examService;
+        private readonly IGradeService gradeService;
 
-        public ExamsController(IExamService examService) => this.examService = examService;
+        public ExamsController(IExamService examService, IGradeService gradeService)
+        {
+            this.examService = examService;
+            this.gradeService = gradeService;
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetExams()
@@ -22,6 +27,19 @@ namespace exams_management_system.Controllers
             var exams = await this.examService.GetAll();
 
             return Ok(exams);
+        }
+
+        [HttpGet("{id:guid}/grades", Name = "GetGradeByExamId")]
+        public async Task<IActionResult> GetGradeByExamId(Guid id)
+        {
+            var grade = await this.gradeService.FindByExamId(id);
+
+            if (grade.Count == 0)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+            }
+
+            return Ok(grade);
         }
 
         [HttpPost]

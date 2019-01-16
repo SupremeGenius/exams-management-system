@@ -116,6 +116,72 @@ namespace EMS.API.Tests
         }
 
         [Fact]
+        public async Task Given_UpdateGrade_When_ModelIsValid_Then_NoContentStatusCode()
+        {
+            // Arrange
+            mockRepo.Setup(g => g.FindById(It.IsAny<Guid>())).ReturnsAsync(new GradeDetailsModel());
+            mockRepo.Setup(g => g.Update(It.IsAny<Guid>(), gradeModel)).ReturnsAsync(true);
+
+            //Act
+            var result = await controller.UpdateGrade(updateGradeModel, It.IsAny<Guid>());
+
+            //Arrange
+            Assert.IsType<NoContentResult>(result);
+        }
+
+        [Fact]
+        public async Task Given_CreateGrade_When_ModelIsValid_Then_OkStatusCode()
+        {
+            // Arrange
+            var Guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
+            var Id = Task.FromResult(Guid);
+            mockRepo.Setup(g => g.CreateNew(createGradeModel)).Returns(Id);
+
+            // Act
+            var Result = (OkObjectResult)await controller.CreateGrade(createGradeModel);
+
+            // Assert
+            Assert.IsType<OkObjectResult>(Result);
+            Assert.Equal(Id.Result, Result.Value);
+        }
+        [Fact]
+        public async Task Given_CreateGrade_When_ModelIsInvalid_Then_BadStatusCode()
+        {
+            // Arrange
+            var guid = new Guid("ef7e98df-26ed-4b21-b874-c3a2815d18ac");
+            var id = Task.FromResult(guid);
+            mockRepo.Setup(g => g.CreateNew(createGradeModel)).Returns(id);
+
+            controller.ModelState.AddModelError("error", "some error");
+
+            // Act
+            var result = await controller.CreateGrade(createGradeModel);
+
+            // Assert
+            var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+            Assert.IsType<SerializableError>(badRequestResult.Value);
+        }
+
+        /*[Fact]
+        public async Task Given_UpdateGrade_When_IdIsValid_Then_Status409Conflict()
+        {
+            //Arrange
+            mockRepo
+                .Setup(g => g.FindById(It.IsAny<Guid>()))
+                .ReturnsAsync(new GradeDetailsModel());
+
+            mockRepo
+                .Setup(g => g.Update(It.IsAny<Guid>(), gradeModel))
+                .ReturnsAsync(false);
+
+            //Act
+            var result = (ObjectResult)await controller.Update(It.IsAny<Guid>(), gradeModel);
+
+            //Assert
+            Assert.Equal(StatusCodes.Status409Conflict, result.StatusCode);
+        }*/
+
+        [Fact]
         public async Task Given_DeleteGrade_When_IdIsValid_Then_OkStatusCode()
         {
             //Arrange
