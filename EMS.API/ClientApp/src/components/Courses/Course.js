@@ -34,7 +34,7 @@ class Course extends React.Component {
           variant   = "contained"
           color     = "primary"
           size      = "large"
-          style     = {{ marginTop: "30px", backgroundColor: '#0075ff'}}> Ma incriu
+          style     = {{ marginTop: "30px", backgroundColor: '#0075ff'}}> Ma inscriu
         </Button>
       </div>
     )
