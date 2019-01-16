@@ -1,0 +1,23 @@
+@import "../../constants/colors.scss";
+
+.exam-panel {
+
+  &:hover {
+    box-shadow: 0 3px 7px 4px rgba(0, 0, 0, 0.12);
+  }
+
+  &__course-title {
+    color: $textLight;
+  }
+
+  &__type {
+    font-weight: 600;
+    font-size:   28px;
+  }
+  &__meta {
+    color: $textColor;
+    &--mute {
+      color: $textLight;
+    }
+  }
+}
