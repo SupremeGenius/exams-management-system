@@ -80,8 +80,8 @@ namespace EMS.Business
             var grade = await this.repository.FindByIdAsync<Grade>(id);
             if (grade != null)
             {
-                await repository.SaveAsync();
                 await repository.RemoveAsync<Grade>(grade);
+                await repository.SaveAsync();
                 return true;
             }
             else
