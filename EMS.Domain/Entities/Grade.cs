@@ -17,18 +17,22 @@ namespace EMS.Domain
 
         public Guid StudentId { get; private set; }
 
+        public Boolean IsConfirmed { get; private set; }
+
         public static Grade Create(float value, Guid examId, Guid studentId) => new Grade
         {
             Value = value,
             ExamId = examId,
             StudentId = studentId,
+            IsConfirmed = true
         };
 
         public void Update(Grade updatedEntity)
         {
             Value = updatedEntity.Value == null ? Value : updatedEntity.Value;
-            ExamId = updatedEntity.ExamId == null ? ExamId : updatedEntity.ExamId;
-            StudentId = updatedEntity.StudentId == null ? StudentId : updatedEntity.StudentId;
+            ExamId = updatedEntity.ExamId == Guid.Empty ? ExamId : updatedEntity.ExamId;
+            StudentId = updatedEntity.StudentId == Guid.Empty ? StudentId : updatedEntity.StudentId;
+            IsConfirmed = updatedEntity.IsConfirmed == null ? IsConfirmed : updatedEntity.IsConfirmed;
         }
     }
 }
