@@ -2,15 +2,19 @@ import React from 'react';
 import { Col, Grid, Row } from 'react-bootstrap';
 import NavMenu from './NavMenu';
 
+import '../styles/css/Layout.css'
+
 export default props => (
-  <Grid fluid>
-    <Row>
-      <Col sm={3}>
+  <div className='ceva'>
+    <Grid fluid>
+      <Row>
         <NavMenu />
-      </Col>
-      <Col sm={9}>
-        {props.children}
-      </Col>
-    </Row>
-  </Grid>
+      </Row>
+      <Row>
+        <Col className='layout__body' sm={12}>
+          {props.children}
+        </Col>
+      </Row>
+    </Grid>
+  </div>
 );

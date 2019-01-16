@@ -1,7 +1,9 @@
 const ROUTES = {
-  // LANDING: '/',
+  COURSES: '/courses',
+  COURSE: '/courses/:courseId',
+  EXAMS: '/exams',
   SIGN_UP: '/signup',
-    SIGN_IN: '/signin',
+  SIGN_IN: '/signin',
   SIGN_OUT: '/signout',
   // SIGN_IN: '/signin',
   // HOME: '/home',

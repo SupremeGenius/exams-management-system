@@ -13,11 +13,16 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
+  background-color: $appBg;
+  color: $textColor;
 }
 #root {
   height: 100%;
 }
 
+a {
+  color: $textColor;
+}
 .form-control {
   background-color: white;
   color:            $textLight;
@@ -28,6 +33,24 @@ body {
 }
 ::placeholder {
   color: $textLight !important;
+}
+.panel {
+  background-color: #ffffff;
+  box-shadow:       0 3px 10px 0 rgba(0,0,0,0.03);
+  width:            100%;
+  border-radius:    4px;
+  float:            left;
+  display:          flex;
+  flex-direction:   column;
+  justify-content:  space-around;
+}
+
+.panel-sm {
+  padding:          20px;
+  max-width:        360px;
+  min-height:       201px;
+  margin:           15px;
+
 }
 
 .form-control:focus {
