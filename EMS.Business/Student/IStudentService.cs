@@ -11,7 +11,7 @@ namespace EMS.Business
 
         Task<StudentDetailsModel> FindById(Guid id);
 
-        Task<Guid> CreateNew(Guid userId);
+        Task<Guid> CreateNew(Guid userId, string json);
 
         Task<bool> UpdateAsync(Guid id, Student studentUpdated);
     }

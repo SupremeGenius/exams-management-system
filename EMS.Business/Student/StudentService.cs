@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EMS.Domain.Entities;
 using EMS.Domain;
+using Newtonsoft.Json.Linq;
 
 namespace EMS.Business
 {
@@ -14,10 +15,18 @@ namespace EMS.Business
 
             public StudentService(IRepository repository) => this.repository = repository;
 
-            public async Task<Guid> CreateNew(Guid userId)
+            public async Task<Guid> CreateNew(Guid userId,string json)
             {
+                JObject response = JObject.Parse(json);
+                string email = response["response"]["Email"].ToString();
+                string rNumber = response["response"]["NrMatricol"].ToString();
+                string group = response["response"]["Grupa"].ToString();
+                string fInitial = response["response"]["FatherInitial"].ToString();
                 var student = Student.Create(
-                    userId: userId
+                    userId: userId,
+                    fInitial: fInitial,
+                    group: group,
+                    rnumber: rNumber
                     );
 
                 await this.repository.AddNewAsync(student);

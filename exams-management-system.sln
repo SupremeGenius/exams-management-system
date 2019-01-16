@@ -10,6 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Infrastructure", "02-Infrastructure", "{4001F3AB-5832-4A6D-B229-2B18FE1BB4ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Core", "03-Core", "{6C70CE56-7708-4B24-9ADE-C6D027EAAA89}"
+	ProjectSection(SolutionItems) = preProject
+		EMS.Persistence\ServiceCollectionExtension.cs = EMS.Persistence\ServiceCollectionExtension.cs
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMS.Domain", "EMS.Domain\EMS.Domain.csproj", "{DB44F7BE-20E4-46CC-A54A-25B3FDF2B3E8}"
 EndProject
