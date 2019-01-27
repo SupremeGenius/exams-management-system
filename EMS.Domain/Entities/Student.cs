@@ -18,16 +18,19 @@ namespace EMS.Domain.Entities
 
         public string Group { get; private set; }
 
+        public int Year { get; set; }
+
         public List<StudentCourse> StudentCourses { get; private set; }
 
         public List<StudentExam> StudentExams { get; private set; }
 
-        public static Student Create (Guid userId, string fInitial, string group, string rnumber) => new Student
+        public static Student Create (Guid userId, string fInitial, string group, int year, string rnumber) => new Student
         {
             UserId = userId,
             RegistrationNumber = rnumber,
             FatherInitial = fInitial,
-            Group = group
+            Group = group,
+            Year = year
         };
 
         public void Update(Student updatedEntity)

@@ -22,10 +22,12 @@ namespace EMS.Business
                 string rNumber = response["response"]["NrMatricol"].ToString();
                 string group = response["response"]["Grupa"].ToString();
                 string fInitial = response["response"]["FatherInitial"].ToString();
+                int year = Int32.Parse(response["response"]["year"].ToString());
                 var student = Student.Create(
                     userId: userId,
                     fInitial: fInitial,
                     group: group,
+                    year: year,
                     rnumber: rNumber
                     );
 
