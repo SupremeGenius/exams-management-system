@@ -9,7 +9,7 @@ class ExamPanel extends React.Component {
       <a className='exam-panel panel panel-sm'>
         <div>
           <div className="exam-panel__type">{this.props.exam.type}</div>
-          <div className="exam-panel__course-title">{this.props.course.title}</div>
+          <div className="exam-panel__course-title">{this.props.exam.courseName}</div> 
         </div>
 
         <div className="exam-panel__meta">
