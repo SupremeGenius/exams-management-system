@@ -15,8 +15,8 @@ class Exams extends React.Component {
   }
 
   render() {
+    console.log(this.props.exams)
     if (this.props.exams) {
-      console.log(this.props.exams)
       return (
         <div className='exams-page'>
           {this.props.exams.map((exam, i) =>
