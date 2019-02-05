@@ -30,7 +30,20 @@ namespace EMS.Business
 
         public Task<ExamDetailsModel> FindById(Guid id) => AllExamDetails.SingleOrDefaultAsync(e => e.Id == id);
 
-        public Task<List<ExamDetailsModel>> GetAll() => AllExamDetails.ToListAsync();
+        public Task<List<ExamDetailsModel>> GetAll()
+             => this.repository.GetAll<Exam>()
+                .Include(e => e.Course)
+                .Select(e => new ExamDetailsModel
+                {
+                    Id = e.Id,
+                    Type = e.Type,
+                    Date = e.Date,
+                    CourseId = e.CourseId,
+                    CourseName = e.Course.Title,
+                    ProfessorId = e.ProfessorId,
+                    Room = e.Room
+                }).ToListAsync();       
+           // => AllExamDetails.ToListAsync();
 
         public Task<ExamDetailsModel> FindByTime(DateTime date) => AllExamDetails.SingleOrDefaultAsync(e => e.Date == date);
 
@@ -71,7 +84,8 @@ namespace EMS.Business
               Date = e.Date,
               CourseId = e.CourseId,
               ProfessorId = e.ProfessorId,
-              Room = e.Room
+              Room = e.Room,
+              CourseName = e.Course.Title
           });
     }
 }

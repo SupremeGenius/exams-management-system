@@ -3,6 +3,8 @@ import * as CounterReducer from './CounterReducer';
 import * as WeatherReducer from './WeatherForecastsReducer';
 import { routerReducer } from 'react-router-redux';
 import authReducer from './authReducer';
+import examsReducer from './examsReducer';
+import coursesReducer from './coursesReducer';
 import errorReducer from "./errorReducer";
 
 
@@ -16,6 +18,8 @@ const reducers = combineReducers({
     weather: WeatherReducer.reducer,
     routing: routerReducer,
     auth: authReducer,
+    exams: examsReducer,
+    courses: coursesReducer,
     errors: errorReducer
 })
     
