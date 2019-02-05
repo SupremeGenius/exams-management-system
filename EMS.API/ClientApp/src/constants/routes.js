@@ -7,7 +7,7 @@ const ROUTES = {
   SIGN_OUT: '/signout',
   // SIGN_IN: '/signin',
   // HOME: '/home',
-  // ACCOUNT: '/account',
+  ACCOUNT: '/account',
   // PASSWORD_FORGET: '/pw-forget',
   // ADMIN: '/admin',
 }
