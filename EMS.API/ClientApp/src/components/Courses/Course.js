@@ -9,7 +9,7 @@ class Course extends React.Component {
     console.log(this.props)
     const courseId = this.props.match.params.courseId;
     console.log({courseId});
-    const course     = this.props.courses[courseId];
+    const course     = this.props.location.state;
 
     return (
       <div className='course panel'>

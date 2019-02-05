@@ -1,11 +1,16 @@
-import React      from 'react';
+import React from 'react';
+
+import { Link } from 'react-router-dom'
 
 import '../../styles/css/CourseTile.css'
 
 class CourseTile extends React.Component {
   render() {
     return (
-      <a href={`/courses/${this.props.course.id}`} className='course-tile panel panel-sm'>
+      <Link className='course-tile panel panel-sm' to={{
+        pathname: `/courses/${this.props.course.id}`,
+        state: this.props.course
+      }}>
         <div className="course-tile__title">{this.props.course.title}</div>
 
         <div className="course-tile__meta">
@@ -13,7 +18,7 @@ class CourseTile extends React.Component {
           <div className="course-tile__meta--studentYear">Anul {this.props.course.studentYear}</div>
           <div className="course-tile__meta--semester">Semestrul {this.props.course.semester}</div>
         </div>
-      </a>
+      </Link>
     )
   }
 }
