@@ -1,5 +1,5 @@
-import SignUp     from './SignUp'
-import SignUpForm from './SignUpForm'
+import Settings from './Settings'
+import SettingsForm from './SettingsForm'
 
-export default SignUp;
-export { SignUpForm };
+export default Settings;
+export { SettingsForm };
