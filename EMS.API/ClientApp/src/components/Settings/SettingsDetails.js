@@ -60,7 +60,7 @@ class SettingsDetails extends React.Component {
           title    = 'Email'
           value    = {email}
           name     = 'email'
-          readOnly = {role == Variables.studentRole}
+          readOnly = {role === Variables.studentRole}
         />
 
         {(()=> {
@@ -89,6 +89,7 @@ class SettingsDetails extends React.Component {
                 value    = {professorTitle}
                 name     = 'professorTitle'
               />;
+            default: return null;
 
           }
         })()}
