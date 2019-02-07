@@ -1,6 +1,6 @@
 const Variables = {
-  studentRole: 'Student',
-  professorRole: 'Professor',
+  studentRole: 'student',
+  professorRole: 'professor',
 }
 
 export default Variables

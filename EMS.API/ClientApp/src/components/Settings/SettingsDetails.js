@@ -1,8 +1,13 @@
 import React from 'react';
 
-import Input     from '../core/Input'
-import Button    from "@material-ui/core/Button";
+import Input from '../core/Input'
+import Button from "@material-ui/core/Button";
 import Variables from '../../constants/variables';
+
+import { getUserInfo } from '../../actions/Settings'
+
+import { connect } from "react-redux";
+
 
 const INITIAL_STATE = {
   fullName: 'Gigel Stroe',
@@ -16,6 +21,10 @@ const INITIAL_STATE = {
 };
 
 class SettingsDetails extends React.Component {
+
+  componentWillMount() {
+    this.props.getUserInfo();
+  }
   constructor(props) {
     super(props);
 
@@ -28,6 +37,7 @@ class SettingsDetails extends React.Component {
     this.setState({
       [key]: value,
     });
+    this.props.user[key] = value
   };
 
 
@@ -37,75 +47,70 @@ class SettingsDetails extends React.Component {
   }
 
   render() {
-    const {
-      fullName,
-      email,
-      group,
-      role,
-      registrationNumber,
-      professorTitle,
-    } = this.state;
-
     return (
       <div className="settings-details">
-      <form onSubmit={this.onSubmit}>
-        <Input
-          title    = 'Nume Complet'
-          value    = {fullName}
-          name     = 'fullName'
-          onChange = {(v) => this.onChange(v, 'fullName')}
-        />
+        <form onSubmit={this.onSubmit}>
+          <Input
+            title='Nume Complet'
+            value={this.props.user.fullName}
+            name='fullName'
+            onChange={(v) => this.onChange(v, 'fullName')}
+          />
 
-        <Input
-          title    = 'Email'
-          value    = {email}
-          name     = 'email'
-          readOnly = {role === Variables.studentRole}
-        />
+          <Input
+            title='Email'
+            value={this.props.user.email}
+            name='email'
+            readOnly={this.props.user.role === Variables.studentRole}
+          />
 
-        {(()=> {
-          switch (role) {
-            case Variables.studentRole:
-              return (
-                <React.Fragment>
-                  <Input
-                    title    = 'Numar Matricol'
-                    value    = {registrationNumber}
-                    name     = 'registrationNumber'
-                    readOnly = {true}
-                  />
+          {(() => {
+            switch (this.props.user.role) {
+              case Variables.studentRole:
+                return (
+                  <React.Fragment>
+                    <Input
+                      title='Numar Matricol'
+                      value={this.props.user.registrationNumber}
+                      name='registrationNumber'
+                      readOnly={true}
+                    />
 
-                  <Input
-                    title    = 'Grupa'
-                    value    = {group}
-                    name     = 'group'
-                    readOnly = {true}
-                  />
-                </React.Fragment>
-              );
-            case Variables.professorRole:
-              return <Input
-                title    = 'Titlu'
-                value    = {professorTitle}
-                name     = 'professorTitle'
-              />;
-            default: return null;
+                    <Input
+                      title='Grupa'
+                      value={this.props.user.group}
+                      name='group'
+                      readOnly={true}
+                    />
+                  </React.Fragment>
+                );
+              case Variables.professorRole:
+                return <Input
+                  title='Titlu'
+                  value={this.props.user.professorTitle}
+                  name='professorTitle'
+                />;
+              default: return null;
 
-          }
-        })()}
+            }
+          })()}
 
-        <Button
-          className = "settings-details__submit pull-right"
-          variant = "contained"
-          color   = "primary"
-          size    = "large"
-          type    = 'submit'
-          style   = {{ marginTop: "30px", backgroundColor: '#0075ff'}}> Salveaza Modificarile
+          <Button
+            className="settings-details__submit pull-right"
+            variant="contained"
+            color="primary"
+            size="large"
+            type='submit'
+            style={{ marginTop: "30px", backgroundColor: '#0075ff' }}> Salveaza Modificarile
         </Button>
-      </form>
+        </form>
       </div>
     )
   }
 }
 
-export default SettingsDetails;
+const mapStateToProps = state => ({
+  user: state.user.user
+});
+
+export default connect(mapStateToProps, { getUserInfo })(SettingsDetails);
