@@ -19,6 +19,11 @@ namespace EMS.Domain
 
         public int Semester { get; private set; }
 
+        public Course()
+        {
+            StudentCourses = new List<StudentCourse>();
+        }
+
         public static Course Create(string title, string universityYear, int studentYear, int semester) => new Course
         {
             Title = title,
