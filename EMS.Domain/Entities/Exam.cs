@@ -15,10 +15,6 @@ namespace EMS.Domain
 
         public Guid CourseId { get; private set; }
 
-        public Professor Professor { get; private set; } //this is for code-first approach
-
-        public Guid ProfessorId { get; private set; }
-
         public string Room { get; private set; }
 
         public List<Grade> Grades { get; private set; }
@@ -29,8 +25,6 @@ namespace EMS.Domain
         {
              Type      = type,
              Date      = date,
-             CourseId    = courseId,
-             ProfessorId = professorId,
              Room = room,
         };
 
@@ -39,7 +33,6 @@ namespace EMS.Domain
             Type = updatedEntity.Type == null ? Type : updatedEntity.Type;
             Date = updatedEntity.Date == null ? Date : updatedEntity.Date;
             CourseId = updatedEntity.CourseId == null ? CourseId : updatedEntity.CourseId;
-            ProfessorId = updatedEntity.ProfessorId == null ? ProfessorId : updatedEntity.ProfessorId;
             Room = updatedEntity.Room == null ? Room : updatedEntity.Room;
         }
   }

@@ -1,4 +1,5 @@
 ﻿using EMS.Domain.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace EMS.Domain
@@ -7,7 +8,9 @@ namespace EMS.Domain
     {
         public string Title { get; private set; }
 
-        public List<CourseProfessor> CourseProfessors { get; private set; }
+        public Professor Professor { get; private set; }
+
+        public Guid ProfessorId { get; set; }
 
         public List<StudentCourse> StudentCourses { get; private set; }
 

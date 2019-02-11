@@ -39,8 +39,8 @@ namespace EMS.Business
             {
                 Id = c.Id,
                 Title = c.Title,
-                CourseProfessors = c.CourseProfessors,
                 UniversityYear = c.UniversityYear,
+                Professor = c.Professor,
                 StudentYear = c.StudentYear,
                 Semester = c.Semester
             });

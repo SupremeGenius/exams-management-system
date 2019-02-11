@@ -40,7 +40,6 @@ namespace EMS.Business
                     Date = e.Date,
                     CourseId = e.CourseId,
                     CourseName = e.Course.Title,
-                    ProfessorId = e.ProfessorId,
                     Room = e.Room
                 }).ToListAsync();       
            // => AllExamDetails.ToListAsync();
@@ -83,7 +82,6 @@ namespace EMS.Business
               Type = e.Type,
               Date = e.Date,
               CourseId = e.CourseId,
-              ProfessorId = e.ProfessorId,
               Room = e.Room,
               CourseName = e.Course.Title
           });

@@ -14,7 +14,7 @@ namespace EMS.Domain.Entities
 
         public string Title { get; private set; }
 
-        public List<CourseProfessor> CourseProfessors { get; private set; }
+        public Course Course { get; private set; }
 
         public List<Exam> Exams { get; private set; }
 
