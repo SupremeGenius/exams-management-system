@@ -82,6 +82,18 @@ namespace exams_management_system.Controllers
             return StatusCode(StatusCodes.Status204NoContent);
         }
 
+        [HttpGet("{courseId:guid}/student/{studentId:guid}", Name = "AssignStudentToCourse")]
+        public async Task<IActionResult> AssignStudentToCourse(Guid courseId, Guid studentId)
+        {
+            var course = await this.courseService.FindById(courseId);
+            if (course == null)
+            {
+                return StatusCode(StatusCodes.Status422UnprocessableEntity);
+            }
+            var response = await this.courseService.AssignStudentToCourse(courseId, studentId);
+            return Ok();
+        }
+
         [HttpDelete("{id:guid}", Name = "DeleteCourse")]
         public async Task<IActionResult> DeleteCourse(Guid id)
         {

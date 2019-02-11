@@ -14,5 +14,18 @@ namespace EMS.Domain.Entities
 
         public Course Course { get; private set; }
 
+        public StudentCourse()
+        {
+
+        }
+
+        public StudentCourse(Student student, Course course)
+        {
+            StudentId = student.Id;
+            Student = student;
+            CourseId = course.Id;
+            Course = course;
+        }
+
     }
 }
