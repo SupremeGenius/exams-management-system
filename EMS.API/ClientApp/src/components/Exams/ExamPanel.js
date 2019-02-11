@@ -1,9 +1,17 @@
 import React      from 'react';
 import moment from 'moment';
 
+import Button from "@material-ui/core/Button";
+import { Link } from 'react-router-dom'
+
 import '../../styles/css/ExamPanel.css'
 
 class ExamPanel extends React.Component {
+
+  scanQR = function () {
+    alert('SCAN')
+  }
+
   render() {
     return (
       <a className='exam-panel panel panel-sm'>
@@ -23,6 +31,9 @@ class ExamPanel extends React.Component {
             <span className="exam-panel__meta--mute">Data</span>&nbsp;
             {moment(this.props.exam.date).format("DD.MM.YYYY")}</div>
         </div>
+        <Link to={{
+          pathname: `/scan`
+        }}> Scan </Link>
       </a>
     )
   }

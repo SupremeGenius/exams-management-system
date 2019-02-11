@@ -8,7 +8,9 @@ import SignUp  from './components/SignUp';
 import SignIn  from './components/SignIn';
 import Courses from './components/Courses';
 import {Course} from './components/Courses';
-import Exams   from './components/Exams';
+import Exams from './components/Exams';
+import QRCode from './components/QRCode';
+
 
 import ROUTES  from './constants/routes'
 
@@ -20,6 +22,7 @@ class App extends Component {
                 <Route exact path={ROUTES.SIGN_UP} component={SignUp} />
                 <Route exact path={ROUTES.SIGN_OUT} component={SignIn} />
                 <Layout>
+                    <Route exact path={ROUTES.SCAN} component={QRCode} />
                     <Route exact path='/' component={Home} />
                     <Route exact path={ROUTES.COURSES} component={Courses} />
                     <Route exact path={ROUTES.ACCOUNT} component={Settings} />
