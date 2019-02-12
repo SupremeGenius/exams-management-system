@@ -11,7 +11,7 @@ namespace EMS.Business
 
         public string Title { get; set; }
 
-        public List<CourseProfessor> CourseProfessors { get; set; }
+        public Professor Professor { get; set; }
 
         public List<Exam> Exams { get; set; }
 
