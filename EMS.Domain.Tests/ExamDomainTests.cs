@@ -18,7 +18,6 @@ namespace EMS.Domain.Tests
             Assert.Equal(exam.Type, "partial");
             Assert.Equal(exam.Date, date);
             Assert.Equal(exam.CourseId, courseId);
-            Assert.Equal(exam.ProfessorId, professorId);
         }
 
         [Fact]
@@ -37,7 +36,6 @@ namespace EMS.Domain.Tests
             Assert.Equal(toBeUpdated.Type, forUpdate.Type);
             Assert.Equal(toBeUpdated.Date, forUpdate.Date);
             Assert.Equal(toBeUpdated.CourseId, forUpdate.CourseId);
-            Assert.Equal(toBeUpdated.ProfessorId, forUpdate.ProfessorId);
             Assert.Equal(toBeUpdated.Room, forUpdate.Room);
         }
     }
