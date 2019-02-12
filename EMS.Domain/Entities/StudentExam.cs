@@ -10,6 +10,8 @@ namespace EMS.Domain.Entities
 
         public Student Student { get; private set; }
 
+        public string Checked{ get; private set; }
+
         public Guid ExamId { get; private set; }
 
         public Exam Exam { get; private set; }

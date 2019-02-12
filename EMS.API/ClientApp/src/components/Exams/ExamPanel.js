@@ -1,21 +1,18 @@
 import React      from 'react';
 import moment from 'moment';
 
-import Button from "@material-ui/core/Button";
+import { Glyphicon } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 
 import '../../styles/css/ExamPanel.css'
 
 class ExamPanel extends React.Component {
 
-  scanQR = function () {
-    alert('SCAN')
-  }
-
   render() {
     return (
       <a className='exam-panel panel panel-sm'>
         <div>
+          {this.props.checked ? <Glyphicon className='contour' glyph='check' />: ''}
           <div className="exam-panel__type">{this.props.exam.type}</div>
           <div className="exam-panel__course-title">{this.props.exam.courseName}</div> 
         </div>
