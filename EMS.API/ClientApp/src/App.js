@@ -6,13 +6,20 @@ import Home    from './components/Home';
 import Settings    from './components/Settings';
 import SignUp  from './components/SignUp';
 import SignIn  from './components/SignIn';
+import SignOut  from './components/SignOut';
 import Courses from './components/Courses';
 import {Course} from './components/Courses';
 import Exams from './components/Exams';
 import QRCode from './components/QRCode';
 
 
-import ROUTES  from './constants/routes'
+import ROUTES from './constants/routes'
+
+if (localStorage.jwtToken) {
+  // Set auth token header auth
+  //setAuthTokenApp(localStorage.jwtToken);
+  //store.dispatch(setCurrentUser(jwt_decode(localStorage.jwtToken)));
+}
 
 class App extends Component {
     render() {
@@ -20,7 +27,7 @@ class App extends Component {
             <Switch>
                 <Route exact path={ROUTES.SIGN_IN} component={SignIn} />
                 <Route exact path={ROUTES.SIGN_UP} component={SignUp} />
-                <Route exact path={ROUTES.SIGN_OUT} component={SignIn} />
+                <Route exact path={ROUTES.SIGN_OUT} component={SignOut} />
                 <Layout>
                     <Route exact path={ROUTES.SCAN} component={QRCode} />
                     <Route exact path='/' component={Home} />
