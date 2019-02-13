@@ -11,14 +11,14 @@ import Courses from './components/Courses';
 import {Course} from './components/Courses';
 import Exams from './components/Exams';
 import QRCode from './components/QRCode';
+import setAuthToken from "./utils/setAuthToken";
 
 
 import ROUTES from './constants/routes'
 
 if (localStorage.jwtToken) {
   // Set auth token header auth
-  //setAuthTokenApp(localStorage.jwtToken);
-  //store.dispatch(setCurrentUser(jwt_decode(localStorage.jwtToken)));
+  setAuthToken(localStorage.jwtToken);
 }
 
 class App extends Component {
