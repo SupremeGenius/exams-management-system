@@ -9,6 +9,7 @@ import '../../styles/css/ExamPanel.css'
 class ExamPanel extends React.Component {
 
   render() {
+    console.log(this.props.exam.checked)
     return (
       <a className='exam-panel panel panel-sm'>
         <div>
