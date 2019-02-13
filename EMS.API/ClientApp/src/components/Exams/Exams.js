@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 import { getExams } from '../../actions/Exams'
 
-import '../../styles/css/ExamPanel.css'
+// import '../../styles/css/ExamPanel.css'
 
 
 class Exams extends React.Component {

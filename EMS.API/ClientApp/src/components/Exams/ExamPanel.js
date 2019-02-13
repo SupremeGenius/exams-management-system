@@ -12,7 +12,7 @@ class ExamPanel extends React.Component {
     return (
       <a className='exam-panel panel panel-sm'>
         <div>
-          {this.props.checked ? <Glyphicon className='contour' glyph='check' />: ''}
+          {this.props.exam.checked === 'yes' ? <Glyphicon className='contour' glyph='check' />: ''}
           <div className="exam-panel__type">{this.props.exam.type}</div>
           <div className="exam-panel__course-title">{this.props.exam.courseName}</div> 
         </div>
@@ -29,7 +29,8 @@ class ExamPanel extends React.Component {
             {moment(this.props.exam.date).format("DD.MM.YYYY")}</div>
         </div>
         <Link to={{
-          pathname: `/scan`
+          pathname: `/scan`,
+          state: this.props.exam
         }}> Scan </Link>
       </a>
     )

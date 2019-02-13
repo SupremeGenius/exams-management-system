@@ -3,18 +3,21 @@ import QrReader from "react-qr-reader";
 
 import { Redirect } from 'react-router-dom'
 
+import { checkExam } from '../../actions/QR'
+
+
 class QR extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      delay: 100,
+      delay: 300,
       result: null
     };
     this.handleScan = this.handleScan.bind(this);
   }
   handleScan(data) {
-    console.log(data)
     if (data) {
+      checkExam(this.props.location.state.id); //examId, studentId luam din storage
       this.setState({
         result: data
       });

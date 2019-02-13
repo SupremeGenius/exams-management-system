@@ -21,6 +21,11 @@ namespace EMS.Domain
 
         public List<StudentExam> StudentExams { get; private set; }
 
+        public Exam()
+        {
+            StudentExams = new List<StudentExam>();
+        }
+
         public static Exam Create(string type, DateTime date, Guid courseId, Guid professorId, string room) => new Exam
         {
              Type      = type,

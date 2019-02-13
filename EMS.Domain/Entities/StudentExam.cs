@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EMS.Domain.Entities
 {
-    public class StudentExam
+    public class StudentExam 
     {
         public Guid StudentId { get; private set; }
 
@@ -16,5 +16,22 @@ namespace EMS.Domain.Entities
 
         public Exam Exam { get; private set; }
 
+
+        public StudentExam()
+        {
+
+        }
+
+        public StudentExam(Student student, Exam exam)
+        {
+            StudentId = student.Id;
+            Student = student;
+            ExamId = exam.Id;
+            Exam  = exam;
+            Checked = "yes";
+        }
+
     }
+
+
 }

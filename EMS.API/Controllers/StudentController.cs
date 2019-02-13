@@ -60,6 +60,14 @@ namespace exams_management_system.Controllers
             return Ok(student);
         }
 
+        [HttpPut("{id:guid}/exams/{examId:guid}", Name = "CheckExam")]
+        public async Task<IActionResult> CheckExam(Guid id, Guid examId)
+        {
+            var student = await this.StudentService.CheckExam(id,examId);
+
+            return Ok(student);
+        }
+
         [HttpGet("{id:guid}/sendmail", Name = "SendMail")]
         public async Task<IActionResult> SendMail(Guid id)
         {
