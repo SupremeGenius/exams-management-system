@@ -13,7 +13,7 @@ namespace EMS.Business
 
         public UserService(IRepository repository) => this.repository = repository;
 
-        public async Task<Guid> CreateNew(CreatingUserModel newUser)
+        public async Task<Guid> CreateNew(RegisterModel newUser)
         {
             var user = User.Create(
                 email: newUser.Email,

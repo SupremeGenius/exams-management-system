@@ -2,19 +2,21 @@
 
 namespace EMS.Business
 {
-    public class CreatingUserModel
+    public class RegisterModel
     {
         [Required]
-        [MaxLength(50)]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long", MinimumLength = 0)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required]
-        [MaxLength(10)]
-        public string Role { get; set; }
+        public string ConfirmPassword { get; set; }
 
+        [Required]
+        public string Role { get; set; }
     }
 }

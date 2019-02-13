@@ -1,5 +1,4 @@
-﻿using EMS.Domain.Entities;
-using System;
+﻿using System;
 using Xunit;
 
 namespace EMS.Domain.Tests

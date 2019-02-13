@@ -13,7 +13,7 @@ namespace EMS.Business
 
         Task<UserDetailsModel> FindById(Guid id);
 
-        Task<Guid> CreateNew(CreatingUserModel newUser);
+        Task<Guid> CreateNew(RegisterModel newUser);
 
         Task<bool> UpdateAsync(Guid id, User userUpdated, string oldPassword = null);
 

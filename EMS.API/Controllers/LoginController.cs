@@ -14,7 +14,7 @@ namespace exams_management_system.Controllers
         public LoginController(IUserService userService) => this.userService = userService;
 
         [HttpPost]
-        public async Task<IActionResult> FindUser([FromBody] CreatingUserModel model)
+        public async Task<IActionResult> FindUser([FromBody] RegisterModel model)
         {
             if (!ModelState.IsValid)
             {

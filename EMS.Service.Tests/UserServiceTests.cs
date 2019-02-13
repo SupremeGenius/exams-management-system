@@ -8,7 +8,7 @@ namespace EMS.API.Tests
     public class UserServiceTests
     {
         private readonly User user;
-        private readonly CreatingUserModel creatingUserModel;
+        private readonly RegisterModel creatingUserModel;
         private readonly Mock<IRepository> mockRepo;
         private readonly UserService userService;
         private readonly Guid guid;
@@ -16,7 +16,7 @@ namespace EMS.API.Tests
         public UserServiceTests()
         {
             user = new User();
-            creatingUserModel = new CreatingUserModel();
+            creatingUserModel = new RegisterModel();
             mockRepo = new Mock<IRepository>();
             userService = new UserService(mockRepo.Object);
             guid = new Guid("265c5fbe-bea2-4d1a-985e-301bafad739b");

@@ -10,7 +10,7 @@ namespace EMS.API.Tests
 {
     public class RegisterControllerTests
     {
-        private readonly CreatingUserModel newModel;
+        private readonly RegisterModel newModel;
         private readonly Mock<IUserService> mockRepo;
         private readonly Mock<IProfessorService> mockRepoProf;
         private readonly Mock<IStudentService> mockRepoStud;
@@ -19,7 +19,7 @@ namespace EMS.API.Tests
 
         public RegisterControllerTests()
         {
-            newModel = new CreatingUserModel();
+            newModel = new RegisterModel();
             mockRepo = new Mock<IUserService>();
             mockRepoProf = new Mock<IProfessorService>();
             mockRepoStud = new Mock<IStudentService>();

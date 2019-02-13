@@ -9,13 +9,13 @@ namespace EMS.API.Tests
 {
     public class LoginControllerTests
     {
-        private readonly CreatingUserModel newModel;
+        private readonly RegisterModel newModel;
         private readonly Mock<IUserService> mockRepo;
         private readonly LoginController controller;
 
         public LoginControllerTests()
         {
-            newModel = new CreatingUserModel();
+            newModel = new RegisterModel();
             mockRepo = new Mock<IUserService>();
             controller = new LoginController(mockRepo.Object);
         }
@@ -65,7 +65,7 @@ namespace EMS.API.Tests
         public async Task Given_CreateUser_When_ModelIsValid_Then_Status422UnprocessableEntity()
         {
             //Arrange
-            var user = new CreatingUserModel
+            var user = new RegisterModel
             {
                 Password = "alabalaportocala"
             };

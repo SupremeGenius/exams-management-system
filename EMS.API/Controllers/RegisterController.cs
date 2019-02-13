@@ -24,7 +24,7 @@ namespace exams_management_system.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody] CreatingUserModel model)
+        public async Task<IActionResult> CreateUser([FromBody] RegisterModel model)
         {
             var response = "";
             if (!ModelState.IsValid)

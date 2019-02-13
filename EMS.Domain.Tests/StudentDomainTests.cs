@@ -1,8 +1,4 @@
-﻿using EMS.Domain.Entities;
-using System;
-using Xunit;
-
-namespace EMS.Domain.Tests
+﻿namespace EMS.Domain.Tests
 {
     public class StudentDomainTests
     {
