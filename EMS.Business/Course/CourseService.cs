@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EMS.Domain;
+using EMS.Domain.Entities;
 
 namespace EMS.Business
 {
@@ -38,8 +39,8 @@ namespace EMS.Business
             {
                 Id = c.Id,
                 Title = c.Title,
-                CourseProfessors = c.CourseProfessors,
                 UniversityYear = c.UniversityYear,
+                Professor = c.Professor,
                 StudentYear = c.StudentYear,
                 Semester = c.Semester
             });
@@ -68,6 +69,18 @@ namespace EMS.Business
             var course = await this.repository.FindByIdAsync<Course>(id);
 
             await repository.RemoveAsync<Course>(course);
+            await repository.SaveAsync();
+            return true;
+        }
+
+        public async Task<bool> AssignStudentToCourse(Guid courseId, Guid studentId)
+        {
+            var course = await this.repository.FindByIdAsync<Course>(courseId);
+            var student = await this.repository.FindByIdAsync<Student>(studentId);
+            var studentCourse = new StudentCourse(student, course);
+
+            course.StudentCourses.Add(studentCourse);
+
             await repository.SaveAsync();
             return true;
         }

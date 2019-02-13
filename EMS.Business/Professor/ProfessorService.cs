@@ -55,7 +55,7 @@ namespace EMS.Business
                 Id = p.Id,
                 UserId = p.UserId, 
                 Title = p.Title,
-                CourseProfessors = p.CourseProfessors,
+                Course = p.Course,
                 Exams = p.Exams
 
             });

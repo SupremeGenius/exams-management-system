@@ -17,6 +17,8 @@ namespace EMS.Business
 
         Task<bool> Update(Guid id, Course updatedCourse);
 
+        Task<bool> AssignStudentToCourse(Guid courseId, Guid studentId);
+
         Task<bool> Delete(Guid id);
     }
 }

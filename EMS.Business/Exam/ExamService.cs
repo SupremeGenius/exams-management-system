@@ -33,6 +33,7 @@ namespace EMS.Business
         public Task<List<ExamDetailsModel>> GetAll()
              => this.repository.GetAll<Exam>()
                 .Include(e => e.Course)
+                .Include(e => e.StudentExams)
                 .Select(e => new ExamDetailsModel
                 {
                     Id = e.Id,
@@ -40,8 +41,7 @@ namespace EMS.Business
                     Date = e.Date,
                     CourseId = e.CourseId,
                     CourseName = e.Course.Title,
-                    ProfessorId = e.ProfessorId,
-                    Room = e.Room
+                    Room = e.Room,
                 }).ToListAsync();       
            // => AllExamDetails.ToListAsync();
 
@@ -83,7 +83,6 @@ namespace EMS.Business
               Type = e.Type,
               Date = e.Date,
               CourseId = e.CourseId,
-              ProfessorId = e.ProfessorId,
               Room = e.Room,
               CourseName = e.Course.Title
           });
