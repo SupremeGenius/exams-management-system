@@ -6,8 +6,6 @@ namespace EMS.Domain.Entities
 {
     public class Professor : Entity, IUpdatable<Professor>
     {
-        public User User { get; private set; } //this is for code-first approach
-
         public Guid UserId { get; private set; }
 
         public string Name { get; private set; }
