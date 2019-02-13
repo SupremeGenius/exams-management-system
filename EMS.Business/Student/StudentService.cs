@@ -37,6 +37,18 @@ namespace EMS.Business
                 return student.Id;
             }
 
+        public async Task<bool> CheckExam (Guid id, Guid examId)
+        {
+
+            var student = await this.repository.FindByIdAsync<Student>(id);
+            var exam = await this.repository.FindByIdAsync<Exam>(examId);
+            var studentExam = new StudentExam(student, exam);
+
+            exam.StudentExams.Add(studentExam);
+
+            await repository.SaveAsync();
+            return true;
+        }
         public async Task<bool> UpdateAsync(Guid id, Student studentUpdated)
         {
             var studentToUpdate = await this.repository.FindByIdAsync<Student>(id);

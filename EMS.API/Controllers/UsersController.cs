@@ -19,6 +19,19 @@ namespace exams_management_system.Controllers
             this.userService = userService;
         }
 
+        [HttpGet("{id:guid}", Name = "GetUserById")]
+        public async Task<IActionResult> GetUserById(Guid id)
+        {
+            var user = await this.userService.FindById(id);
+
+            if (user == null)
+            {
+                return StatusCode(StatusCodes.Status422UnprocessableEntity);
+            }
+
+            return Ok(user);
+        }
+
         [HttpPatch("{id:guid}", Name = "UpdateUser")]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserModel updateUserModel, Guid id)
         {

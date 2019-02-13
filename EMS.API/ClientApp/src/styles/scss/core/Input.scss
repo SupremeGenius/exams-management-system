@@ -51,6 +51,10 @@
   border-color: $inputBorder !important;
 }
 
+.form-input-text.read-only input:focus {
+  box-shadow: none;
+}
+
 .form-input-text.size-s input {
   height:  50px;
   padding: 15px 20px 10px 20px;
