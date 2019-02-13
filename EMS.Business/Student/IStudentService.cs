@@ -1,6 +1,7 @@
 ﻿using EMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EMS.Business
@@ -16,5 +17,7 @@ namespace EMS.Business
         Task<bool> UpdateAsync(Guid id, Student studentUpdated);
 
         Task<bool> CheckExam(Guid id, Guid examId);
+
+        IQueryable<ExamDetailsModel> FindExamsByStudentId(Guid studId);
     }
 }

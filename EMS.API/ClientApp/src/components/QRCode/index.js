@@ -17,6 +17,7 @@ class QR extends Component {
   }
   handleScan(data) {
     if (data) {
+      console.log(this.props.location.state.id)
       checkExam(this.props.location.state.id); //examId, studentId luam din storage
       this.setState({
         result: data
@@ -28,7 +29,7 @@ class QR extends Component {
   }
   render() {
     if (this.state.result !== null) {
-      return <Redirect to='/exams' />
+      return <Redirect to={{ pathname: '/exams', state: JSON.parse(this.state.result) }} />
     }
     return (
       <div>

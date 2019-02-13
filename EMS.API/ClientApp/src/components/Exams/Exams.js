@@ -15,13 +15,24 @@ class Exams extends React.Component {
     this.props.getExams();
   }
 
+  //componentDidUpdate() {
+  //  console.log(this.props.exams)
+  //  console.log(this.props.location.state)
+  //  if (this.props.location.state) {
+  //    for (let i = 0; i < this.props.exams.length; i++) {
+  //      if (this.props.exams[i].id === this.props.location.state.examId) {
+  //        //this.props.exams[i].checked = 'yes'
+  //      }
+  //    }
+  //  }
+  //}
+
   render() {
-    console.log(this.props.exams)
     if (this.props.exams) {
       return (
         <div className='exams-page'>
           {this.props.exams.map((exam, i) =>
-            <ExamPanel key={i} exam={exam} />)}
+            exam.courseName? <ExamPanel key={i} exam={exam} /> : '')}
         </div>
       )
     }
