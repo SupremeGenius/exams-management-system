@@ -22,6 +22,7 @@ export const loginUser = (userData, history) => dispatch => {
 
 // Log out user
 export const logoutUser = () => dispatch => {
+  console.log('----')
   localStorage.removeItem('jwtToken')
   dispatch({
     type: 'SET_CURRENT_USER',
