@@ -26,29 +26,41 @@ export default props => (
                 <Glyphicon glyph='book' /> Exams
               </NavItem>
             </LinkContainer>
+            <LinkContainer to={ROUTES.STATISTICS}>
+              <NavItem>
+                <Glyphicon glyph='stats' /> Statistics
+              </NavItem>
+            </LinkContainer>
             <LinkContainer to={ROUTES.ACCOUNT}>
               <NavItem>
                 <Glyphicon glyph='cog' /> Settings
-                  </NavItem>
-            </LinkContainer>
-          </Nav>
-          <Nav className='pull-right'>
-            <LinkContainer to={ROUTES.SIGN_IN}>
-              <NavItem>
-                <Glyphicon glyph='log-in' /> Sign In
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={ROUTES.SIGN_UP}>
-              <NavItem>
-                <Glyphicon glyph='new-window' /> Sign Up
+      </Nav>
+      {localStorage.getItem('jwtToken') ?
+        <Nav className='pull-right'>
+          <LinkContainer to={ROUTES.SIGN_OUT}>
+            <NavItem>
+              <Glyphicon glyph='log-out' /> Sign Out
               </NavItem>
-            </LinkContainer>
-            <LinkContainer to={ROUTES.SIGN_OUT}>
-              <NavItem>
-                <Glyphicon glyph='log-out' /> Sign Out
+          </LinkContainer>
+        </Nav> : <Nav className='pull-right'>
+          <LinkContainer to={ROUTES.SIGN_IN}>
+            <NavItem>
+              <Glyphicon glyph='log-in' /> Sign In
               </NavItem>
-            </LinkContainer>
-          </Nav>
+          </LinkContainer>
+          <LinkContainer to={ROUTES.SIGN_UP}>
+            <NavItem>
+              <Glyphicon glyph='new-window' /> Sign Up
+              </NavItem>
+          </LinkContainer>
+          <LinkContainer to={ROUTES.SIGN_OUT}>
+            <NavItem>
+              <Glyphicon glyph='log-out' /> Sign Out
+              </NavItem>
+          </LinkContainer>
+        </Nav>}
         </Nav>
     </Navbar>
 );

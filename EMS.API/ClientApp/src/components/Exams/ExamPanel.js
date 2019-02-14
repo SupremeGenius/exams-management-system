@@ -9,12 +9,13 @@ import '../../styles/css/ExamPanel.css'
 class ExamPanel extends React.Component {
 
   render() {
+    console.log(this.props.exam.checked)
     return (
-      <a className='exam-panel panel panel-sm'>
+      <a className='exam-panel ems-panel panel panel-sm'>
         <div>
           {this.props.exam.checked === 'yes' ? <Glyphicon className='contour' glyph='check' />: ''}
+          <div className="exam-panel__course-title">{this.props.exam.courseName}</div>
           <div className="exam-panel__type">{this.props.exam.type}</div>
-          <div className="exam-panel__course-title">{this.props.exam.courseName}</div> 
         </div>
 
         <div className="exam-panel__meta">

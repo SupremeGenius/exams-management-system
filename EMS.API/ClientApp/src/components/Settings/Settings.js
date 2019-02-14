@@ -29,18 +29,18 @@ class Settings extends React.Component {
       <div className='settings'>
         <p></p>
         <Paper className='settings__paper'>
-          <div className='settings__header'>
+          <div className='ems__header'>
             <div
               onClick   = {() => this.onTabClick('details')}
-              className = {`settings__header-tab ${this.state.routeName === 'details' ? 'settings__header-tab--active' : ''}`}
+              className = {`ems__header-tab ${this.state.routeName === 'details' ? 'ems__header-tab--active' : ''}`}
             >Your Details</div>
             <div
               onClick   = {() => this.onTabClick('password')}
-              className = {`settings__header-tab ${this.state.routeName === 'password' ? 'settings__header-tab--active' : ''}`}
+              className = {`ems__header-tab ${this.state.routeName === 'password' ? 'ems__header-tab--active' : ''}`}
             >Password</div>
             <div
               onClick   = {() => this.onTabClick('feedback')}
-              className = {`settings__header-tab ${this.state.routeName === 'feedback' ? 'settings__header-tab--active' : ''}`}
+              className = {`ems__header-tab ${this.state.routeName === 'feedback' ? 'ems__header-tab--active' : ''}`}
             >Feedback</div>
           </div>
 

@@ -12,19 +12,19 @@ namespace exams_management_system.Controllers
     [ApiController]
     public class StudentsController : Controller
     {
-        private readonly IStudentService StudentService;
+        private readonly IStudentService studentService;
         private readonly IGradeService gradeService;
 
         public StudentsController(IStudentService studentService, IGradeService gradeService)
         {
-            this.StudentService = studentService;
+            this.studentService = studentService;
             this.gradeService = gradeService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetStudents()
         {
-            var students = await this.StudentService.GetAll();
+            var students = await this.studentService.GetAll();
 
             if (students.Count == 0)
             {
@@ -38,6 +38,19 @@ namespace exams_management_system.Controllers
         public async Task<IActionResult> GetGradeByStudentId(Guid id)
         {
             var grade = await this.gradeService.FindByStudentId(id);
+
+            if (grade == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+            }
+
+            return Ok(grade);
+        }
+
+        [HttpGet("{id:guid}/exams", Name = "GetExamsByStudentId")]
+        public async Task<IActionResult> GetExamsByStudentId(Guid id)
+        {
+            var grade = this.studentService.FindExamsByStudentId(id);
 
             if (grade == null)
             {
@@ -63,7 +76,7 @@ namespace exams_management_system.Controllers
         [HttpPut("{id:guid}/exams/{examId:guid}", Name = "CheckExam")]
         public async Task<IActionResult> CheckExam(Guid id, Guid examId)
         {
-            var student = await this.StudentService.CheckExam(id,examId);
+            var student = await this.studentService.CheckExam(id,examId);
 
             return Ok(student);
         }
@@ -71,7 +84,7 @@ namespace exams_management_system.Controllers
         [HttpGet("{id:guid}/sendmail", Name = "SendMail")]
         public async Task<IActionResult> SendMail(Guid id)
         {
-            var studentModelDetails = await this.StudentService.FindById(id);
+            var studentModelDetails = await this.studentService.FindById(id);
 
             if (studentModelDetails == null)
             {
@@ -92,7 +105,7 @@ namespace exams_management_system.Controllers
 
             var studentModel = Mapper.Map<UpdateStudentModel, Student>(createStudentModel);
 
-            var response = await this.StudentService.UpdateAsync(id, studentModel);
+            var response = await this.studentService.UpdateAsync(id, studentModel);
             if (response)
             {
                 return Ok("User updated");
