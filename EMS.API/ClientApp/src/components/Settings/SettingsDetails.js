@@ -17,7 +17,7 @@ const INITIAL_STATE = {
   professorTitle: 'Conf. Dr.',
   error: null,
   // role: 'Professor',
-  role: 'Student',
+  role: 'student',
 };
 
 class SettingsDetails extends React.Component {
@@ -52,33 +52,33 @@ class SettingsDetails extends React.Component {
         <form onSubmit={this.onSubmit}>
           <Input
             title='Nume Complet'
-            value={this.props.user.fullName}
+            value={this.state.fullName}
             name='fullName'
             onChange={(v) => this.onChange(v, 'fullName')}
           />
 
           <Input
             title='Email'
-            value={this.props.user.email}
+            value={this.state.email}
             name='email'
-            readOnly={this.props.user.role === Variables.studentRole}
+            readOnly={this.state.role === Variables.studentRole}
           />
 
           {(() => {
-            switch (this.props.user.role) {
+            switch (this.state.role) {
               case Variables.studentRole:
                 return (
                   <React.Fragment>
                     <Input
                       title='Numar Matricol'
-                      value={this.props.user.registrationNumber}
+                      value={this.state.registrationNumber}
                       name='registrationNumber'
                       readOnly={true}
                     />
 
                     <Input
                       title='Grupa'
-                      value={this.props.user.group}
+                      value={this.state.group}
                       name='group'
                       readOnly={true}
                     />
@@ -87,7 +87,7 @@ class SettingsDetails extends React.Component {
               case Variables.professorRole:
                 return <Input
                   title='Titlu'
-                  value={this.props.user.professorTitle}
+                  value={this.state.professorTitle}
                   name='professorTitle'
                 />;
               default: return null;
