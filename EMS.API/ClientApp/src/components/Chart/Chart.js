@@ -22,12 +22,17 @@ export default class Chart extends Component {
     const margins = { top: 50, right: 20, bottom: 100, left: 60 };
     const svgDimensions = { width: 800, height: 500 };
 
-    const maxValue = Math.max(...this.props.data.map(d => d.grade));
-    
-    const sortedData = _(this.props.data).sortBy((d) => d.grade).reverse().value()
+    let maxValue = -1
+    if (this.props.gaussGradesNo) {
+      maxValue = _.max(_(this.props.gaussGradesNo).map((value, key) => value).value());
+    } else {
+      maxValue = _.max(_(this.props.gradesNo).map((value, key) => value).value());
+    }
+    maxValue += 2;
 
+    const sortedData = _(this.props.data).sortBy((d) => d.grade).reverse().value()
     const xScale = this.xScale
-      .padding(0.5)
+      .padding(0.4)
       .domain(sortedData.map(d => d.grade))
       .range([margins.left, svgDimensions.width - margins.right])
 
@@ -50,6 +55,8 @@ export default class Chart extends Component {
           maxValue            = {maxValue}
           svgDimensions       = {svgDimensions}
           currentStudentGrade = {this.getCurrentStudentGrade()}
+          gaussGradesNo       = {this.props.gaussGradesNo}
+          gradesNo            = {this.props.gradesNo}
         />
       </svg>
     )

@@ -9,7 +9,7 @@
 
   &__header {
     flex-grow: 1;
-    margin-right: 10px;
+    margin-right: 40px;
 
     &-wrapper {
       display: flex;
@@ -17,8 +17,9 @@
   }
 
   &__dropdown {
-    width: auto;
+    width:          auto;
     padding-bottom: 0;
+    min-width:      200px;
   }
 
   &__legend {

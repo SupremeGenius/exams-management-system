@@ -14,13 +14,23 @@ export default class Axis extends Component {
 
   renderAxis() {
     const axisType = `axis${this.props.orient}`
-    const axis = d3Axis[axisType]()
+    if (this.props.orient == 'Bottom') {
+      const axis = d3Axis[axisType]()
       .scale(this.props.scale)
       .tickSize(-this.props.tickSize)
       .tickPadding([12])
       .ticks([4])
 
-    d3Select(this.axisElement).call(axis)
+      d3Select(this.axisElement).call(axis)
+    } else {
+      const axis = d3Axis[axisType]()
+      .scale(this.props.scale)
+      .tickSize(-this.props.tickSize)
+      .tickPadding([12])
+      .ticks([4])
+
+      d3Select(this.axisElement).call(axis)
+    }
   }
 
   render() {

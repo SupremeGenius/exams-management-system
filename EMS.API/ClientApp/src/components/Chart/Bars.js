@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import { scaleLinear } from 'd3-scale'
-import { interpolateCubehelix } from 'd3-interpolate'
+import { interpolateCubehelixLong } from 'd3-interpolate'
 
 export default class Bars extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export default class Bars extends Component {
     this.colorScale = scaleLinear()
       .domain([0, this.props.maxValue])
       .range(["#f79494","#ceefa7"])
-      .interpolate(interpolateCubehelix)
+      .interpolate(interpolateCubehelixLong)
 
     this.getColor = (item) => {
       if (item.grade === this.props.currentStudentGrade) {
@@ -25,18 +25,25 @@ export default class Bars extends Component {
     const { scales, margins, data, svgDimensions } = this.props
     const { xScale, yScale } = scales
     const { height } = svgDimensions
-    console.log({data, props:this.props});
+
     const bars = (
-      data.map(datum =>
-        <rect
+      data.map((datum) => {
+        let yHeight;
+        if (this.props.gaussGradesNo) {
+          yHeight = yScale(this.props.gaussGradesNo[datum.grade])
+        } else {
+          yHeight = yScale(this.props.gradesNo[datum.grade])
+        }
+        return <rect
           key={datum.userId}
           x={xScale(datum.grade)}
-          y={yScale(datum.grade)}
-          height={height - margins.bottom - scales.yScale(datum.grade)}
+          y={yHeight}
+          height={height - margins.bottom - yHeight}
           width={xScale.bandwidth()}
           fill={this.getColor(datum)}
         />
-      )
+
+      })
     )
 
     return (
