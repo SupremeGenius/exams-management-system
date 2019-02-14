@@ -26,10 +26,15 @@ export default props => (
                 <Glyphicon glyph='book' /> Exams
               </NavItem>
             </LinkContainer>
+            <LinkContainer to={ROUTES.STATISTICS}>
+              <NavItem>
+                <Glyphicon glyph='stats' /> Statistics
+              </NavItem>
+            </LinkContainer>
             <LinkContainer to={ROUTES.ACCOUNT}>
               <NavItem>
                 <Glyphicon glyph='cog' /> Settings
-                  </NavItem>
+              </NavItem>
             </LinkContainer>
       </Nav>
       {localStorage.getItem('jwtToken') ?
