@@ -18,8 +18,6 @@ namespace EMS.Tests
                 cfg.CreateMap<UpdateProfessorModel, Professor>();
                 cfg.CreateMap<UpdateStudentModel, Student>(); 
                 cfg.CreateMap<UpdateGradeModel, Grade>(); 
-                cfg.CreateMap<UpdateUserModel, User>()
-                .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.NewPassword));
             });
         }
         public void Dispose()

@@ -7,7 +7,7 @@ import '../../styles/css/CourseTile.css'
 class CourseTile extends React.Component {
   render() {
     return (
-      <Link className='course-tile panel panel-sm' to={{
+      <Link className='course-tile ems-panel panel panel-sm' to={{
         pathname: `/courses/${this.props.course.id}`,
         state: this.props.course
       }}>

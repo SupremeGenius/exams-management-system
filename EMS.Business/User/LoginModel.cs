@@ -2,19 +2,16 @@
 
 namespace EMS.Business
 {
-    public class CreatingUserModel
+    public class LoginModel
     {
         [Required]
-        [MaxLength(50)]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required]
-        [MaxLength(10)]
-        public string Role { get; set; }
-
+        public bool RememberMe { get; set; }
     }
 }

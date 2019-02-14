@@ -12,7 +12,6 @@ namespace EMS.Persistence
         public EMSContext(DbContextOptions<EMSContext> options)
             : base(options) => Database.Migrate();
 
-        internal DbSet<User> Users { get; private set; }
         internal DbSet<Student> Students { get; private set; }
         internal DbSet<Professor> Professors { get; private set; }
         internal DbSet<StudentCourse> StudentCourse { get; private set; }
