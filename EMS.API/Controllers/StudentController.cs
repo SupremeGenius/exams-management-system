@@ -5,6 +5,7 @@ using System;
 using AutoMapper;
 using EMS.Domain.Entities;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace exams_management_system.Controllers
 {
@@ -28,7 +29,7 @@ namespace exams_management_system.Controllers
 
             if (students.Count == 0)
             {
-                return Ok("No students have been found!");
+                return Ok(new List<StudentDetailsModel>());
             }
 
             return Ok(students);
@@ -81,7 +82,8 @@ namespace exams_management_system.Controllers
             return Ok(student);
         }
 
-        [HttpGet("{id:guid}/sendmail", Name = "SendMail")]
+        //send mail
+        /*[HttpGet("{id:guid}/sendmail", Name = "SendMail")]
         public async Task<IActionResult> SendMail(Guid id)
         {
             var studentModelDetails = await this.studentService.FindById(id);
@@ -93,8 +95,10 @@ namespace exams_management_system.Controllers
 
             SMTPClient.StudentSendMail(studentModelDetails);
             return Ok();
-        }
-
+        }*/
+        
+        //update student
+        /*
         [HttpPut("{id:guid}", Name = "UpdateStudent")]
         public async Task<IActionResult> UpdateStudent([FromBody] UpdateStudentModel createStudentModel, Guid id)
         {
@@ -112,5 +116,7 @@ namespace exams_management_system.Controllers
             }
             return NoContent();
         }
+        */
     }
+    
 }

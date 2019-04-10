@@ -31,7 +31,7 @@ namespace EMS.API.Controllers
         {
             string json = JsonConvert.SerializeObject(model);
 
-            var result = await SendHttpRequest("http://localhost:8000/api/account/register", json);
+            var result = await SendHttpRequest("http://localhost:8080/api/account/register", json);
 
             return Ok(result);
         }
@@ -42,7 +42,7 @@ namespace EMS.API.Controllers
         {
             string json = JsonConvert.SerializeObject(model);
 
-            var result = await SendHttpRequest("http://localhost:8000/api/account/login", json);
+            var result = await SendHttpRequest("http://localhost:8080/api/account/login", json);
 
             return Ok(result);
         }
@@ -52,7 +52,7 @@ namespace EMS.API.Controllers
         {
             string json = JsonConvert.SerializeObject(model);
 
-            var result = await SendHttpRequest("http://localhost:8000/api/account/resetpassword", json);
+            var result = await SendHttpRequest("http://localhost:8080/api/account/resetpassword", json);
 
             return Ok(result);
         }
@@ -63,7 +63,7 @@ namespace EMS.API.Controllers
         {
             string json = JsonConvert.SerializeObject(model);
 
-            var result = await SendHttpRequest("http://localhost:8000/api/account/forgotpassword", json);
+            var result = await SendHttpRequest("http://localhost:8080/api/account/forgotpassword", json);
 
             return Ok(result);
         }

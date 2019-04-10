@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace EMS.Business
 {
@@ -17,5 +18,8 @@ namespace EMS.Business
 
         [Required]
         public int Semester { get; set; }
+
+        [Required]
+        public Guid ProfessorId { get; set; }
     }
 }

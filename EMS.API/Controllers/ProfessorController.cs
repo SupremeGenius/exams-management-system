@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Http;
 using System;
 using AutoMapper;
 using EMS.Domain.Entities;
+using System.Collections.Generic;
 
 namespace exams_management_system.Controllers
 {
-    [Route("api/professors")]
+    [VersionedRoute("api/professors", 1)]
     [ApiController]
     public class ProfessorController : Controller
     {
@@ -26,7 +27,7 @@ namespace exams_management_system.Controllers
 
             if (Professors.Count == 0)
             {
-                return Ok("No professors have been found!");
+                return Ok(new List<ProfessorDetailsModel>());
             }
 
             return Ok(Professors);

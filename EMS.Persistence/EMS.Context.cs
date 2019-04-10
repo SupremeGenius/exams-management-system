@@ -42,7 +42,6 @@ namespace EMS.Persistence
         public async Task RemoveAsync<TEntity>(TEntity entity)
             where TEntity : Entity => Remove<TEntity>(entity);
         
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Exam>()
