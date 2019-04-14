@@ -30,21 +30,6 @@ namespace EMS.Business
 
         public Task<ExamDetailsModel> FindById(Guid id) => AllExamDetails.SingleOrDefaultAsync(e => e.Id == id);
 
-        public Task<List<ExamDetailsModel>> GetAll()
-             => this.repository.GetAll<Exam>()
-                .Include(e => e.Course)
-                .Include(e => e.StudentExams)
-                .Select(e => new ExamDetailsModel
-                {
-                    Id = e.Id,
-                    Type = e.Type,
-                    Date = e.Date,
-                    CourseId = e.CourseId,
-                    CourseName = e.Course.Title,
-                    Room = e.Room,
-                }).ToListAsync();       
-           // => AllExamDetails.ToListAsync();
-
         public Task<ExamDetailsModel> FindByTime(DateTime date) => AllExamDetails.SingleOrDefaultAsync(e => e.Date == date);
 
         public async Task<bool> Update(Guid id, Exam updatedExam)
@@ -67,11 +52,14 @@ namespace EMS.Business
         public async Task<bool> Delete(Guid id)
         {
             var exam = await this.repository.FindByIdAsync<Exam>(id);
-            if (exam != null) {
+            if (exam != null)
+            {
                 await repository.SaveAsync();
-                await repository.RemoveAsync<Exam>(exam);
+                await repository.RemoveAsync(exam);
                 return true;
-            } else {
+            }
+            else
+            {
                 return false;
             }
         }
@@ -86,5 +74,19 @@ namespace EMS.Business
               Room = e.Room,
               CourseName = e.Course.Title
           });
+
+        public Task<List<ExamDetailsModel>> GetAll() => this.repository.GetAll<Exam>()
+          .Include(e => e.Course)
+          .Include(e => e.StudentExams)
+          .Select(e => new ExamDetailsModel
+          {
+              Id = e.Id,
+              Type = e.Type,
+              Date = e.Date,
+              CourseId = e.CourseId,
+              CourseName = e.Course.Title,
+              Room = e.Room,
+          }).ToListAsync();
+        // => AllExamDetails.ToListAsync();
     }
 }

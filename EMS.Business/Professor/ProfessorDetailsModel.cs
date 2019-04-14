@@ -12,8 +12,8 @@ namespace EMS.Business
 
         public string Title { get; set; }
 
-        public List<Exam> Exams { get; set; }
+        public List<ExamDetailsModel> Exams { get; set; }
 
-        public Course Course { get; internal set; }
+        public CourseDetailsModel Course { get; internal set; }
     }
 }

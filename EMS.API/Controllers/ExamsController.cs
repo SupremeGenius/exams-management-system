@@ -50,13 +50,13 @@ namespace exams_management_system.Controllers
                 return BadRequest(ModelState);
             }
             
-            // need to check all fields before entering a new one. 
-            // Exams with the same date, but with different rooms, are two separate exams
+            // Todo: need to check all fields before entering a new one. 
+            // Todo: Exams with the same date, but with different rooms, are two separate exams
             var exam = this.examService.FindByTime(model.Date);
             if (exam.Result == null)
             {
                 var examId = await this.examService.CreateNew(model);
-                return Ok(examId);
+                return StatusCode(StatusCodes.Status201Created, examId);
             }
 
             return StatusCode(StatusCodes.Status422UnprocessableEntity);

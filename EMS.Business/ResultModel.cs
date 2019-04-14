@@ -9,5 +9,8 @@ namespace EMS.Business
 
         [JsonProperty("token")]
         public string Token { get; private set; }
+
+        [JsonProperty("role")]
+        public string Role { get; set; }
     }
 }

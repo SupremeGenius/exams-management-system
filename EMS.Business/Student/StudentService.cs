@@ -9,35 +9,35 @@ using Newtonsoft.Json.Linq;
 
 namespace EMS.Business
 {
-        public sealed class StudentService : IStudentService
+    public sealed class StudentService : IStudentService
+    {
+        private readonly IRepository repository;
+
+        public StudentService(IRepository repository) => this.repository = repository;
+
+        public async Task<Guid> CreateNew(Guid userId, string json)
         {
-            private readonly IRepository repository;
+            JObject response = JObject.Parse(json);
+            string email = response["response"]["Email"].ToString();
+            string rNumber = response["response"]["NrMatricol"].ToString();
+            string group = response["response"]["Grupa"].ToString();
+            string fInitial = response["response"]["FatherInitial"].ToString();
+            int year = Int32.Parse(response["response"]["year"].ToString());
+            var student = Student.Create(
+                userId: userId,
+                fInitial: fInitial,
+                group: group,
+                year: year,
+                rnumber: rNumber
+                );
 
-            public StudentService(IRepository repository) => this.repository = repository;
+            await this.repository.AddNewAsync(student);
+            await this.repository.SaveAsync();
 
-            public async Task<Guid> CreateNew(Guid userId,string json)
-            {
-                JObject response = JObject.Parse(json);
-                string email = response["response"]["Email"].ToString();
-                string rNumber = response["response"]["NrMatricol"].ToString();
-                string group = response["response"]["Grupa"].ToString();
-                string fInitial = response["response"]["FatherInitial"].ToString();
-                int year = Int32.Parse(response["response"]["year"].ToString());
-                var student = Student.Create(
-                    userId: userId,
-                    fInitial: fInitial,
-                    group: group,
-                    year: year,
-                    rnumber: rNumber
-                    );
+            return student.Id;
+        }
 
-                await this.repository.AddNewAsync(student);
-                await this.repository.SaveAsync();
-
-                return student.Id;
-            }
-
-        public async Task<bool> CheckExam (Guid id, Guid examId)
+        public async Task<bool> CheckExam(Guid id, Guid examId)
         {
 
             var student = await this.repository.FindByIdAsync<Student>(id);
@@ -65,19 +65,19 @@ namespace EMS.Business
 
         public Task<List<StudentDetailsModel>> GetAll() => GetAllStudentDetails().ToListAsync();
 
-            public Task<StudentDetailsModel> FindById(Guid id) => GetAllStudentDetails().SingleOrDefaultAsync(p => p.Id == id);
+        public Task<StudentDetailsModel> FindById(Guid id) => GetAllStudentDetails().SingleOrDefaultAsync(p => p.Id == id);
 
 
-            private IQueryable<StudentDetailsModel> GetAllStudentDetails() => this.repository.GetAll<Student>()
-                    .Select(c => new StudentDetailsModel
-                    {
-                        Id = c.Id,
-                        UserId = c.UserId,
-                        FatherInitial = c.FatherInitial,
-                        Name = c.Name,
-                        Group = c.Group,
-                        RegistrationNumber = c.RegistrationNumber,
-                    });
+        private IQueryable<StudentDetailsModel> GetAllStudentDetails() => this.repository.GetAll<Student>()
+                .Select(c => new StudentDetailsModel
+                {
+                    Id = c.Id,
+                    UserId = c.UserId,
+                    FatherInitial = c.FatherInitial,
+                    Name = c.Name,
+                    Group = c.Group,
+                    RegistrationNumber = c.RegistrationNumber
+                });
 
         public IQueryable<ExamDetailsModel> FindExamsByStudentId(Guid studId) => this.repository.GetAll<Exam>()
             .Include(e => e.Course)

@@ -18,8 +18,8 @@ namespace EMS.Business
 
         public string FatherInitial { get; set; }
 
-        public List<Course> Courses { get; set; }
+        public List<CourseDetailsModel> Courses { get; set; }
 
-        public List<Exam> Exams { get; set; }
+        public List<ExamDetailsModel> Exams { get; set; }
     }
 }

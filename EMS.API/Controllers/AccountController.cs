@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using EMS.Business;
 using exams_management_system;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -33,7 +34,7 @@ namespace EMS.API.Controllers
 
             var result = await SendHttpRequest("http://localhost:8080/api/account/register", json);
 
-            return Ok(result);
+            return StatusCode(StatusCodes.Status201Created, result);
         }
 
         [HttpPost]

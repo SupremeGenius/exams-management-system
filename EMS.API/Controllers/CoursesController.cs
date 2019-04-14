@@ -55,7 +55,7 @@ namespace exams_management_system.Controllers
             }
 
             var courseId = await this.courseService.CreateNew(model);
-            return Ok(courseId);
+            return StatusCode(StatusCodes.Status201Created, courseId);
 
         }
 
@@ -77,9 +77,9 @@ namespace exams_management_system.Controllers
             var response = await this.courseService.Update(id, courseModel);
             if (response)
             {
-                return Ok("Course updated");
+                return StatusCode(StatusCodes.Status204NoContent);
             }
-            return StatusCode(StatusCodes.Status204NoContent);
+            return Ok();
         }
 
         [HttpGet("{courseId:guid}/students/{studentId:guid}", Name = "AssignStudentToCourse")]
@@ -101,7 +101,7 @@ namespace exams_management_system.Controllers
             var response = await this.courseService.Delete(id);
             if (response)
             {
-                return Ok("Course deleted");
+                return StatusCode(StatusCodes.Status204NoContent);
             }
             return StatusCode(StatusCodes.Status409Conflict);
         }

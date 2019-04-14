@@ -40,23 +40,21 @@ namespace EMS.Business
                 Id = c.Id,
                 Title = c.Title,
                 UniversityYear = c.UniversityYear,
-                Professor = c.Professor,
+                //Professor = c.Professor,
+                //Exams = c.Exams,
                 StudentYear = c.StudentYear,
-                Semester = c.Semester
+                Semester = c.Semester,              
             });
 
         public async Task<bool> Update(Guid id, Course updatedCourse)
         {
             var courseToUpdate = await this.repository.FindByIdAsync<Course>(id);
-            var courseCopy = courseToUpdate;
 
             if (await repository.TryUpdateModelAsync<Course>(
                     courseToUpdate,
                     updatedCourse
                     ))
             {
-                if (courseCopy == courseToUpdate)
-                    return false; // noContent changed
                 await repository.SaveAsync();
                 return true;
             }
@@ -68,7 +66,7 @@ namespace EMS.Business
         {
             var course = await this.repository.FindByIdAsync<Course>(id);
 
-            await repository.RemoveAsync<Course>(course);
+            await repository.RemoveAsync(course);
             await repository.SaveAsync();
             return true;
         }

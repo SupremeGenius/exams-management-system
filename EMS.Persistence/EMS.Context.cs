@@ -40,7 +40,7 @@ namespace EMS.Persistence
         public async Task SaveAsync() => await SaveChangesAsync();
 
         public async Task RemoveAsync<TEntity>(TEntity entity)
-            where TEntity : Entity => Remove<TEntity>(entity);
+            where TEntity : Entity => Remove(entity);
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
