@@ -7,7 +7,7 @@ namespace EMS.Business
     {
 
         [Required]
-        public float Nota { get; set; }
+        public float Value { get; set; }
 
         public Guid ExamId { get; set; }
 

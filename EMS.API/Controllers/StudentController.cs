@@ -64,9 +64,9 @@ namespace exams_management_system.Controllers
         [HttpGet("{id:guid}", Name = "GetStudentById")]
         public async Task<IActionResult> GetStudentById(Guid id)
         {
-            var student = await this.gradeService.FindByStudentId(id);
+            var student = await this.studentService.FindById(id);
 
-            if (student.Count == 0)
+            if (student == null)
             {
                 return NotFound();
             }

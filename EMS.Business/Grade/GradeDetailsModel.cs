@@ -4,7 +4,7 @@ namespace EMS.Business
 {
     public class GradeDetailsModel
     {
-        public float Grade { get; set; }
+        public float Value { get; set; }
 
         public string ExamName { get; set; }
 

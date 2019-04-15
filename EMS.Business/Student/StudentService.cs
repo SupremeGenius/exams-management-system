@@ -15,6 +15,16 @@ namespace EMS.Business
 
         public StudentService(IRepository repository) => this.repository = repository;
 
+        public async Task<Guid> CreateNew(Guid userId)
+        {
+            var student = Student.Create(userId);
+
+            await this.repository.AddNewAsync(student);
+            await this.repository.SaveAsync();
+
+            return student.Id;
+        }
+
         public async Task<Guid> CreateNew(Guid userId, string json)
         {
             JObject response = JObject.Parse(json);
@@ -91,5 +101,6 @@ namespace EMS.Business
                 Room = e.Room,
                 Checked = e.StudentExams.SingleOrDefault(eg => eg.StudentId == studId).Checked
             });
+
     }
 }

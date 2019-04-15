@@ -62,7 +62,7 @@ namespace exams_management_system
                 Text = "Buna ziua, " + gradeDetailsModel.StudentName +
                         @"
                         Va anunt ca lucrarea dumneavoastra la materia " + gradeDetailsModel.ExamName +
-                        " a fost corectata si nota este " + gradeDetailsModel.Grade +
+                        " a fost corectata si nota este " + gradeDetailsModel.Value +
                         @".
                         Intrati in aplicatie si alegeti daca sunteti de acord cu aceasta nota sau nu. 
                         Mai jos am atasat baremul." +

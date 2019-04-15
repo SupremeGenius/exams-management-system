@@ -16,7 +16,7 @@ namespace EMS.Business
         public async Task<Guid> CreateNew(CreatingGradeModel newGrade)
         {
             var grade = Grade.Create(
-                value: newGrade.Nota,
+                value: newGrade.Value,
                 examId: newGrade.ExamId,
                 studentId: newGrade.StudentId);
 
@@ -41,7 +41,7 @@ namespace EMS.Business
                 Id = eg.Id,
                 ExamName = eg.Exam.Course.Title,
                 StudentName = eg.Student.Name,
-                Grade = eg.Value
+                Value = eg.Value
             }).ToListAsync();       
 
         public Task<List<GradeDetailsModel>> FindByStudentId(Guid studentId)
@@ -55,7 +55,7 @@ namespace EMS.Business
                     Id = eg.Id,
                     ExamName = eg.Exam.Course.Title,
                     StudentName = eg.Student.Name,
-                    Grade = eg.Value
+                    Value = eg.Value
                 }).ToListAsync();
 
 
@@ -80,8 +80,8 @@ namespace EMS.Business
             var grade = await this.repository.FindByIdAsync<Grade>(id);
             if (grade != null)
             {
+                await repository.RemoveAsync(grade);
                 await repository.SaveAsync();
-                await repository.RemoveAsync<Grade>(grade);
                 return true;
             }
             else
@@ -94,7 +94,7 @@ namespace EMS.Business
           .Select(g => new GradeDetailsModel
           {
               Id = g.Id,
-              Grade = g.Value,
+              Value = g.Value,
               ExamName = g.Exam.Course.Title,
               StudentName = g.Student.Name
           });

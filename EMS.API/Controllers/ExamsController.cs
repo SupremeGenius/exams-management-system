@@ -93,7 +93,7 @@ namespace exams_management_system.Controllers
             var response = await this.examService.Update(id, examModel);
             if (response)
             {
-                return Ok("Exam updated");
+                return StatusCode(StatusCodes.Status204NoContent);
             }
 
             return NoContent();

@@ -19,7 +19,6 @@ namespace EMS.Business
                 type: newExam.Type,
                 date: newExam.Date,
                 courseId: newExam.CourseId,
-                professorId: newExam.ProfessorId,
                 room: newExam.Room);
 
             await this.repository.AddNewAsync(exam);

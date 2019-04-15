@@ -40,7 +40,7 @@ namespace exams_management_system.Controllers
 
             if (professor == null)
             {
-                return StatusCode(StatusCodes.Status422UnprocessableEntity);
+                return NotFound();
             }
 
             return Ok(professor);
@@ -59,7 +59,7 @@ namespace exams_management_system.Controllers
             var response = await this.professorService.UpdateAsync(id, professorModel);
             if (response)
             {
-                return Ok("User updated");
+                return StatusCode(StatusCodes.Status204NoContent);
             }
             return NoContent();
         }

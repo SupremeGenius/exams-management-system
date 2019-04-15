@@ -10,9 +10,7 @@ namespace EMS.Business
 
         public DateTime Date { get; set; }
 
-        public Guid CourseId { get; set; }
-        
-        public Guid ProfessorId { get; set; }
+        public Guid CourseId { get; set; }     
 
         public string Room { get; set; }
     }

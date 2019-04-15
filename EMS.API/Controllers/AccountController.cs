@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using EMS.Business;
@@ -15,6 +16,14 @@ namespace EMS.API.Controllers
     public class AccountController : ControllerBase
     {
         private static readonly HttpClient client = new HttpClient();
+        private readonly IStudentService studentService;
+        private readonly IProfessorService professorService;
+
+        public AccountController(IStudentService studentService, IProfessorService professorService)
+        {
+            this.studentService = studentService;
+            this.professorService = professorService;
+        }
 
         [HttpGet]
         public async Task<ServiceContract> SendHttpRequest(string link, string json)
@@ -34,7 +43,24 @@ namespace EMS.API.Controllers
 
             var result = await SendHttpRequest("http://localhost:8080/api/account/register", json);
 
-            return StatusCode(StatusCodes.Status201Created, result);
+            if (result.StatusCode == StatusCodes.Status201Created)
+            {
+                if (result.ResultModel.Role == "Student")
+                {
+                    await studentService.CreateNew(Guid.Parse(result.ResultModel.Id));
+                }
+                else
+                {
+                    await professorService.CreateNew(Guid.Parse(result.ResultModel.Id));
+                }
+                return StatusCode(StatusCodes.Status201Created, result);
+            }
+            else if (result.StatusCode == StatusCodes.Status422UnprocessableEntity)
+            {
+                return StatusCode(StatusCodes.Status422UnprocessableEntity, result);
+            }
+
+            return BadRequest();
         }
 
         [HttpPost]
@@ -45,7 +71,16 @@ namespace EMS.API.Controllers
 
             var result = await SendHttpRequest("http://localhost:8080/api/account/login", json);
 
-            return Ok(result);
+            if (result.StatusCode == StatusCodes.Status200OK)
+            {
+                return StatusCode(StatusCodes.Status201Created, result);
+            }
+            else if (result.StatusCode == StatusCodes.Status422UnprocessableEntity)
+            {
+                return StatusCode(StatusCodes.Status422UnprocessableEntity, result);
+            }
+
+            return BadRequest();
         }
 
         [HttpPost]
