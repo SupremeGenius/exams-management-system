@@ -3,6 +3,7 @@ using EMS.Business;
 using EMS.Domain;
 using EMS.Domain.Entities;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 
 namespace Booking.Business
 {
@@ -28,6 +29,9 @@ namespace Booking.Business
                 cfg.CreateMap<UpdateProfessorModel, Professor>();
                 cfg.CreateMap<UpdateStudentModel, Student>();
                 cfg.CreateMap<UpdateGradeModel, Grade>();
+                cfg.CreateMap<Professor, ProfessorDetailsModel>();
+                cfg.CreateMap<List<Exam>, List<ExamDetailsModel>>();
+                cfg.CreateMap<Course, CourseDetailsModel>();
             });
             return services;
         }

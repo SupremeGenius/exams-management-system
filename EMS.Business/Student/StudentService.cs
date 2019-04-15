@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using EMS.Domain.Entities;
 using EMS.Domain;
 using Newtonsoft.Json.Linq;
+using AutoMapper;
 
 namespace EMS.Business
 {
@@ -86,7 +87,9 @@ namespace EMS.Business
                     FatherInitial = c.FatherInitial,
                     Name = c.Name,
                     Group = c.Group,
-                    RegistrationNumber = c.RegistrationNumber
+                    RegistrationNumber = c.RegistrationNumber,
+                    Courses = Mapper.Map<List<Course>, List<CourseDetailsModel>>(c.StudentCourses.Select(sc => sc.Course).ToList()),
+                    Exams = Mapper.Map<List<Exam>, List<ExamDetailsModel>>(c.StudentExams.Select(sc => sc.Exam).ToList()),
                 });
 
         public IQueryable<ExamDetailsModel> FindExamsByStudentId(Guid studId) => this.repository.GetAll<Exam>()

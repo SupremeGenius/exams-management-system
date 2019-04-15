@@ -77,25 +77,32 @@ namespace exams_management_system.Controllers
         [HttpPut("{id:guid}/exams/{examId:guid}", Name = "CheckExam")]
         public async Task<IActionResult> CheckExam(Guid id, Guid examId)
         {
-            var student = await this.studentService.CheckExam(id,examId);
+            var result = await this.studentService.CheckExam(id,examId);
 
-            return Ok(student);
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return UnprocessableEntity();
+            }
         }
 
         //send mail
-        /*[HttpGet("{id:guid}/sendmail", Name = "SendMail")]
+        [HttpGet("{id:guid}/sendmail", Name = "SendMail")]
         public async Task<IActionResult> SendMail(Guid id)
         {
             var studentModelDetails = await this.studentService.FindById(id);
 
             if (studentModelDetails == null)
             {
-                return StatusCode(422);
+                return NotFound();
             }
 
             SMTPClient.StudentSendMail(studentModelDetails);
             return Ok();
-        }*/
+        }
         
         //update student
         /*

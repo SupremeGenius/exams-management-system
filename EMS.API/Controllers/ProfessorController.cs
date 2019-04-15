@@ -59,7 +59,7 @@ namespace exams_management_system.Controllers
             var response = await this.professorService.UpdateAsync(id, professorModel);
             if (response)
             {
-                return StatusCode(StatusCodes.Status204NoContent);
+                return NoContent();
             }
             return NoContent();
         }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EMS.Domain;
 using EMS.Domain.Entities;
+using AutoMapper;
 
 namespace EMS.Business
 {
@@ -43,8 +44,8 @@ namespace EMS.Business
                 Id = c.Id,
                 Title = c.Title,
                 UniversityYear = c.UniversityYear,
-                //Professor = c.Professor,
-                //Exams = c.Exams,
+                Professor = Mapper.Map<Professor, ProfessorDetailsModel>(c.Professor),
+                Exams = Mapper.Map<List<Exam>, List<ExamDetailsModel>>(c.Exams),
                 StudentYear = c.StudentYear,
                 Semester = c.Semester,              
             });

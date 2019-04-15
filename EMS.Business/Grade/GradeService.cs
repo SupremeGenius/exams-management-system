@@ -40,7 +40,7 @@ namespace EMS.Business
             {
                 Id = eg.Id,
                 ExamName = eg.Exam.Course.Title,
-                StudentName = eg.Student.Name,
+                StudentId = eg.Student.Id,
                 Value = eg.Value
             }).ToListAsync();       
 
@@ -54,7 +54,7 @@ namespace EMS.Business
                 {
                     Id = eg.Id,
                     ExamName = eg.Exam.Course.Title,
-                    StudentName = eg.Student.Name,
+                    StudentId = eg.Student.Id,
                     Value = eg.Value
                 }).ToListAsync();
 
@@ -96,7 +96,7 @@ namespace EMS.Business
               Id = g.Id,
               Value = g.Value,
               ExamName = g.Exam.Course.Title,
-              StudentName = g.Student.Name
+              StudentId = g.Student.Id
           });
 
 

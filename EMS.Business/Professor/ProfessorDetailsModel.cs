@@ -11,9 +11,5 @@ namespace EMS.Business
         public Guid UserId { get; set; }
 
         public string Title { get; set; }
-
-        public List<ExamDetailsModel> Exams { get; set; }
-
-        public CourseDetailsModel Course { get; internal set; }
     }
 }
