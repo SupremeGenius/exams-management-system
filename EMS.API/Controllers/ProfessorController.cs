@@ -23,7 +23,7 @@ namespace exams_management_system.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProfessors()
         {
-            var Professors = await this.professorService.GetAll();
+            var Professors = await professorService.GetAll();
 
             if (Professors.Count == 0)
             {
@@ -36,7 +36,7 @@ namespace exams_management_system.Controllers
         [HttpGet("{id:guid}", Name = "GetProfessorById")]
         public async Task<IActionResult> GetProfessorById(Guid id)
         {
-            var professor = await this.professorService.FindById(id);
+            var professor = await professorService.FindById(id);
 
             if (professor == null)
             {
@@ -56,11 +56,8 @@ namespace exams_management_system.Controllers
 
             var professorModel = Mapper.Map<UpdateProfessorModel, Professor>(createProfessorModel);
 
-            var response = await this.professorService.UpdateAsync(id, professorModel);
-            if (response)
-            {
-                return NoContent();
-            }
+            await professorService.UpdateAsync(id, professorModel);
+
             return NoContent();
         }
     }

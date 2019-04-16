@@ -15,10 +15,10 @@ namespace EMS.Business
 
         Task<Guid> CreateNew(CreatingCourseModel newCourse);
 
-        Task<bool> Update(Guid id, Course updatedCourse);
+        Task Update(Guid id, Course updatedCourse);
+
+        Task Delete(Guid id);
 
         Task<bool> AssignStudentToCourse(Guid courseId, Guid studentId);
-
-        Task<bool> Delete(Guid id);
     }
 }
