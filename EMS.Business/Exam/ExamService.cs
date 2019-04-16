@@ -36,7 +36,7 @@ namespace EMS.Business
         {
             var examToUpdate = await this.repository.FindByIdAsync<Exam>(id);
 
-            if (await repository.TryUpdateModelAsync<Exam>(
+            if (await repository.TryUpdateModelAsync(
                     examToUpdate,
                     updatedExam
                     ))
@@ -69,7 +69,6 @@ namespace EMS.Business
               Id = e.Id,
               Type = e.Type,
               Date = e.Date,
-              CourseId = e.CourseId,
               Room = e.Room,
               CourseName = e.Course.Title
           });
@@ -82,7 +81,6 @@ namespace EMS.Business
               Id = e.Id,
               Type = e.Type,
               Date = e.Date,
-              CourseId = e.CourseId,
               CourseName = e.Course.Title,
               Room = e.Room,
           }).ToListAsync();

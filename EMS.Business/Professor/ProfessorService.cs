@@ -30,7 +30,7 @@ namespace EMS.Business
         {
             var professorToUpdate = await this.repository.FindByIdAsync<Professor>(id);
 
-            if (await repository.TryUpdateModelAsync<Professor>(
+            if (await repository.TryUpdateModelAsync(
                 professorToUpdate,
                 professorUpdated
             ))
@@ -55,9 +55,7 @@ namespace EMS.Business
                 Id = p.Id,
                 UserId = p.UserId, 
                 Title = p.Title,
-                //Course = p.Course,
-                //Exams = p.Exams
-
+                Name = p.Name
             });
     }
 }

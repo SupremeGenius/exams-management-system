@@ -28,7 +28,7 @@ namespace EMS.Business
 
             await this.repository.AddNewAsync(course);
             await this.repository.SaveAsync();
-            
+
             return course.Id;
         }
 
@@ -37,7 +37,7 @@ namespace EMS.Business
         public Task<CourseDetailsModel> FindByTitle(string title) => GetAllCourseDetails().SingleOrDefaultAsync(s => s.Title == title);
 
         public Task<CourseDetailsModel> FindById(Guid id) => GetAllCourseDetails().SingleOrDefaultAsync(s => s.Id == id);
-        
+
         private IQueryable<CourseDetailsModel> GetAllCourseDetails() => this.repository.GetAll<Course>()
             .Select(c => new CourseDetailsModel
             {
@@ -47,23 +47,16 @@ namespace EMS.Business
                 Professor = Mapper.Map<Professor, ProfessorDetailsModel>(c.Professor),
                 Exams = Mapper.Map<List<Exam>, List<ExamDetailsModel>>(c.Exams),
                 StudentYear = c.StudentYear,
-                Semester = c.Semester,              
+                Semester = c.Semester,
             });
 
         public async Task<bool> Update(Guid id, Course updatedCourse)
         {
             var courseToUpdate = await this.repository.FindByIdAsync<Course>(id);
 
-            if (await repository.TryUpdateModelAsync<Course>(
-                    courseToUpdate,
-                    updatedCourse
-                    ))
-            {
-                await repository.SaveAsync();
-                return true;
-            }
-
-            return false;
+            repository.TryUpdateModelAsync(courseToUpdate, updatedCourse);
+            await repository.SaveAsync();
+            return true;
         }
 
         public async Task<bool> Delete(Guid id)

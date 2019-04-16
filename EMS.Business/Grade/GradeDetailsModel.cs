@@ -8,7 +8,7 @@ namespace EMS.Business
 
         public string ExamName { get; set; }
 
-        public Guid StudentId { get; set; }
+        public string StudentName { get; set; }
 
         public Guid Id { get; internal set; }
     }

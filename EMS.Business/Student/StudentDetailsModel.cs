@@ -6,7 +6,7 @@ namespace EMS.Business
 {
     public class StudentDetailsModel
     {
-        public Guid Id { get; set; } //this is for code-first approach
+        public Guid Id { get; set; }
 
         public Guid UserId { get; set; }
 

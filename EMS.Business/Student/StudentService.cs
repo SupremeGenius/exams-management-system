@@ -64,7 +64,7 @@ namespace EMS.Business
         {
             var studentToUpdate = await this.repository.FindByIdAsync<Student>(id);
 
-            if (await repository.TryUpdateModelAsync<Student>(
+            if (await repository.TryUpdateModelAsync(
                     studentToUpdate, studentUpdated))
             {
                 await repository.SaveAsync();

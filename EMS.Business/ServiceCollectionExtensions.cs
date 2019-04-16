@@ -31,6 +31,8 @@ namespace Booking.Business
                 cfg.CreateMap<UpdateGradeModel, Grade>();
                 cfg.CreateMap<Professor, ProfessorDetailsModel>();
                 cfg.CreateMap<List<Exam>, List<ExamDetailsModel>>();
+                cfg.CreateMap<Exam, ExamDetailsModel>();
+                cfg.CreateMap<List<Course>, List<CourseDetailsModel>>();
                 cfg.CreateMap<Course, CourseDetailsModel>();
             });
             return services;

@@ -12,8 +12,6 @@ namespace EMS.Business
 
         public DateTime Date { get; set; }
       
-        public Guid CourseId { get; set; }
-
         public string Room { get; set; }
 
         public Guid Id { get; internal set; }

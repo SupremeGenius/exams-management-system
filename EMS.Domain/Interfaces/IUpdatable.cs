@@ -1,4 +1,6 @@
-﻿namespace EMS.Domain
+﻿using System.Threading.Tasks;
+
+namespace EMS.Domain
 {
     public interface IUpdatable<TEntity>
     {

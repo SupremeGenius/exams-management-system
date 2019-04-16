@@ -33,9 +33,15 @@ namespace exams_management_system.Controllers
             }
 
             var gradeId = await this.gradeService.CreateNew(model);
+
+            if (gradeId == default(Guid))
+            {
+                return StatusCode(StatusCodes.Status422UnprocessableEntity);
+            }
+
             var gradeModel = await this.gradeService.FindById(gradeId);
             SMTPClient.ProfessorSendMail(gradeModel);
-            return Ok(gradeId);
+            return StatusCode(StatusCodes.Status201Created);
 
         }
 
@@ -89,10 +95,10 @@ namespace exams_management_system.Controllers
 
             if (await this.gradeService.Delete(id))
             {
-                return Ok("Grade deleted");
+                return NoContent();
             }
 
-            return StatusCode(StatusCodes.Status409Conflict, "Grade could not be deleted");
+            return StatusCode(StatusCodes.Status409Conflict);
         }
     }
 }

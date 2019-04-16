@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EMS.Domain;
+using EMS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EMS.Business
@@ -15,6 +16,15 @@ namespace EMS.Business
 
         public async Task<Guid> CreateNew(CreatingGradeModel newGrade)
         {
+            var student = await this.repository.FindByIdAsync<Student>(newGrade.StudentId);
+            var exam = await this.repository.FindByIdAsync<Exam>(newGrade.ExamId);
+            var tmpGrade = this.repository.GetAll<Grade>().FirstOrDefault();
+
+            if (tmpGrade != null)
+            {
+                return default(Guid);
+            }
+
             var grade = Grade.Create(
                 value: newGrade.Value,
                 examId: newGrade.ExamId,
@@ -40,7 +50,7 @@ namespace EMS.Business
             {
                 Id = eg.Id,
                 ExamName = eg.Exam.Course.Title,
-                StudentId = eg.Student.Id,
+                StudentName = eg.Student.Name,
                 Value = eg.Value
             }).ToListAsync();       
 
@@ -54,7 +64,7 @@ namespace EMS.Business
                 {
                     Id = eg.Id,
                     ExamName = eg.Exam.Course.Title,
-                    StudentId = eg.Student.Id,
+                    StudentName = eg.Student.Name,
                     Value = eg.Value
                 }).ToListAsync();
 
@@ -63,7 +73,7 @@ namespace EMS.Business
         {
             var gradeToUpdate = await this.repository.FindByIdAsync<Grade>(id);
 
-            if (await repository.TryUpdateModelAsync<Grade>(
+            if (await repository.TryUpdateModelAsync(
                     gradeToUpdate,
                     updatedGrade
                     ))
@@ -96,7 +106,7 @@ namespace EMS.Business
               Id = g.Id,
               Value = g.Value,
               ExamName = g.Exam.Course.Title,
-              StudentId = g.Student.Id
+              StudentName = g.Student.Name
           });
 
 
