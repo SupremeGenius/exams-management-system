@@ -6,7 +6,7 @@ namespace EMS.Business
 {
     public class StudentDetailsModel
     {
-        public Guid Id { get; set; } //this is for code-first approach
+        public Guid Id { get; set; }
 
         public Guid UserId { get; set; }
 
@@ -18,8 +18,8 @@ namespace EMS.Business
 
         public string FatherInitial { get; set; }
 
-        public List<Course> Courses { get; set; }
+        public List<CourseDetailsModel> Courses { get; set; }
 
-        public List<Exam> Exams { get; set; }
+        public List<ExamDetailsModel> Exams { get; set; }
     }
 }

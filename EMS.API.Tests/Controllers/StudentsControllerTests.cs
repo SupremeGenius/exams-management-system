@@ -120,7 +120,7 @@ namespace EMS.API.Tests
             Assert.Equal(422, result.StatusCode);
         }
 
-        [Fact]
+        /*[Fact]
         public async Task Given_UpdateStudent_When_ModelIsValid_Then_OkStatusCode()
         {
             // Arrange
@@ -132,9 +132,9 @@ namespace EMS.API.Tests
 
             //Arrange
             Assert.IsType<OkObjectResult>(result);
-        }
+        }*/
 
-        [Fact]
+        /*[Fact]
         public async Task Given_UpdateStudent_When_ModelIsValid_Then_NoContentStatusCode()
         {
             // Arrange
@@ -145,9 +145,9 @@ namespace EMS.API.Tests
 
             //Arrange
             Assert.IsType<NoContentResult>(result);
-        }
+        }*/
 
-        [Fact]
+        /*[Fact]
         public async Task Given_UpdateStudent_When_ModelIsInValid_Then_BadModel()
         {
             // Arrange
@@ -160,7 +160,7 @@ namespace EMS.API.Tests
             //Assert
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
             Assert.IsType<SerializableError>(badRequestResult.Value);
-        }
+        }*/
 
     }
 }

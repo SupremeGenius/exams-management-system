@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EMS.Persistence.Migrations
 {
     [DbContext(typeof(EMSContext))]
-    [Migration("20190116000700_GradeIsConfirmed")]
-    partial class GradeIsConfirmed
+    [Migration("20190414210625_NewBeginning")]
+    partial class NewBeginning
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
+                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -25,6 +25,8 @@ namespace EMS.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("ProfessorId");
 
                     b.Property<int>("Semester");
 
@@ -36,20 +38,10 @@ namespace EMS.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProfessorId")
+                        .IsUnique();
+
                     b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.CourseProfessor", b =>
-                {
-                    b.Property<Guid>("CourseId");
-
-                    b.Property<Guid>("ProfessorId");
-
-                    b.HasKey("CourseId", "ProfessorId");
-
-                    b.HasIndex("ProfessorId");
-
-                    b.ToTable("CourseProfessor");
                 });
 
             modelBuilder.Entity("EMS.Domain.Entities.Professor", b =>
@@ -64,8 +56,6 @@ namespace EMS.Persistence.Migrations
                     b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Professors");
                 });
@@ -85,9 +75,9 @@ namespace EMS.Persistence.Migrations
 
                     b.Property<Guid>("UserId");
 
-                    b.HasKey("Id");
+                    b.Property<int>("Year");
 
-                    b.HasIndex("UserId");
+                    b.HasKey("Id");
 
                     b.ToTable("Students");
                 });
@@ -111,6 +101,8 @@ namespace EMS.Persistence.Migrations
 
                     b.Property<Guid>("ExamId");
 
+                    b.Property<string>("Checked");
+
                     b.HasKey("StudentId", "ExamId");
 
                     b.HasIndex("ExamId");
@@ -127,8 +119,6 @@ namespace EMS.Persistence.Migrations
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<Guid>("ProfessorId");
-
                     b.Property<string>("Room");
 
                     b.Property<string>("Type");
@@ -136,8 +126,6 @@ namespace EMS.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
-
-                    b.HasIndex("ProfessorId");
 
                     b.ToTable("Exams");
                 });
@@ -164,48 +152,11 @@ namespace EMS.Persistence.Migrations
                     b.ToTable("Grades");
                 });
 
-            modelBuilder.Entity("EMS.Domain.User", b =>
+            modelBuilder.Entity("EMS.Domain.Course", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("Password");
-
-                    b.Property<string>("Role");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.CourseProfessor", b =>
-                {
-                    b.HasOne("EMS.Domain.Course", "Course")
-                        .WithMany("CourseProfessors")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("EMS.Domain.Entities.Professor", "Professor")
-                        .WithMany("CourseProfessors")
-                        .HasForeignKey("ProfessorId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.Professor", b =>
-                {
-                    b.HasOne("EMS.Domain.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.Student", b =>
-                {
-                    b.HasOne("EMS.Domain.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne("Course")
+                        .HasForeignKey("EMS.Domain.Course", "ProfessorId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -240,11 +191,6 @@ namespace EMS.Persistence.Migrations
                     b.HasOne("EMS.Domain.Course", "Course")
                         .WithMany("Exams")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("EMS.Domain.Entities.Professor", "Professor")
-                        .WithMany("Exams")
-                        .HasForeignKey("ProfessorId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

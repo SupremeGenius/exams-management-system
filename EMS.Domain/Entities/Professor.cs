@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace EMS.Domain.Entities
@@ -13,8 +14,6 @@ namespace EMS.Domain.Entities
         public string Title { get; private set; }
 
         public Course Course { get; private set; }
-
-        public List<Exam> Exams { get; private set; }
 
         public static Professor Create(Guid userId) => new Professor
         {

@@ -26,11 +26,12 @@ namespace EMS.Domain
             StudentExams = new List<StudentExam>();
         }
 
-        public static Exam Create(string type, DateTime date, Guid courseId, Guid professorId, string room) => new Exam
+        public static Exam Create(string type, DateTime date, Guid courseId, string room) => new Exam
         {
-             Type      = type,
-             Date      = date,
-             Room = room,
+            Type = type,
+            Date = date,
+            Room = room,
+            CourseId = courseId
         };
 
         public void Update(Exam updatedEntity)
@@ -40,5 +41,5 @@ namespace EMS.Domain
             CourseId = updatedEntity.CourseId == null ? CourseId : updatedEntity.CourseId;
             Room = updatedEntity.Room == null ? Room : updatedEntity.Room;
         }
-  }
+    }
 }

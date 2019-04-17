@@ -5,6 +5,7 @@ using System;
 using AutoMapper;
 using EMS.Domain.Entities;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace exams_management_system.Controllers
 {
@@ -24,11 +25,11 @@ namespace exams_management_system.Controllers
         [HttpGet]
         public async Task<IActionResult> GetStudents()
         {
-            var students = await this.studentService.GetAll();
+            var students = await studentService.GetAll();
 
             if (students.Count == 0)
             {
-                return Ok("No students have been found!");
+                return Ok(new List<StudentDetailsModel>());
             }
 
             return Ok(students);
@@ -37,7 +38,7 @@ namespace exams_management_system.Controllers
         [HttpGet("{id:guid}/grades", Name = "GetGradeByStudentId")]
         public async Task<IActionResult> GetGradeByStudentId(Guid id)
         {
-            var grade = await this.gradeService.FindByStudentId(id);
+            var grade = await gradeService.FindByStudentId(id);
 
             if (grade == null)
             {
@@ -50,7 +51,7 @@ namespace exams_management_system.Controllers
         [HttpGet("{id:guid}/exams", Name = "GetExamsByStudentId")]
         public async Task<IActionResult> GetExamsByStudentId(Guid id)
         {
-            var grade = this.studentService.FindExamsByStudentId(id);
+            var grade = studentService.FindExamsByStudentId(id);
 
             if (grade == null)
             {
@@ -63,9 +64,9 @@ namespace exams_management_system.Controllers
         [HttpGet("{id:guid}", Name = "GetStudentById")]
         public async Task<IActionResult> GetStudentById(Guid id)
         {
-            var student = await this.gradeService.FindByStudentId(id);
+            var student = await studentService.FindById(id);
 
-            if (student.Count == 0)
+            if (student == null)
             {
                 return NotFound();
             }
@@ -76,25 +77,35 @@ namespace exams_management_system.Controllers
         [HttpPut("{id:guid}/exams/{examId:guid}", Name = "CheckExam")]
         public async Task<IActionResult> CheckExam(Guid id, Guid examId)
         {
-            var student = await this.studentService.CheckExam(id,examId);
+            var result = await studentService.CheckExam(id,examId);
 
-            return Ok(student);
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return UnprocessableEntity();
+            }
         }
 
+        //send mail
         [HttpGet("{id:guid}/sendmail", Name = "SendMail")]
         public async Task<IActionResult> SendMail(Guid id)
         {
-            var studentModelDetails = await this.studentService.FindById(id);
+            var studentModelDetails = await studentService.FindById(id);
 
             if (studentModelDetails == null)
             {
-                return StatusCode(422);
+                return NotFound();
             }
 
             SMTPClient.StudentSendMail(studentModelDetails);
             return Ok();
         }
-
+        
+        //update student
+        /*
         [HttpPut("{id:guid}", Name = "UpdateStudent")]
         public async Task<IActionResult> UpdateStudent([FromBody] UpdateStudentModel createStudentModel, Guid id)
         {
@@ -112,5 +123,7 @@ namespace exams_management_system.Controllers
             }
             return NoContent();
         }
+        */
     }
+    
 }

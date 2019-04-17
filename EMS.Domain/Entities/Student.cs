@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace EMS.Domain.Entities
@@ -21,6 +22,11 @@ namespace EMS.Domain.Entities
         public List<StudentCourse> StudentCourses { get; private set; }
 
         public List<StudentExam> StudentExams { get; private set; }
+
+        public static Student Create(Guid userId) => new Student
+        {
+            UserId = userId
+        };
 
         public static Student Create (Guid userId, string fInitial, string group, int year, string rnumber) => new Student
         {

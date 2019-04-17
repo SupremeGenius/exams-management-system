@@ -51,18 +51,18 @@ namespace exams_management_system
 
             var attachment = new MimePart("image", "gif")
             {
-                Content = new MimeContent(File.OpenRead("C:\\Users\\Gabi\\Downloads\\notporn.jpg")),
+                Content = new MimeContent(File.OpenRead("C:\\Users\\Gabi\\Downloads\\poza.jpg")),
                 ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
                 ContentTransferEncoding = ContentEncoding.Base64,
-                FileName = Path.GetFileName("C:\\Users\\Gabi\\Downloads\\notporn.jpg")
+                FileName = Path.GetFileName("C:\\Users\\Gabi\\Downloads\\poza.jpg")
             };
 
             var body = new TextPart("plain")
             {
-                Text = "Buna ziua, " + gradeDetailsModel.StudentName +
+                Text = "Buna ziua, " + 
                         @"
                         Va anunt ca lucrarea dumneavoastra la materia " + gradeDetailsModel.ExamName +
-                        " a fost corectata si nota este " + gradeDetailsModel.Grade +
+                        " a fost corectata si nota este " + gradeDetailsModel.Value +
                         @".
                         Intrati in aplicatie si alegeti daca sunteti de acord cu aceasta nota sau nu. 
                         Mai jos am atasat baremul." +

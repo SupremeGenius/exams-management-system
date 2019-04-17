@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EMS.Domain;
+using EMS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EMS.Business
@@ -15,13 +16,22 @@ namespace EMS.Business
 
         public async Task<Guid> CreateNew(CreatingGradeModel newGrade)
         {
+            var student = await repository.FindByIdAsync<Student>(newGrade.StudentId);
+            var exam = await repository.FindByIdAsync<Exam>(newGrade.ExamId);
+            var tmpGrade = repository.GetAll<Grade>().FirstOrDefault();
+
+            if (tmpGrade != null)
+            {
+                return default(Guid);
+            }
+
             var grade = Grade.Create(
-                value: newGrade.Nota,
+                value: newGrade.Value,
                 examId: newGrade.ExamId,
                 studentId: newGrade.StudentId);
 
-            await this.repository.AddNewAsync(grade);
-            await this.repository.SaveAsync();
+            await repository.AddNewAsync(grade);
+            await repository.SaveAsync();
 
             return grade.Id;
         }
@@ -31,7 +41,7 @@ namespace EMS.Business
         public Task<GradeDetailsModel> FindById(Guid id) => AllGradeDetails.SingleOrDefaultAsync(g => g.Id == id);
 
         public Task<List<GradeDetailsModel>> FindByExamId(Guid examId)
-        => this.repository.GetAll<Grade>()
+        => repository.GetAll<Grade>()
                 .Where(g => g.ExamId == examId)
                 .Include(g => g.Exam)
                 .Include(g => g.Student)
@@ -41,11 +51,11 @@ namespace EMS.Business
                 Id = eg.Id,
                 ExamName = eg.Exam.Course.Title,
                 StudentName = eg.Student.Name,
-                Grade = eg.Value
+                Value = eg.Value
             }).ToListAsync();       
 
         public Task<List<GradeDetailsModel>> FindByStudentId(Guid studentId)
-        => this.repository.GetAll<Grade>()
+        => repository.GetAll<Grade>()
                 .Where(g => g.StudentId == studentId)
                 .Include(g => g.Exam)
                 .Include(g => g.Student)
@@ -55,46 +65,33 @@ namespace EMS.Business
                     Id = eg.Id,
                     ExamName = eg.Exam.Course.Title,
                     StudentName = eg.Student.Name,
-                    Grade = eg.Value
+                    Value = eg.Value
                 }).ToListAsync();
 
 
-        public async Task<bool> Update(Guid id, Grade updatedGrade)
+        public async Task Update(Guid id, Grade updatedGrade)
         {
-            var gradeToUpdate = await this.repository.FindByIdAsync<Grade>(id);
+            var gradeToUpdate = await repository.FindByIdAsync<Grade>(id);
 
-            if (await repository.TryUpdateModelAsync<Grade>(
+            await repository.TryUpdateModelAsync(
                     gradeToUpdate,
                     updatedGrade
-                    ))
-            {
-                await repository.SaveAsync();
-                return true;
-            }
-
-            return false;
+                    );
+            await repository.SaveAsync();
         }
 
-        public async Task<bool> Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            var grade = await this.repository.FindByIdAsync<Grade>(id);
-            if (grade != null)
-            {
-                await repository.SaveAsync();
-                await repository.RemoveAsync<Grade>(grade);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            var grade = await repository.FindByIdAsync<Grade>(id);
+            await repository.RemoveAsync(grade);
+            await repository.SaveAsync();
         }
 
-        private IQueryable<GradeDetailsModel> AllGradeDetails => this.repository.GetAll<Grade>()
+        private IQueryable<GradeDetailsModel> AllGradeDetails => repository.GetAll<Grade>()
           .Select(g => new GradeDetailsModel
           {
               Id = g.Id,
-              Grade = g.Value,
+              Value = g.Value,
               ExamName = g.Exam.Course.Title,
               StudentName = g.Student.Name
           });

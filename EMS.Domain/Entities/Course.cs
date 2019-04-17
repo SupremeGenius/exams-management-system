@@ -27,12 +27,13 @@ namespace EMS.Domain
             StudentCourses = new List<StudentCourse>();
         }
 
-        public static Course Create(string title, string universityYear, int studentYear, int semester) => new Course
+        public static Course Create(string title, string universityYear, int studentYear, int semester, Guid professorId) => new Course
         {
             Title = title,
             UniversityYear = universityYear,
             StudentYear = studentYear,
-            Semester = semester
+            Semester = semester,
+            ProfessorId = professorId
         };
 
         public void Update(Course updatedEntity)

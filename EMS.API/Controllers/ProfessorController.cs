@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Http;
 using System;
 using AutoMapper;
 using EMS.Domain.Entities;
+using System.Collections.Generic;
 
 namespace exams_management_system.Controllers
 {
-    [Route("api/professors")]
+    [VersionedRoute("api/professors", 1)]
     [ApiController]
     public class ProfessorController : Controller
     {
@@ -22,11 +23,11 @@ namespace exams_management_system.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProfessors()
         {
-            var Professors = await this.professorService.GetAll();
+            var Professors = await professorService.GetAll();
 
             if (Professors.Count == 0)
             {
-                return Ok("No professors have been found!");
+                return Ok(new List<ProfessorDetailsModel>());
             }
 
             return Ok(Professors);
@@ -35,11 +36,11 @@ namespace exams_management_system.Controllers
         [HttpGet("{id:guid}", Name = "GetProfessorById")]
         public async Task<IActionResult> GetProfessorById(Guid id)
         {
-            var professor = await this.professorService.FindById(id);
+            var professor = await professorService.FindById(id);
 
             if (professor == null)
             {
-                return StatusCode(StatusCodes.Status422UnprocessableEntity);
+                return NotFound();
             }
 
             return Ok(professor);
@@ -53,13 +54,16 @@ namespace exams_management_system.Controllers
                 return BadRequest(ModelState);
             }
 
+            var professor = await professorService.FindById(id);
+            if (professor == null)
+            {
+                return NotFound();
+            }
+
             var professorModel = Mapper.Map<UpdateProfessorModel, Professor>(createProfessorModel);
 
-            var response = await this.professorService.UpdateAsync(id, professorModel);
-            if (response)
-            {
-                return Ok("User updated");
-            }
+            await professorService.UpdateAsync(id, professorModel);
+
             return NoContent();
         }
     }

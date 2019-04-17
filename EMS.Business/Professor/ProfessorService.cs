@@ -20,26 +20,21 @@ namespace EMS.Business
                 userId: userId
                 );
 
-            await this.repository.AddNewAsync(professor);
-            await this.repository.SaveAsync();
+            await repository.AddNewAsync(professor);
+            await repository.SaveAsync();
 
             return professor.Id;
         }
 
-        public async Task<bool> UpdateAsync(Guid id, Professor professorUpdated)
+        public async Task UpdateAsync(Guid id, Professor professorUpdated)
         {
-            var professorToUpdate = await this.repository.FindByIdAsync<Professor>(id);
+            var professorToUpdate = await repository.FindByIdAsync<Professor>(id);
 
-            if (await repository.TryUpdateModelAsync<Professor>(
+            await repository.TryUpdateModelAsync(
                 professorToUpdate,
                 professorUpdated
-            ))
-            {
-                await repository.SaveAsync();
-                return true;
-            }
-
-            return false;
+            );
+            await repository.SaveAsync();
         }
 
         public Task<List<ProfessorDetailsModel>> GetAll() => GetAllProfessorDetails().ToListAsync();
@@ -49,15 +44,13 @@ namespace EMS.Business
         public Task<ProfessorDetailsModel> FindById(Guid id) => GetAllProfessorDetails().SingleOrDefaultAsync(p => p.Id == id);
 
 
-        private IQueryable<ProfessorDetailsModel> GetAllProfessorDetails() => this.repository.GetAll<Professor>()
+        private IQueryable<ProfessorDetailsModel> GetAllProfessorDetails() => repository.GetAll<Professor>()
             .Select(p => new ProfessorDetailsModel
             {
                 Id = p.Id,
                 UserId = p.UserId, 
                 Title = p.Title,
-                Course = p.Course,
-                Exams = p.Exams
-
+                Name = p.Name
             });
     }
 }
