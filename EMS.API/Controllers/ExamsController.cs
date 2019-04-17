@@ -36,7 +36,7 @@ namespace exams_management_system.Controllers
 
             if (grade.Count == 0)
             {
-                return StatusCode(StatusCodes.Status404NotFound);
+                return NotFound();
             }
 
             return Ok(grade);
@@ -59,7 +59,7 @@ namespace exams_management_system.Controllers
                 return StatusCode(StatusCodes.Status201Created, examId);
             }
 
-            return StatusCode(StatusCodes.Status422UnprocessableEntity);
+            return Conflict();
         }
 
         [HttpGet("{id:guid}", Name = "GetExamById")]
@@ -69,7 +69,7 @@ namespace exams_management_system.Controllers
 
             if (exam == null)
             {
-                return StatusCode(StatusCodes.Status404NotFound);
+                return NotFound();
             }
 
             return Ok(exam);
@@ -86,7 +86,7 @@ namespace exams_management_system.Controllers
             var exam = await examService.FindById(id);
             if (exam == null)
             {
-                return StatusCode(StatusCodes.Status404NotFound);
+                return NotFound();
             }
 
             var examModel = Mapper.Map<UpdateExamModel, Exam>(updateExamModel);
@@ -101,7 +101,7 @@ namespace exams_management_system.Controllers
             var exam = await examService.FindById(id);
             if (exam == null)
             {
-                return StatusCode(StatusCodes.Status404NotFound);
+                return NotFound();
             }
 
             await examService.Delete(id);

@@ -34,7 +34,7 @@ namespace EMS.Business
                 professorToUpdate,
                 professorUpdated
             );
-                await repository.SaveAsync();
+            await repository.SaveAsync();
         }
 
         public Task<List<ProfessorDetailsModel>> GetAll() => GetAllProfessorDetails().ToListAsync();

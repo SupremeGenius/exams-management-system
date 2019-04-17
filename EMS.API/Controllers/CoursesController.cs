@@ -40,7 +40,7 @@ namespace exams_management_system.Controllers
 
             if (course == null)
             {
-                return StatusCode(StatusCodes.Status422UnprocessableEntity);
+                return NotFound();
             }
 
             return Ok(course);
@@ -52,6 +52,13 @@ namespace exams_management_system.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            var professor = await courseService.GetProfessorCourse(model.ProfessorId);
+
+            if (professor != null)
+            {
+                return Conflict();
             }
 
             var courseId = await courseService.CreateNew(model);
@@ -70,7 +77,7 @@ namespace exams_management_system.Controllers
             var course = await courseService.FindById(id);
             if (course == null)
             {
-                return StatusCode(StatusCodes.Status422UnprocessableEntity);
+                return NotFound();
             }
 
             var courseModel = Mapper.Map<UpdateCourseModel, Course>(updateCourseModel);
@@ -85,7 +92,7 @@ namespace exams_management_system.Controllers
             var course = await courseService.FindById(courseId);
             if (course == null)
             {
-                return StatusCode(StatusCodes.Status422UnprocessableEntity);
+                return NotFound();
             }
             var response = await courseService.AssignStudentToCourse(courseId, studentId);
             return Ok();
@@ -94,6 +101,11 @@ namespace exams_management_system.Controllers
         [HttpDelete("{id:guid}", Name = "DeleteCourse")]
         public async Task<IActionResult> DeleteCourse(Guid id)
         {
+            var course = await courseService.FindById(id);
+            if (course == null)
+            {
+                return NotFound();
+            }
 
             await courseService.Delete(id);
             return NoContent();

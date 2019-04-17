@@ -77,5 +77,13 @@ namespace EMS.Business
             await repository.SaveAsync();
             return true;
         }
+
+        public Task<ProfessorDetailsModel> GetProfessorCourse(Guid id) => repository.GetAll<Course>()
+            .Where(c => c.ProfessorId == id)
+            .Select(p => new ProfessorDetailsModel
+            {
+                Id = p.Id
+            }).SingleOrDefaultAsync();
+
     }
 }

@@ -69,7 +69,7 @@ namespace exams_management_system.Controllers
             var grade = await gradeService.FindById(id);
             if (grade == null)
             {
-                return StatusCode(StatusCodes.Status404NotFound);
+                return NotFound();
             }
 
             var gradeModel = Mapper.Map<UpdateGradeModel, Grade>(updateGradeModel);
@@ -77,6 +77,7 @@ namespace exams_management_system.Controllers
             await gradeService.Update(id, gradeModel);
             var updatedGrade = await gradeService.FindById(id);
             SMTPClient.ProfessorSendMail(updatedGrade);
+
             return NoContent();
         }
 
@@ -86,7 +87,7 @@ namespace exams_management_system.Controllers
             var grade = await gradeService.FindById(id);
             if (grade == null)
             {
-                return StatusCode(StatusCodes.Status404NotFound);
+                return NotFound();
             }
 
             await gradeService.Delete(id);

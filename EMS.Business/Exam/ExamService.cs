@@ -40,8 +40,8 @@ namespace EMS.Business
                     examToUpdate,
                     updatedExam
                     );
-            
-                await repository.SaveAsync();
+
+            await repository.SaveAsync();
         }
 
         public async Task Delete(Guid id)

@@ -54,6 +54,12 @@ namespace exams_management_system.Controllers
                 return BadRequest(ModelState);
             }
 
+            var professor = await professorService.FindById(id);
+            if (professor == null)
+            {
+                return NotFound();
+            }
+
             var professorModel = Mapper.Map<UpdateProfessorModel, Professor>(createProfessorModel);
 
             await professorService.UpdateAsync(id, professorModel);
